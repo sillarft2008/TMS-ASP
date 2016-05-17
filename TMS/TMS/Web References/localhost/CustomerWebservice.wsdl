@@ -23,20 +23,6 @@
           <xsd:element name="telefone" nillable="true" type="xsd:string" />
         </xsd:sequence>
       </xsd:complexType>
-      <xsd:element name="findCustomer">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="customerNo" type="xsd:int" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="findCustomerResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="findCustomerReturn" type="impl:Customer" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
       <xsd:element name="deleteCustomer">
         <xsd:complexType>
           <xsd:sequence>
@@ -79,6 +65,20 @@
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
+      <xsd:element name="findCustomer">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="customerNo" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="findCustomerResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="findCustomerReturn" type="impl:Customer" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="findCustomerArrayRequest">
@@ -116,10 +116,6 @@
       <wsdl:input name="findCustomerArrayRequest" message="impl:findCustomerArrayRequest" />
       <wsdl:output name="findCustomerArrayResponse" message="impl:findCustomerArrayResponse" />
     </wsdl:operation>
-    <wsdl:operation name="findCustomer">
-      <wsdl:input name="findCustomerRequest" message="impl:findCustomerRequest" />
-      <wsdl:output name="findCustomerResponse" message="impl:findCustomerResponse" />
-    </wsdl:operation>
     <wsdl:operation name="deleteCustomer">
       <wsdl:input name="deleteCustomerRequest" message="impl:deleteCustomerRequest" />
       <wsdl:output name="deleteCustomerResponse" message="impl:deleteCustomerResponse" />
@@ -132,6 +128,10 @@
       <wsdl:input name="createCustomerRequest" message="impl:createCustomerRequest" />
       <wsdl:output name="createCustomerResponse" message="impl:createCustomerResponse" />
     </wsdl:operation>
+    <wsdl:operation name="findCustomer">
+      <wsdl:input name="findCustomerRequest" message="impl:findCustomerRequest" />
+      <wsdl:output name="findCustomerResponse" message="impl:findCustomerResponse" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="CustomerWebserviceSoapBinding" type="impl:CustomerWebservice">
     <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -141,15 +141,6 @@
         <wsdlsoap:body use="literal" />
       </wsdl:input>
       <wsdl:output name="findCustomerArrayResponse">
-        <wsdlsoap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="findCustomer">
-      <wsdlsoap:operation soapAction="" />
-      <wsdl:input name="findCustomerRequest">
-        <wsdlsoap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output name="findCustomerResponse">
         <wsdlsoap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
@@ -180,10 +171,19 @@
         <wsdlsoap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="findCustomer">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="findCustomerRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="findCustomerResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="CustomerWebserviceService">
     <wsdl:port name="CustomerWebservice" binding="impl:CustomerWebserviceSoapBinding">
-      <wsdlsoap:address location="http://localhost:13990/TMS/services/CustomerWebservice" />
+      <wsdlsoap:address location="http://localhost:8080/TMS/services/CustomerWebservice" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
