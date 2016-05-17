@@ -14,11 +14,11 @@
     <Setting Name="TMS_localhostEmployee_EmployeeWebserviceService" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://localhost:8080/TMS/services/EmployeeWebservice</Value>
     </Setting>
-    <Setting Name="TMS_localhostEC_EmployeeCompetencyWebserviceService" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://localhost:8080/TMS/services/EmployeeCompetencyWebservice</Value>
-    </Setting>
     <Setting Name="TMS_jobWS_JobWebserviceService" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://localhost:8080/TMS/services/JobWebservice</Value>
+    </Setting>
+    <Setting Name="TMS_localhostEC_EmployeeCompetencyWebserviceService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:8080/TMS/services/EmployeeCompetencyWebservice</Value>
     </Setting>
   </Settings>
 </SettingsFile>

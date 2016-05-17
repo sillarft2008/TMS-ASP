@@ -354,10 +354,10 @@
     <Content Include="Views\job\JobCompetencyList.cshtml" />
     <Content Include="Views\job\List.cshtml" />
     <None Include="Web References\jobWS\JobWebservice.wsdl" />
-    <Content Include="Web References\jobWS\Reference.map">
+    <None Include="Web References\jobWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <None Include="Web References\localhost2\TestWebservice.wsdl" />
     <Content Include="Web References\localhostCompetency\Competency.datasource">
       <DependentUpon>Reference.map</DependentUpon>
@@ -374,10 +374,10 @@
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
     <None Include="Web References\localhostEC\EmployeeCompetencyWebservice.wsdl" />
-    <None Include="Web References\localhostEC\Reference.map">
+    <Content Include="Web References\localhostEC\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    </Content>
     <None Include="Web References\localhostEmployee\EmployeeWebservice.wsdl" />
     <None Include="Web References\localhostEmployee\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
