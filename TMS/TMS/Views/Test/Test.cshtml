@@ -3,24 +3,6 @@
 @{
     ViewBag.Title = "Test";
 }
-<style type="text/css">
-    .Task1 {
-        background-color: grey;
-    }
-
-    .Task2 {
-        background-color: green;
-    }
-
-    .Task3 {
-        background-color: red;
-    }
-
-    .Task4 {
-        background-color: lime;
-    }
-</style>
-
 
 <h2>Test</h2>
 
@@ -89,14 +71,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.name)
             </td>
-            @foreach (var item2 in item.tasklist )
-
+            @foreach (var item2 in item.task)
             {
-                    <td class=@item2.color>
-                        @Html.ActionLink(item2.name, item2.link)
-                    </td>
+            <td>
+                @Html.DisplayFor(modelItem => item2)
+             </td>
             }
-        </tr>
+</tr>
     }
 
 </table>

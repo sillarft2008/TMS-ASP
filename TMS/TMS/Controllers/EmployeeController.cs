@@ -16,9 +16,12 @@ namespace TMS.Controllers
     public class EmployeeController : Controller
     {
 
-        private readonly CompetencyRepository _competencyRepository = new CompetencyRepository();
+        //private readonly CompetencyRepository _competencyRepository = new CompetencyRepository();
         private readonly IEmployeeRepository _iEmployeeRepository;
-        private readonly EmployeeCompetencyRepository _employeeCompetencyRepository = new EmployeeCompetencyRepository();
+       // private readonly EmployeeCompetencyRepository _employeeCompetencyRepository = new EmployeeCompetencyRepository();
+        private readonly CompetenciesController CC = new CompetenciesController();
+        private readonly EmployeeCompetencyController ECC = new EmployeeCompetencyController();
+
 
 
         public EmployeeController(IEmployeeRepository iEmployeeRepository)
@@ -29,15 +32,15 @@ namespace TMS.Controllers
         // GET: People
         public ActionResult Index(string search = "")
         {
-            var employees = _iEmployeeRepository.All.ToList();
+           // var employees = _iEmployeeRepository.All.ToList();
 
             if (!string.IsNullOrEmpty(search))
             {
                 var eivm = new EmployeeIndexViewModel
                 {
-                    Employees = _iEmployeeRepository.All.Where(a => a.FirstName.Contains(search.ToUpper())).ToList(),
-                    Competencies = _competencyRepository.All.ToList(),
-                    Employees_Competecy = _employeeCompetencyRepository.All.ToList()
+                    Employees = _iEmployeeRepository.All.ToList(),
+                    Competencies = CC.All.ToList(),
+                    Employees_Competency = ECC.All.ToList()
                 };
                 return View(eivm);
             }
@@ -46,8 +49,8 @@ namespace TMS.Controllers
                 var eivm = new EmployeeIndexViewModel
                 {
                     Employees = _iEmployeeRepository.All.ToList(),
-                    Competencies = _competencyRepository.All.ToList(),
-                    Employees_Competecy = _employeeCompetencyRepository.All.ToList()
+                    Competencies = CC.All.ToList(),
+                    Employees_Competency = ECC.All.ToList()
                 };
                 return View(eivm);
             }
@@ -61,22 +64,81 @@ namespace TMS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Employee person = _iEmployeeRepository.Find(id);
+
             if (person == null)
             {
                 return HttpNotFound();
             }
-            return View(person);
+            else
+            {
+
+                List<Employee_Competency> ecList = new List<Employee_Competency>();
+                List<Competency> compList = new List<Competency>();
+
+
+                localhostEC.EmployeeCompetencyWebserviceService ECWS = new localhostEC.EmployeeCompetencyWebserviceService();
+                localhostCompetency.CompetencyWebserviceService CWS = new localhostCompetency.CompetencyWebserviceService();
+
+                localhostEC.EmployeeCompetency[] pancake = ECWS.findAllEmployeeCompetencies(person.Id);
+                localhostCompetency.Competency[] cake = CWS.getAllCompetencies();
+
+                CWS.Timeout = 2000;
+
+                Employee_Competency ec;
+                Competency competency;
+
+                foreach (localhostEC.EmployeeCompetency comp in pancake)
+                {
+                    ec = new Employee_Competency();
+                    ec.setEmployeeCompetency(comp);
+                    ecList.Add(ec);
+
+
+                    foreach (localhostCompetency.Competency compot in cake)
+                    {
+                       
+                        if(comp.id == ec.competencyId)
+                        {
+                            competency = new Competency();
+                            competency.setCompetency(compot);
+                            compList.Add(competency);
+                        }
+                       
+                    }
+                }
+                var vm = new EmployeeIndexViewModel
+                {
+                    Employee = person,
+                    Employees_Competency = ecList,
+                    //Competencies = compList
+                    
+                };
+                return View(vm);
+            }
         }
 
         // GET: People/Create
         public ActionResult Create()
         {
-            var ecvm =
-               new EmployeeCompetencyViewModel
-               {
-                   Employee = new Employee(),
-                   Competencies = _competencyRepository.AllIncluding(a => a.Employee_Competencies).ToList()
-               };
+            List<Competency> compList = new List<Competency>();
+
+            localhostCompetency.CompetencyWebserviceService CWS = new localhostCompetency.CompetencyWebserviceService();
+            localhostCompetency.Competency[] cake = CWS.getAllCompetencies();
+            CWS.Timeout = 2000;
+
+            Competency competency;
+            foreach (localhostCompetency.Competency comp in cake)
+            {
+                competency = new Competency();
+                competency.setCompetency(comp);
+                compList.Add(competency);
+            }
+
+            var ecvm = new EmployeeCompetencyViewModel
+            {
+                Employee = new Employee(),
+                Competencies = compList
+            };
             return View(ecvm);
         }
 
@@ -85,32 +147,47 @@ namespace TMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Email,Phone,BirthDate,HomeAddress,Competencies,Role")] Employee person,
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Email,Phone,BirthDate,HomeAddress,Competencies,")] Employee person,
             EmployeeCompetencyViewModel data, IEnumerable<int> compIds)
         {
             if (ModelState.IsValid)
             {
                 _iEmployeeRepository.InsertOrUpdate(data.Employee);
-                foreach (var pancake in compIds)
+
+                if (compIds != null)
                 {
-                    var employeeCompetency = new Employee_Competency
+                    foreach (var pancake in compIds)
                     {
-                        employeeId = pancake,
-                        competencyId = data.Employee.Id
-                    };
-                    _employeeCompetencyRepository.InsertOrUpdate(employeeCompetency);
+                        var employeeCompetency = new Employee_Competency
+                        {
+                            competencyId = pancake,
+                            employeeId = data.Employee.Id
+                        };
+                        ECC.Create(employeeCompetency);
+                    }
                 }
 
                 return RedirectToAction("Index");
             }
-            var ecvm =
-                new EmployeeCompetencyViewModel
-                {
-                    Employee = new Employee(),
-                    Competencies = _competencyRepository.AllIncluding(a => a.Competencies).ToList()
-                };
+            List<Competency> compList = new List<Competency>();
 
+            localhostCompetency.CompetencyWebserviceService CWS = new localhostCompetency.CompetencyWebserviceService();
+            localhostCompetency.Competency[] cake = CWS.getAllCompetencies();
+            CWS.Timeout = 2000;
 
+            Competency competency;
+            foreach (localhostCompetency.Competency comp in cake)
+            {
+                competency = new Competency();
+                competency.setCompetency(comp);
+                compList.Add(competency);
+            }
+
+            var ecvm = new EmployeeCompetencyViewModel
+            {
+                Employee = person,
+                Competencies = compList
+            };
             return View(ecvm);
         }
 
@@ -122,10 +199,24 @@ namespace TMS.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var employee = _iEmployeeRepository.Find(id);
+            List<Competency> compList = new List<Competency>();
+
+            localhostCompetency.CompetencyWebserviceService CWS = new localhostCompetency.CompetencyWebserviceService();
+            localhostCompetency.Competency[] pancake = CWS.getAllCompetencies();
+            CWS.Timeout = 2000;
+
+            Competency competency;
+            foreach (localhostCompetency.Competency comp in pancake)
+            {
+                competency = new Competency();
+                competency.setCompetency(comp);
+                compList.Add(competency);
+            }
+
             var vm = new EmployeeCompetencyViewModel
             {
                 Employee = employee,
-                Competencies = _competencyRepository.AllIncluding(a => a.Competencies).ToList()
+                Competencies =compList
             };
             return View(vm);
         }
@@ -135,7 +226,7 @@ namespace TMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Email,Phone,BirthDate,HomeAddress,Competencies,Role")] Employee person,
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Email,Phone,BirthDate,HomeAddress,Competencies")] Employee person,
             EmployeeCompetencyViewModel data, IEnumerable<int> compIds)
         {
             if (ModelState.IsValid)
@@ -152,10 +243,10 @@ namespace TMS.Controllers
                             competencyId = pancake,
                             employeeId = data.Employee.Id
                         };
-                        _employeeCompetencyRepository.InsertOrUpdate(employeeCompetency);
+                        ECC.Create(employeeCompetency);
                     }
                 }
-                else //By Dana
+                else 
                 {
                     throw new ArgumentNullException(nameof(compIds),
                         "The competencies can not be NULL, you have to select at least 1.");

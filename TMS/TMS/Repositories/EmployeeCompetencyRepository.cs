@@ -10,62 +10,69 @@ namespace TMS.Repositories
 {
         public interface IEmployeeCompetencyRepository
         {
-            IQueryable<Employee_Competency> All { get; }
+        IEnumerable<Employee_Competency> All { get; }
 
-            IQueryable<Employee_Competency> AllIncluding(
-                params Expression<Func<Employee_Competency, object>>[] includeProperties);
+        Employee_Competency Find(int? id);
+        void InsertOrUpdate(Employee_Competency dude);
+        void Delete(int id);
 
-            Employee_Competency Find(int? id);
-            void InsertOrUpdate(Employee_Competency movieGenres);
-            void Delete(int? id);
-            void Save();
-        }
-        public class EmployeeCompetencyRepository : IEmployeeCompetencyRepository
+    }
+    public class EmployeeCompetencyRepository : IEmployeeCompetencyRepository
     {
-            ApplicationDbContext context = new ApplicationDbContext();
+        localhostEC.EmployeeCompetencyWebserviceService ECW = new localhostEC.EmployeeCompetencyWebserviceService();
+        localhostEC.EmployeeCompetency employee = new localhostEC.EmployeeCompetency();
 
-            public IQueryable<Employee_Competency> All
+
+        IEnumerable<Employee_Competency> IEmployeeCompetencyRepository.All
+        {
+            get
             {
-                get { return context.Employee_Competency; }
-            }
-            public IQueryable<Employee_Competency> AllIncluding(params Expression<Func<Employee_Competency, object>>[] includeProperties)
-            {
-                IQueryable<Employee_Competency> query = context.Employee_Competency;
-                foreach (var includeProperty in includeProperties)
+                List<Employee_Competency> employeeList = new List<Employee_Competency>();
+
+                localhostEC.EmployeeCompetency[] pancake = ECW.getAllEmployeeCompetencies();
+                ECW.Timeout = 2000;
+
+                Employee_Competency employee;
+                foreach (localhostEC.EmployeeCompetency e in pancake)
                 {
-                    query = query.Include(includeProperty);
+                    employee = new Employee_Competency();
+                    employee.setEmployeeCompetency(e);
+                    employeeList.Add(employee);
                 }
-                return query;
-            }
-
-            public Employee_Competency Find(int? id)
-            {
-                return context.Employee_Competency.Find(id);
-            }
-
-            public void InsertOrUpdate(Employee_Competency movieGenres)
-            {
-                if (movieGenres.Id == default(int)) //if it is default int(0) than it is a new movie
-                {
-                    context.Employee_Competency.Add(movieGenres);
-                }
-                else
-                {
-                    context.Entry(movieGenres).State = EntityState.Added;
-                }
-                context.SaveChanges();
-            }
-
-            public void Delete(int? id)
-            {
-                Employee_Competency movieGenres = context.Employee_Competency.Find(id);
-                context.Employee_Competency.Remove(movieGenres);
-                context.SaveChanges();
-            }
-            public void Save()
-            {
-                context.SaveChanges();
+                IEnumerable<Employee_Competency> l = employeeList.ToList();
+                return l;
 
             }
         }
+
+        public Employee_Competency Find(int? id)
+        {
+            Employee_Competency employee = new Employee_Competency();
+            employee.setEmployeeCompetency(ECW.findEmployeeCompetency((int)id));
+            return employee;
+        }
+
+        public void InsertOrUpdate(Employee_Competency dude)
+        {
+            if (dude.Id == default(int)) //if it is default int(0) than it is a new movie
+            {
+                employee = dude.getEmployeeCompetency();
+                ECW.Timeout = 2000;
+                String result = ECW.createEmployeeCompetency(employee);
+            }
+            else
+            {
+                employee = dude.getEmployeeCompetency();
+                ECW.Timeout = 2000;
+                String result = ECW.updateEmployeeCompetency(employee);
+            }
+        }
+
+        public void Delete(int id)
+        {
+            ECW.Timeout = 2000;
+            localhostEC.EmployeeCompetency delete = ECW.findEmployeeCompetency((int)id);
+            ECW.deleteEmployeeCompetency(delete);
+        }
+    }
 }

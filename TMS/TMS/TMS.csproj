@@ -64,6 +64,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -187,9 +189,9 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CompetenciesController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Controllers\EmployeeCompetencyController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
@@ -197,15 +199,12 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Class4.cs" />
     <Compile Include="Models\Competency.cs" />
     <Compile Include="Models\Employee_Competency.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Job.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Employee.cs" />
-    <Compile Include="Models\Task2.cs" />
     <Compile Include="Models\Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -220,7 +219,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\EmployeeCompetencyViewModel.cs" />
     <Compile Include="ViewModels\EmployeeIndexViewModel.cs" />
-    <Compile Include="Web References\jobWS\Reference.cs">
+    <Compile Include="Web References\localhost2\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
@@ -230,12 +229,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
-    <Compile Include="Web References\localhost\Reference.cs">
+    <Compile Include="Web References\localhostEC\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
-    <Compile Include="Web References\taskWS\Reference.cs">
+    <Compile Include="Web References\localhostEmployee\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\localhost\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
@@ -302,7 +306,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Employee\Create.cshtml" />
     <Content Include="Views\Employee\Delete.cshtml" />
-    <Content Include="Views\Employee\Details.cshtml" />
+    <Content Include="Views\Employee\Details2.cshtml" />
     <Content Include="Views\Employee\Edit.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Home\CustomerForm.cshtml" />
@@ -322,42 +326,49 @@
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
     <Content Include="Views\Test\Test.cshtml" />
-    <Content Include="Views\Job\Index.cshtml" />
-    <Content Include="Views\Job\Details.cshtml" />
-    <Content Include="Views\Job\Create.cshtml" />
-    <Content Include="Views\Job\Edit.cshtml" />
-    <Content Include="Views\Job\Delete.cshtml" />
-    <Content Include="Views\Job\List.cshtml" />
-    <Content Include="Views\Job\JobCompetencyList.cshtml" />
-    <Content Include="Web References\jobWS\Job.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <None Include="Web References\jobWS\JobWebservice.wsdl" />
-    <None Include="Web References\jobWS\Reference.map">
+    <Content Include="Web References\localhost2\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <Content Include="Web References\localhostCompetency\Competency1.datasource">
+    </Content>
+    <Content Include="Web References\localhost2\Test.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Views\EmployeeCompetency\Index.cshtml" />
+    <Content Include="Views\EmployeeCompetency\Details.cshtml" />
+    <Content Include="Views\EmployeeCompetency\Edit.cshtml" />
+    <Content Include="Views\EmployeeCompetency\Delete.cshtml" />
+    <Content Include="Views\EmployeeCompetency\Create.cshtml" />
+    <Content Include="Views\Employee\Details.cshtml" />
+    <None Include="Web References\localhost2\TestWebservice.wsdl" />
+    <Content Include="Web References\localhostCompetency\Competency.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
     <None Include="Web References\localhostCompetency\CompetencyWebservice.wsdl" />
-    <Content Include="Web References\localhostCompetency\Reference.map">
+    <None Include="Web References\localhostCompetency\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Web References\localhostEmployee\Employee.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
     </Content>
+    <Content Include="Web References\localhostEC\EmployeeCompetency.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <None Include="Web References\localhostEC\EmployeeCompetencyWebservice.wsdl" />
+    <None Include="Web References\localhostEC\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\localhostEmployee\EmployeeWebservice.wsdl" />
+    <None Include="Web References\localhostEmployee\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <None Include="Web References\localhost\CustomerWebservice.wsdl" />
     <None Include="Web References\localhost\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\taskWS\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <Content Include="Web References\taskWS\Task.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <None Include="Web References\taskWS\TaskWebservice.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -399,27 +410,38 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>TMS_localhost_CustomerWebserviceService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost:8080/TMS/wsdl/JobWebservice.wsdl">
+    <WebReferenceUrl Include="http://localhost:8080/TMS/wsdl/EmployeeCompetencyWebservice.wsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\jobWS\</RelPath>
-      <UpdateFromURL>http://localhost:8080/TMS/wsdl/JobWebservice.wsdl</UpdateFromURL>
+      <RelPath>Web References\localhostEC\</RelPath>
+      <UpdateFromURL>http://localhost:8080/TMS/wsdl/EmployeeCompetencyWebservice.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>TMS_jobWS_JobWebserviceService</CachedSettingsPropName>
+      <CachedSettingsPropName>TMS_localhostEC_EmployeeCompetencyWebserviceService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://localhost:8080/TMS/wsdl/TaskWebservice.wsdl">
+    <WebReferenceUrl Include="http://localhost:8080/TMS/wsdl/EmployeeWebservice.wsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\taskWS\</RelPath>
-      <UpdateFromURL>http://localhost:8080/TMS/wsdl/TaskWebservice.wsdl</UpdateFromURL>
+      <RelPath>Web References\localhostEmployee\</RelPath>
+      <UpdateFromURL>http://localhost:8080/TMS/wsdl/EmployeeWebservice.wsdl</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>TMS_taskWS_TaskWebserviceService</CachedSettingsPropName>
+      <CachedSettingsPropName>TMS_localhostEmployee_EmployeeWebserviceService</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://localhost:8080/TMS/wsdl/TestWebservice.wsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\localhost2\</RelPath>
+      <UpdateFromURL>http://localhost:8080/TMS/wsdl/TestWebservice.wsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>TMS_localhost2_TestWebserviceService</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
   <PropertyGroup>

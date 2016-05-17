@@ -12,12 +12,10 @@ namespace TMS.Controllers
 {
     public class CustomersController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Customers
         public ActionResult Index()
         {
-            //return View(db.Customers.ToList());
             List<Customer> test2 = new List<Customer>();
 
             localhost.CustomerWebserviceService CWS = new localhost.CustomerWebserviceService();
@@ -25,9 +23,6 @@ namespace TMS.Controllers
             localhost.Customer[] aaa = CWS.findCustomerArray();
 
             Customer cust;
-            if (aaa == null) {
-                return View();
-            }
             foreach (localhost.Customer cust2 in aaa) {
                 cust = new Customer();
                 cust.setCustomer(cust2);
@@ -73,8 +68,6 @@ namespace TMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                //db.Customers.Add(customer);
-                //db.SaveChanges();
                 localhost.Customer cust = new localhost.Customer();
                 cust = customer.getCustomer();
                 localhost.CustomerWebserviceService CWS = new localhost.CustomerWebserviceService();
@@ -109,7 +102,7 @@ namespace TMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,CompanyName,CVR,CompanyAddress,Phone,ApplicationUserId")] Customer customer)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,CompanyName,CVR,CompanyAddress,Phone")] Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -152,15 +145,6 @@ namespace TMS.Controllers
             localhost.Customer deleteCustomer = CWS.findCustomer((int)id);
             CWS.deleteCustomer(deleteCustomer);            
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿@model TMS.Models.Employee
+﻿@using TMS.Models
+@model TMS.ViewModels.EmployeeIndexViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -11,72 +12,73 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.DisplayNameFor(model => model.Employee.FirstName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FirstName)
+            @Html.DisplayFor(model => model.Employee.FirstName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.DisplayNameFor(model => model.Employee.LastName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.LastName)
+            @Html.DisplayFor(model => model.Employee.LastName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Email)
+            @Html.DisplayNameFor(model => model.Employee.Email)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Email)
+            @Html.DisplayFor(model => model.Employee.Email)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Phone)
+            @Html.DisplayNameFor(model => model.Employee.Phone)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Phone)
+            @Html.DisplayFor(model => model.Employee.Phone)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.BirthDate)
+            @Html.DisplayNameFor(model => model.Employee.BirthDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.BirthDate)
+            @Html.DisplayFor(model => model.Employee.BirthDate)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.HomeAddress)
+            @Html.DisplayNameFor(model => model.Employee.HomeAddress)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.HomeAddress)
+            @Html.DisplayFor(model => model.Employee.HomeAddress)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Competencies)
+            @Html.DisplayNameFor(model => model.Employee.Competencies)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Competencies)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Role)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Role)
+            <table class="table">
+                @foreach (var item in Model.Employees_Competency)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Competency.Competencies)
+                        </td>
+                    </tr>
+                }
+            </table>
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Employee.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

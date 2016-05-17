@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -8,10 +9,14 @@ namespace TMS.Models
     public class Customer
     {
         public int Id { get; set; }
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
+        [Display(Name = "Company Name")]
         public string CompanyName { get; set; }
         public int CVR { get; set; }
+        [Display(Name = "Company Address")]
         public string CompanyAddress { get; set; }
         public string Phone { get; set; }
 

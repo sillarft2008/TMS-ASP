@@ -22,6 +22,20 @@
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
+      <xsd:element name="createCompetency">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="competency" type="impl:Competency" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="createCompetencyResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="createCompetencyReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
       <xsd:element name="findCompetency">
         <xsd:complexType>
           <xsd:sequence>
@@ -47,20 +61,6 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="deleteCompetencyReturn" type="xsd:string" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="createCompetency">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="competency" type="impl:Competency" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="createCompetencyResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="createCompetencyReturn" type="xsd:string" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
@@ -111,6 +111,10 @@
       <wsdl:input name="updateCompetencyRequest" message="impl:updateCompetencyRequest" />
       <wsdl:output name="updateCompetencyResponse" message="impl:updateCompetencyResponse" />
     </wsdl:operation>
+    <wsdl:operation name="createCompetency">
+      <wsdl:input name="createCompetencyRequest" message="impl:createCompetencyRequest" />
+      <wsdl:output name="createCompetencyResponse" message="impl:createCompetencyResponse" />
+    </wsdl:operation>
     <wsdl:operation name="findCompetency">
       <wsdl:input name="findCompetencyRequest" message="impl:findCompetencyRequest" />
       <wsdl:output name="findCompetencyResponse" message="impl:findCompetencyResponse" />
@@ -118,10 +122,6 @@
     <wsdl:operation name="deleteCompetency">
       <wsdl:input name="deleteCompetencyRequest" message="impl:deleteCompetencyRequest" />
       <wsdl:output name="deleteCompetencyResponse" message="impl:deleteCompetencyResponse" />
-    </wsdl:operation>
-    <wsdl:operation name="createCompetency">
-      <wsdl:input name="createCompetencyRequest" message="impl:createCompetencyRequest" />
-      <wsdl:output name="createCompetencyResponse" message="impl:createCompetencyResponse" />
     </wsdl:operation>
     <wsdl:operation name="getAllCompetencies">
       <wsdl:input name="getAllCompetenciesRequest" message="impl:getAllCompetenciesRequest" />
@@ -136,6 +136,15 @@
         <wsdlsoap:body use="literal" />
       </wsdl:input>
       <wsdl:output name="updateCompetencyResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createCompetency">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="createCompetencyRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="createCompetencyResponse">
         <wsdlsoap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
@@ -154,15 +163,6 @@
         <wsdlsoap:body use="literal" />
       </wsdl:input>
       <wsdl:output name="deleteCompetencyResponse">
-        <wsdlsoap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="createCompetency">
-      <wsdlsoap:operation soapAction="" />
-      <wsdl:input name="createCompetencyRequest">
-        <wsdlsoap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output name="createCompetencyResponse">
         <wsdlsoap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
