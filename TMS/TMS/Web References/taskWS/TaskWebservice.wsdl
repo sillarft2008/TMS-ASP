@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:intf="http://webservice_layer" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:impl="http://webservice_layer" targetNamespace="http://webservice_layer" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://webservice_layer">
+      <xsd:element name="getTask">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="employee" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getTaskResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" name="getTaskReturn" type="impl:Task" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="Task">
+        <xsd:sequence>
+          <xsd:element name="id" type="xsd:int" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+          <xsd:element name="duration" type="xsd:int" />
+          <xsd:element name="start" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getTaskRequest">
+    <wsdl:part name="parameters" element="impl:getTask" />
+  </wsdl:message>
+  <wsdl:message name="getTaskResponse">
+    <wsdl:part name="parameters" element="impl:getTaskResponse" />
+  </wsdl:message>
+  <wsdl:portType name="TaskWebservice">
+    <wsdl:operation name="getTask">
+      <wsdl:input name="getTaskRequest" message="impl:getTaskRequest" />
+      <wsdl:output name="getTaskResponse" message="impl:getTaskResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TaskWebserviceSoapBinding" type="impl:TaskWebservice">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getTask">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getTaskRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getTaskResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TaskWebserviceService">
+    <wsdl:port name="TaskWebservice" binding="impl:TaskWebserviceSoapBinding">
+      <wsdlsoap:address location="http://localhost:13990/TMS/services/TaskWebservice" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
