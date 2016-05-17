@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
@@ -8,10 +9,7 @@ namespace TMS.Repositories
 {
     public interface IEmployeeRepository
     {
-        IQueryable<Employee> All { get; }
-
-        IQueryable<Employee> AllIncluding(
-            params Expression<Func<Employee, object>>[] includeProperties);
+        IEnumerable<Employee> All { get; }
 
         Employee Find(int? id);
         void InsertOrUpdate(Employee dude);
@@ -20,46 +18,60 @@ namespace TMS.Repositories
     }
     public class EmployeeRepository : IEmployeeRepository
     {
-        ApplicationDbContext context = new ApplicationDbContext();
+        localhostEmployee.EmployeeWebserviceService EWS = new localhostEmployee.EmployeeWebserviceService();
+        localhostEmployee.Employee employee = new localhostEmployee.Employee();
 
-        public IQueryable<Employee> All
+     
+        IEnumerable<Employee> IEmployeeRepository.All
         {
-            get { return context.Employees; }
-        }
-
-        public IQueryable<Employee> AllIncluding(params Expression<Func<Employee, object>>[] includeProperties)
-        {
-            IQueryable<Employee> query = context.Employees;
-            foreach (var includeProperty in includeProperties)
+            get
             {
-                query = query.Include(includeProperty);
+                List<Employee> employeeList = new List<Employee>();
+
+                localhostEmployee.Employee[] pancake = EWS.getAllEmployees();
+                EWS.Timeout = 2000;
+
+                Employee employee;
+                foreach (localhostEmployee.Employee e in pancake)
+                {
+                    employee = new Employee();
+                    employee.setEmployee(e);
+                    employeeList.Add(employee);
+                }
+                IEnumerable<Employee> l = employeeList.ToList();
+                return l;
+                
             }
-            return query;
         }
 
         public Employee Find(int? id)
         {
-            return context.Employees.Find(id);
+            Employee employee = new Employee();
+            employee.setEmployee(EWS.findEmployee((int)id));
+            return employee;
         }
 
         public void InsertOrUpdate(Employee dude)
         {
             if (dude.Id == default(int)) //if it is default int(0) than it is a new movie
             {
-                context.Employees.Add(dude);
+                employee = dude.getEmployee();
+                EWS.Timeout = 2000;
+                String result = EWS.createEmployee(employee);
             }
             else
             {
-                context.Entry(dude).State = EntityState.Modified;
+                employee = dude.getEmployee();
+                EWS.Timeout = 2000;
+                String result = EWS.updateEmployee(employee);
             }
-            context.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            Employee dude = context.Employees.Find(id);
-            context.Employees.Remove(dude);
-            context.SaveChanges();
+            EWS.Timeout = 2000;
+            localhostEmployee.Employee delete = EWS.findEmployee((int)id);
+            EWS.deleteEmployee(delete);
         }
     }
 }

@@ -13,7 +13,7 @@
 // 
 #pragma warning disable 1591
 
-namespace TMS.localhost {
+namespace TMS.localhostEmployee {
     using System;
     using System.Web.Services;
     using System.Diagnostics;
@@ -26,24 +26,24 @@ namespace TMS.localhost {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Web.Services.WebServiceBindingAttribute(Name="CustomerWebserviceSoapBinding", Namespace="http://webservice_layer")]
-    public partial class CustomerWebserviceService : System.Web.Services.Protocols.SoapHttpClientProtocol {
+    [System.Web.Services.WebServiceBindingAttribute(Name="EmployeeWebserviceSoapBinding", Namespace="http://webservice_layer")]
+    public partial class EmployeeWebserviceService : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback createCustomerOperationCompleted;
+        private System.Threading.SendOrPostCallback createEmployeeOperationCompleted;
         
-        private System.Threading.SendOrPostCallback findCustomerOperationCompleted;
+        private System.Threading.SendOrPostCallback getAllEmployeesOperationCompleted;
         
-        private System.Threading.SendOrPostCallback deleteCustomerOperationCompleted;
+        private System.Threading.SendOrPostCallback findEmployeeOperationCompleted;
         
-        private System.Threading.SendOrPostCallback updateCustomerOperationCompleted;
+        private System.Threading.SendOrPostCallback deleteEmployeeOperationCompleted;
         
-        private System.Threading.SendOrPostCallback findCustomerArrayOperationCompleted;
+        private System.Threading.SendOrPostCallback updateEmployeeOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
-        public CustomerWebserviceService() {
-            this.Url = global::TMS.Properties.Settings.Default.TMS_localhost_CustomerWebserviceService;
+        public EmployeeWebserviceService() {
+            this.Url = global::TMS.Properties.Settings.Default.TMS_localhostEmployee_EmployeeWebserviceService;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;
@@ -78,165 +78,165 @@ namespace TMS.localhost {
         }
         
         /// <remarks/>
-        public event createCustomerCompletedEventHandler createCustomerCompleted;
+        public event createEmployeeCompletedEventHandler createEmployeeCompleted;
         
         /// <remarks/>
-        public event findCustomerCompletedEventHandler findCustomerCompleted;
+        public event getAllEmployeesCompletedEventHandler getAllEmployeesCompleted;
         
         /// <remarks/>
-        public event deleteCustomerCompletedEventHandler deleteCustomerCompleted;
+        public event findEmployeeCompletedEventHandler findEmployeeCompleted;
         
         /// <remarks/>
-        public event updateCustomerCompletedEventHandler updateCustomerCompleted;
+        public event deleteEmployeeCompletedEventHandler deleteEmployeeCompleted;
         
         /// <remarks/>
-        public event findCustomerArrayCompletedEventHandler findCustomerArrayCompleted;
+        public event updateEmployeeCompletedEventHandler updateEmployeeCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("createCustomerReturn")]
-        public string createCustomer(Customer cust) {
-            object[] results = this.Invoke("createCustomer", new object[] {
-                        cust});
+        [return: System.Xml.Serialization.XmlElementAttribute("createEmployeeReturn")]
+        public string createEmployee(Employee employee) {
+            object[] results = this.Invoke("createEmployee", new object[] {
+                        employee});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void createCustomerAsync(Customer cust) {
-            this.createCustomerAsync(cust, null);
+        public void createEmployeeAsync(Employee employee) {
+            this.createEmployeeAsync(employee, null);
         }
         
         /// <remarks/>
-        public void createCustomerAsync(Customer cust, object userState) {
-            if ((this.createCustomerOperationCompleted == null)) {
-                this.createCustomerOperationCompleted = new System.Threading.SendOrPostCallback(this.OncreateCustomerOperationCompleted);
+        public void createEmployeeAsync(Employee employee, object userState) {
+            if ((this.createEmployeeOperationCompleted == null)) {
+                this.createEmployeeOperationCompleted = new System.Threading.SendOrPostCallback(this.OncreateEmployeeOperationCompleted);
             }
-            this.InvokeAsync("createCustomer", new object[] {
-                        cust}, this.createCustomerOperationCompleted, userState);
+            this.InvokeAsync("createEmployee", new object[] {
+                        employee}, this.createEmployeeOperationCompleted, userState);
         }
         
-        private void OncreateCustomerOperationCompleted(object arg) {
-            if ((this.createCustomerCompleted != null)) {
+        private void OncreateEmployeeOperationCompleted(object arg) {
+            if ((this.createEmployeeCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.createCustomerCompleted(this, new createCustomerCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.createEmployeeCompleted(this, new createEmployeeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("findCustomerReturn")]
-        public Customer findCustomer(int customerNo) {
-            object[] results = this.Invoke("findCustomer", new object[] {
-                        customerNo});
-            return ((Customer)(results[0]));
+        [return: System.Xml.Serialization.XmlElementAttribute("getAllEmployeesReturn")]
+        public Employee[] getAllEmployees() {
+            object[] results = this.Invoke("getAllEmployees", new object[0]);
+            return ((Employee[])(results[0]));
         }
         
         /// <remarks/>
-        public void findCustomerAsync(int customerNo) {
-            this.findCustomerAsync(customerNo, null);
+        public void getAllEmployeesAsync() {
+            this.getAllEmployeesAsync(null);
         }
         
         /// <remarks/>
-        public void findCustomerAsync(int customerNo, object userState) {
-            if ((this.findCustomerOperationCompleted == null)) {
-                this.findCustomerOperationCompleted = new System.Threading.SendOrPostCallback(this.OnfindCustomerOperationCompleted);
+        public void getAllEmployeesAsync(object userState) {
+            if ((this.getAllEmployeesOperationCompleted == null)) {
+                this.getAllEmployeesOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetAllEmployeesOperationCompleted);
             }
-            this.InvokeAsync("findCustomer", new object[] {
-                        customerNo}, this.findCustomerOperationCompleted, userState);
+            this.InvokeAsync("getAllEmployees", new object[0], this.getAllEmployeesOperationCompleted, userState);
         }
         
-        private void OnfindCustomerOperationCompleted(object arg) {
-            if ((this.findCustomerCompleted != null)) {
+        private void OngetAllEmployeesOperationCompleted(object arg) {
+            if ((this.getAllEmployeesCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.findCustomerCompleted(this, new findCustomerCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.getAllEmployeesCompleted(this, new getAllEmployeesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("deleteCustomerReturn")]
-        public string deleteCustomer(Customer cust) {
-            object[] results = this.Invoke("deleteCustomer", new object[] {
-                        cust});
+        [return: System.Xml.Serialization.XmlElementAttribute("findEmployeeReturn")]
+        public Employee findEmployee(int Id) {
+            object[] results = this.Invoke("findEmployee", new object[] {
+                        Id});
+            return ((Employee)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void findEmployeeAsync(int Id) {
+            this.findEmployeeAsync(Id, null);
+        }
+        
+        /// <remarks/>
+        public void findEmployeeAsync(int Id, object userState) {
+            if ((this.findEmployeeOperationCompleted == null)) {
+                this.findEmployeeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnfindEmployeeOperationCompleted);
+            }
+            this.InvokeAsync("findEmployee", new object[] {
+                        Id}, this.findEmployeeOperationCompleted, userState);
+        }
+        
+        private void OnfindEmployeeOperationCompleted(object arg) {
+            if ((this.findEmployeeCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.findEmployeeCompleted(this, new findEmployeeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("deleteEmployeeReturn")]
+        public string deleteEmployee(Employee employee) {
+            object[] results = this.Invoke("deleteEmployee", new object[] {
+                        employee});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void deleteCustomerAsync(Customer cust) {
-            this.deleteCustomerAsync(cust, null);
+        public void deleteEmployeeAsync(Employee employee) {
+            this.deleteEmployeeAsync(employee, null);
         }
         
         /// <remarks/>
-        public void deleteCustomerAsync(Customer cust, object userState) {
-            if ((this.deleteCustomerOperationCompleted == null)) {
-                this.deleteCustomerOperationCompleted = new System.Threading.SendOrPostCallback(this.OndeleteCustomerOperationCompleted);
+        public void deleteEmployeeAsync(Employee employee, object userState) {
+            if ((this.deleteEmployeeOperationCompleted == null)) {
+                this.deleteEmployeeOperationCompleted = new System.Threading.SendOrPostCallback(this.OndeleteEmployeeOperationCompleted);
             }
-            this.InvokeAsync("deleteCustomer", new object[] {
-                        cust}, this.deleteCustomerOperationCompleted, userState);
+            this.InvokeAsync("deleteEmployee", new object[] {
+                        employee}, this.deleteEmployeeOperationCompleted, userState);
         }
         
-        private void OndeleteCustomerOperationCompleted(object arg) {
-            if ((this.deleteCustomerCompleted != null)) {
+        private void OndeleteEmployeeOperationCompleted(object arg) {
+            if ((this.deleteEmployeeCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.deleteCustomerCompleted(this, new deleteCustomerCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.deleteEmployeeCompleted(this, new deleteEmployeeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("updateCustomerReturn")]
-        public string updateCustomer(Customer cust) {
-            object[] results = this.Invoke("updateCustomer", new object[] {
-                        cust});
+        [return: System.Xml.Serialization.XmlElementAttribute("updateEmployeeReturn")]
+        public string updateEmployee(Employee employee) {
+            object[] results = this.Invoke("updateEmployee", new object[] {
+                        employee});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void updateCustomerAsync(Customer cust) {
-            this.updateCustomerAsync(cust, null);
+        public void updateEmployeeAsync(Employee employee) {
+            this.updateEmployeeAsync(employee, null);
         }
         
         /// <remarks/>
-        public void updateCustomerAsync(Customer cust, object userState) {
-            if ((this.updateCustomerOperationCompleted == null)) {
-                this.updateCustomerOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdateCustomerOperationCompleted);
+        public void updateEmployeeAsync(Employee employee, object userState) {
+            if ((this.updateEmployeeOperationCompleted == null)) {
+                this.updateEmployeeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdateEmployeeOperationCompleted);
             }
-            this.InvokeAsync("updateCustomer", new object[] {
-                        cust}, this.updateCustomerOperationCompleted, userState);
+            this.InvokeAsync("updateEmployee", new object[] {
+                        employee}, this.updateEmployeeOperationCompleted, userState);
         }
         
-        private void OnupdateCustomerOperationCompleted(object arg) {
-            if ((this.updateCustomerCompleted != null)) {
+        private void OnupdateEmployeeOperationCompleted(object arg) {
+            if ((this.updateEmployeeCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.updateCustomerCompleted(this, new updateCustomerCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("findCustomerArrayReturn")]
-        public Customer[] findCustomerArray() {
-            object[] results = this.Invoke("findCustomerArray", new object[0]);
-            return ((Customer[])(results[0]));
-        }
-        
-        /// <remarks/>
-        public void findCustomerArrayAsync() {
-            this.findCustomerArrayAsync(null);
-        }
-        
-        /// <remarks/>
-        public void findCustomerArrayAsync(object userState) {
-            if ((this.findCustomerArrayOperationCompleted == null)) {
-                this.findCustomerArrayOperationCompleted = new System.Threading.SendOrPostCallback(this.OnfindCustomerArrayOperationCompleted);
-            }
-            this.InvokeAsync("findCustomerArray", new object[0], this.findCustomerArrayOperationCompleted, userState);
-        }
-        
-        private void OnfindCustomerArrayOperationCompleted(object arg) {
-            if ((this.findCustomerArrayCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.findCustomerArrayCompleted(this, new findCustomerArrayCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.updateEmployeeCompleted(this, new updateEmployeeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -265,13 +265,13 @@ namespace TMS.localhost {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://webservice_layer")]
-    public partial class Customer {
+    public partial class Employee {
         
         private string addressField;
         
-        private string companyNameField;
+        private string birthdateField;
         
-        private int cvrField;
+        private string emailField;
         
         private string firstNameField;
         
@@ -294,22 +294,23 @@ namespace TMS.localhost {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string companyName {
+        public string birthdate {
             get {
-                return this.companyNameField;
+                return this.birthdateField;
             }
             set {
-                this.companyNameField = value;
+                this.birthdateField = value;
             }
         }
         
         /// <remarks/>
-        public int cvr {
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string email {
             get {
-                return this.cvrField;
+                return this.emailField;
             }
             set {
-                this.cvrField = value;
+                this.emailField = value;
             }
         }
         
@@ -359,17 +360,17 @@ namespace TMS.localhost {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void createCustomerCompletedEventHandler(object sender, createCustomerCompletedEventArgs e);
+    public delegate void createEmployeeCompletedEventHandler(object sender, createEmployeeCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class createCustomerCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class createEmployeeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal createCustomerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal createEmployeeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -385,43 +386,69 @@ namespace TMS.localhost {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void findCustomerCompletedEventHandler(object sender, findCustomerCompletedEventArgs e);
+    public delegate void getAllEmployeesCompletedEventHandler(object sender, getAllEmployeesCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class findCustomerCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class getAllEmployeesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal findCustomerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal getAllEmployeesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
         
         /// <remarks/>
-        public Customer Result {
+        public Employee[] Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((Customer)(this.results[0]));
+                return ((Employee[])(this.results[0]));
             }
         }
     }
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void deleteCustomerCompletedEventHandler(object sender, deleteCustomerCompletedEventArgs e);
+    public delegate void findEmployeeCompletedEventHandler(object sender, findEmployeeCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class deleteCustomerCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class findEmployeeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal deleteCustomerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal findEmployeeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Employee Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Employee)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void deleteEmployeeCompletedEventHandler(object sender, deleteEmployeeCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class deleteEmployeeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal deleteEmployeeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -437,17 +464,17 @@ namespace TMS.localhost {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void updateCustomerCompletedEventHandler(object sender, updateCustomerCompletedEventArgs e);
+    public delegate void updateEmployeeCompletedEventHandler(object sender, updateEmployeeCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class updateCustomerCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class updateEmployeeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal updateCustomerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal updateEmployeeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -457,32 +484,6 @@ namespace TMS.localhost {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((string)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void findCustomerArrayCompletedEventHandler(object sender, findCustomerArrayCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class findCustomerArrayCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal findCustomerArrayCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public Customer[] Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((Customer[])(this.results[0]));
             }
         }
     }

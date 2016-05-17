@@ -36,20 +36,10 @@ namespace TMS.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:13990/TMS/services/TaskWebservice")]
-        public string TMS_taskWS_TaskWebserviceService {
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:13990/TMS/services/TestWebservice")]
+        public string TMS_localhost2_TestWebserviceService {
             get {
-                return ((string)(this["TMS_taskWS_TaskWebserviceService"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:8080/TMS/services/JobWebservice")]
-        public string TMS_jobWS_JobWebserviceService {
-            get {
-                return ((string)(this["TMS_jobWS_JobWebserviceService"]));
+                return ((string)(this["TMS_localhost2_TestWebserviceService"]));
             }
         }
         
@@ -60,6 +50,36 @@ namespace TMS.Properties {
         public string TMS_localhostCompetency_CompetencyWebserviceService {
             get {
                 return ((string)(this["TMS_localhostCompetency_CompetencyWebserviceService"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:8080/TMS/services/EmployeeWebservice")]
+        public string TMS_localhostEmployee_EmployeeWebserviceService {
+            get {
+                return ((string)(this["TMS_localhostEmployee_EmployeeWebserviceService"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:8080/TMS/services/EmployeeCompetencyWebservice")]
+        public string TMS_localhostEC_EmployeeCompetencyWebserviceService {
+            get {
+                return ((string)(this["TMS_localhostEC_EmployeeCompetencyWebserviceService"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:8080/TMS/services/JobWebservice")]
+        public string TMS_jobWS_JobWebserviceService {
+            get {
+                return ((string)(this["TMS_jobWS_JobWebserviceService"]));
             }
         }
     }

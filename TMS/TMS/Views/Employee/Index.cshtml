@@ -32,9 +32,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Employee.Competencies)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Employee.Role)
-        </th>
         <th></th>
     </tr>
 
@@ -60,7 +57,7 @@
         </td>
         <td>
             <table class="table">
-                @foreach (var competency in Model.Employees_Competecy)
+                @foreach (var competency in Model.Employees_Competency)
                 {
                     <tr>
                         <td>
@@ -69,9 +66,6 @@
                     </tr>
                 }
             </table>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Role)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

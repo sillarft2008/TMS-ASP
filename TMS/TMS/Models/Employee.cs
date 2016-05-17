@@ -16,30 +16,39 @@ namespace TMS.Models
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        [Display(Name = "Birth Date")]
-        [DataType(DataType.Date)]
-        public DateTime BirthDate { get; set; }
+        [Display(Name = "Birth Date", Prompt = "YYYY-MM-dd")]
+        public string BirthDate { get; set; }
         [Display(Name = "Home Address")]
-        public Address HomeAddress { get; set; }
-        public Role Role { get; set; }
+        public string HomeAddress { get; set; }
 
-        public virtual ICollection<Employee_Competency> Employee_Competencies { get; set; }
-        public ICollection<Competency> Competencies { get; set; }
+        public void setEmployee(localhostEmployee.Employee employee)
+        {
+            this.Id = employee.id;
+            this.FirstName = employee.firstName;
+            this.LastName = employee.lastName;
+            this.Email = employee.email;
+            this.HomeAddress = employee.address;
+            this.Phone = employee.telefone;
+            this.BirthDate = employee.birthdate;
 
-    }
+        }
 
-    public class Address
-    {
-        public string Line1 { get; set; }
-        public string Line2 { get; set; }
-        public string City { get; set; }
-        public string PostalCode { get; set; }
-        public string Country { get; set; }
-    }
-    public enum Role
-    {
-        Admin,
-        Employee,
-        Customer
+        public localhostEmployee.Employee getEmployee()
+        {
+            localhostEmployee.Employee empployee = new localhostEmployee.Employee();
+            empployee.id = this.Id;
+            empployee.firstName = this.FirstName;
+            empployee.lastName = this.LastName;
+            empployee.email = this.Email;
+            empployee.address = this.HomeAddress;
+            empployee.telefone = this.Phone;
+            empployee.birthdate = this.BirthDate;
+
+            return empployee;
+        }
+
+         public virtual ICollection<Employee_Competency> Employee_Competencies { get; set; }
+         public ICollection<Competency> Competencies { get; set; }
+
     }
 }

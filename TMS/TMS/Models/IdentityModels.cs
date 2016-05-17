@@ -37,6 +37,5 @@ namespace TMS.Models
         public System.Data.Entity.DbSet<TMS.Models.Competency> Competencies { get; set; }
         public System.Data.Entity.DbSet<TMS.Models.Employee_Competency> Employee_Competency { get; set; }
 
-        public System.Data.Entity.DbSet<TMS.Models.Job> Jobs { get; set; }
     }
 }

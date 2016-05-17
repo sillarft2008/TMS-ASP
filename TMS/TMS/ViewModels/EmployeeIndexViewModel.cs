@@ -15,6 +15,6 @@ namespace TMS.ViewModels
         public ICollection<Employee> Employees { get; set; }
         public ICollection<Competency> Competencies { get; set; }
 
-        public IEnumerable<Employee_Competency> Employees_Competecy { get; set; }
+        public ICollection<Employee_Competency> Employees_Competency { get; set; }
     }
 }
