@@ -32,13 +32,16 @@ namespace TMS.Controllers
             jobWS.JobWebserviceService JWS = new jobWS.JobWebserviceService();
             JWS.Timeout = 2000;
             jobWS.Job[] jobArray = JWS.findCustomerJobArray((int)id);
+            jobWS.Job a = jobArray[0];
+            //jobWS.Competency[] b = a.competencyArray;
             Job job = new Job();
             job.customer = customer;
             if (jobArray != null)
             {
                 job.jobList = jobArray.ToList();
             }
-
+            //jobWS.Job test = new jobWS.Job();
+            
             return View(job);
 
         }

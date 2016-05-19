@@ -2,13 +2,25 @@
 <wsdl:definitions xmlns:intf="http://webservice_layer" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:impl="http://webservice_layer" targetNamespace="http://webservice_layer" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://webservice_layer">
-      <xsd:element name="createJob">
+      <xsd:element name="addCompetency">
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="job" type="impl:Job" />
+            <xsd:element name="competency" type="impl:Competency" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
+      <xsd:complexType name="Competency">
+        <xsd:sequence>
+          <xsd:element name="competency" nillable="true" type="xsd:string" />
+          <xsd:element name="id" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfCompetency">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="impl:Competency" />
+        </xsd:sequence>
+      </xsd:complexType>
       <xsd:complexType name="Customer">
         <xsd:sequence>
           <xsd:element name="address" nillable="true" type="xsd:string" />
@@ -23,55 +35,11 @@
       <xsd:complexType name="Job">
         <xsd:sequence>
           <xsd:element name="address" nillable="true" type="xsd:string" />
+          <xsd:element name="arrayOFCompetency" nillable="true" type="impl:ArrayOfCompetency" />
           <xsd:element name="customer" nillable="true" type="impl:Customer" />
           <xsd:element name="endDate" nillable="true" type="xsd:dateTime" />
           <xsd:element name="id" type="xsd:int" />
           <xsd:element name="startDate" nillable="true" type="xsd:dateTime" />
-        </xsd:sequence>
-      </xsd:complexType>
-      <xsd:element name="createJobResponse">
-        <xsd:complexType />
-      </xsd:element>
-      <xsd:element name="updateJob">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="job" type="impl:Job" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="updateJobResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="updateJobReturn" type="xsd:string" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="deleteJob">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="job" type="impl:Job" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="deleteJobResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="deleteJobReturn" type="xsd:string" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="addCompetency">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="job" type="impl:Job" />
-            <xsd:element name="competency" type="impl:Competency" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:complexType name="Competency">
-        <xsd:sequence>
-          <xsd:element name="competency" nillable="true" type="xsd:string" />
-          <xsd:element name="id" type="xsd:int" />
         </xsd:sequence>
       </xsd:complexType>
       <xsd:element name="addCompetencyResponse">
@@ -101,6 +69,44 @@
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
+      <xsd:element name="deleteJob">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="job" type="impl:Job" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deleteJobResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="deleteJobReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="createJob">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="job" type="impl:Job" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="createJobResponse">
+        <xsd:complexType />
+      </xsd:element>
+      <xsd:element name="updateJob">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="job" type="impl:Job" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updateJobResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="updateJobReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
       <xsd:element name="findCustomerJobArray">
         <xsd:complexType>
           <xsd:sequence>
@@ -117,11 +123,11 @@
       </xsd:element>
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="updateJobResponse">
-    <wsdl:part name="parameters" element="impl:updateJobResponse" />
-  </wsdl:message>
   <wsdl:message name="addCompetencyResponse">
     <wsdl:part name="parameters" element="impl:addCompetencyResponse" />
+  </wsdl:message>
+  <wsdl:message name="updateJobResponse">
+    <wsdl:part name="parameters" element="impl:updateJobResponse" />
   </wsdl:message>
   <wsdl:message name="findJobResponse">
     <wsdl:part name="parameters" element="impl:findJobResponse" />
@@ -160,18 +166,6 @@
     <wsdl:part name="parameters" element="impl:deleteJob" />
   </wsdl:message>
   <wsdl:portType name="JobWebservice">
-    <wsdl:operation name="createJob">
-      <wsdl:input name="createJobRequest" message="impl:createJobRequest" />
-      <wsdl:output name="createJobResponse" message="impl:createJobResponse" />
-    </wsdl:operation>
-    <wsdl:operation name="updateJob">
-      <wsdl:input name="updateJobRequest" message="impl:updateJobRequest" />
-      <wsdl:output name="updateJobResponse" message="impl:updateJobResponse" />
-    </wsdl:operation>
-    <wsdl:operation name="deleteJob">
-      <wsdl:input name="deleteJobRequest" message="impl:deleteJobRequest" />
-      <wsdl:output name="deleteJobResponse" message="impl:deleteJobResponse" />
-    </wsdl:operation>
     <wsdl:operation name="addCompetency">
       <wsdl:input name="addCompetencyRequest" message="impl:addCompetencyRequest" />
       <wsdl:output name="addCompetencyResponse" message="impl:addCompetencyResponse" />
@@ -184,6 +178,18 @@
       <wsdl:input name="findJobRequest" message="impl:findJobRequest" />
       <wsdl:output name="findJobResponse" message="impl:findJobResponse" />
     </wsdl:operation>
+    <wsdl:operation name="deleteJob">
+      <wsdl:input name="deleteJobRequest" message="impl:deleteJobRequest" />
+      <wsdl:output name="deleteJobResponse" message="impl:deleteJobResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="createJob">
+      <wsdl:input name="createJobRequest" message="impl:createJobRequest" />
+      <wsdl:output name="createJobResponse" message="impl:createJobResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="updateJob">
+      <wsdl:input name="updateJobRequest" message="impl:updateJobRequest" />
+      <wsdl:output name="updateJobResponse" message="impl:updateJobResponse" />
+    </wsdl:operation>
     <wsdl:operation name="findCustomerJobArray">
       <wsdl:input name="findCustomerJobArrayRequest" message="impl:findCustomerJobArrayRequest" />
       <wsdl:output name="findCustomerJobArrayResponse" message="impl:findCustomerJobArrayResponse" />
@@ -191,33 +197,6 @@
   </wsdl:portType>
   <wsdl:binding name="JobWebserviceSoapBinding" type="impl:JobWebservice">
     <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="createJob">
-      <wsdlsoap:operation soapAction="" />
-      <wsdl:input name="createJobRequest">
-        <wsdlsoap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output name="createJobResponse">
-        <wsdlsoap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="updateJob">
-      <wsdlsoap:operation soapAction="" />
-      <wsdl:input name="updateJobRequest">
-        <wsdlsoap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output name="updateJobResponse">
-        <wsdlsoap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="deleteJob">
-      <wsdlsoap:operation soapAction="" />
-      <wsdl:input name="deleteJobRequest">
-        <wsdlsoap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output name="deleteJobResponse">
-        <wsdlsoap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="addCompetency">
       <wsdlsoap:operation soapAction="" />
       <wsdl:input name="addCompetencyRequest">
@@ -242,6 +221,33 @@
         <wsdlsoap:body use="literal" />
       </wsdl:input>
       <wsdl:output name="findJobResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteJob">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="deleteJobRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="deleteJobResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createJob">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="createJobRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="createJobResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateJob">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="updateJobRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="updateJobResponse">
         <wsdlsoap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>

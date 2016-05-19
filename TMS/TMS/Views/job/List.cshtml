@@ -94,16 +94,24 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.endDate)
                 </td>
-                @*@foreach (var item2 in item.competencies)
-                {
-                    @Html.DisplayFor(modelItem => item2.competency)
-                }*@
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                    <table class="table">
+                            @foreach (var item2 in item.arrayOFCompetency)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item2.competency)
+                                    </td>
+                                </tr>
+                            }
+                     </table>
                 </td>
-            </tr>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
             }
         }
 

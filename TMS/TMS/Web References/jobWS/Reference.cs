@@ -23,23 +23,23 @@ namespace TMS.jobWS {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="JobWebserviceSoapBinding", Namespace="http://webservice_layer")]
     public partial class JobWebserviceService : System.Web.Services.Protocols.SoapHttpClientProtocol {
-        
-        private System.Threading.SendOrPostCallback createJobOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback updateJobOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback deleteJobOperationCompleted;
         
         private System.Threading.SendOrPostCallback addCompetencyOperationCompleted;
         
         private System.Threading.SendOrPostCallback findJobArrayOperationCompleted;
         
         private System.Threading.SendOrPostCallback findJobOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback deleteJobOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback createJobOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback updateJobOperationCompleted;
         
         private System.Threading.SendOrPostCallback findCustomerJobArrayOperationCompleted;
         
@@ -82,15 +82,6 @@ namespace TMS.jobWS {
         }
         
         /// <remarks/>
-        public event createJobCompletedEventHandler createJobCompleted;
-        
-        /// <remarks/>
-        public event updateJobCompletedEventHandler updateJobCompleted;
-        
-        /// <remarks/>
-        public event deleteJobCompletedEventHandler deleteJobCompleted;
-        
-        /// <remarks/>
         public event addCompetencyCompletedEventHandler addCompetencyCompleted;
         
         /// <remarks/>
@@ -100,95 +91,16 @@ namespace TMS.jobWS {
         public event findJobCompletedEventHandler findJobCompleted;
         
         /// <remarks/>
+        public event deleteJobCompletedEventHandler deleteJobCompleted;
+        
+        /// <remarks/>
+        public event createJobCompletedEventHandler createJobCompleted;
+        
+        /// <remarks/>
+        public event updateJobCompletedEventHandler updateJobCompleted;
+        
+        /// <remarks/>
         public event findCustomerJobArrayCompletedEventHandler findCustomerJobArrayCompleted;
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void createJob(Job job) {
-            this.Invoke("createJob", new object[] {
-                        job});
-        }
-        
-        /// <remarks/>
-        public void createJobAsync(Job job) {
-            this.createJobAsync(job, null);
-        }
-        
-        /// <remarks/>
-        public void createJobAsync(Job job, object userState) {
-            if ((this.createJobOperationCompleted == null)) {
-                this.createJobOperationCompleted = new System.Threading.SendOrPostCallback(this.OncreateJobOperationCompleted);
-            }
-            this.InvokeAsync("createJob", new object[] {
-                        job}, this.createJobOperationCompleted, userState);
-        }
-        
-        private void OncreateJobOperationCompleted(object arg) {
-            if ((this.createJobCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.createJobCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("updateJobReturn")]
-        public string updateJob(Job job) {
-            object[] results = this.Invoke("updateJob", new object[] {
-                        job});
-            return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void updateJobAsync(Job job) {
-            this.updateJobAsync(job, null);
-        }
-        
-        /// <remarks/>
-        public void updateJobAsync(Job job, object userState) {
-            if ((this.updateJobOperationCompleted == null)) {
-                this.updateJobOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdateJobOperationCompleted);
-            }
-            this.InvokeAsync("updateJob", new object[] {
-                        job}, this.updateJobOperationCompleted, userState);
-        }
-        
-        private void OnupdateJobOperationCompleted(object arg) {
-            if ((this.updateJobCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.updateJobCompleted(this, new updateJobCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("deleteJobReturn")]
-        public string deleteJob(Job job) {
-            object[] results = this.Invoke("deleteJob", new object[] {
-                        job});
-            return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void deleteJobAsync(Job job) {
-            this.deleteJobAsync(job, null);
-        }
-        
-        /// <remarks/>
-        public void deleteJobAsync(Job job, object userState) {
-            if ((this.deleteJobOperationCompleted == null)) {
-                this.deleteJobOperationCompleted = new System.Threading.SendOrPostCallback(this.OndeleteJobOperationCompleted);
-            }
-            this.InvokeAsync("deleteJob", new object[] {
-                        job}, this.deleteJobOperationCompleted, userState);
-        }
-        
-        private void OndeleteJobOperationCompleted(object arg) {
-            if ((this.deleteJobCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.deleteJobCompleted(this, new deleteJobCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -280,6 +192,94 @@ namespace TMS.jobWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("deleteJobReturn")]
+        public string deleteJob(Job job) {
+            object[] results = this.Invoke("deleteJob", new object[] {
+                        job});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void deleteJobAsync(Job job) {
+            this.deleteJobAsync(job, null);
+        }
+        
+        /// <remarks/>
+        public void deleteJobAsync(Job job, object userState) {
+            if ((this.deleteJobOperationCompleted == null)) {
+                this.deleteJobOperationCompleted = new System.Threading.SendOrPostCallback(this.OndeleteJobOperationCompleted);
+            }
+            this.InvokeAsync("deleteJob", new object[] {
+                        job}, this.deleteJobOperationCompleted, userState);
+        }
+        
+        private void OndeleteJobOperationCompleted(object arg) {
+            if ((this.deleteJobCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.deleteJobCompleted(this, new deleteJobCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void createJob(Job job) {
+            this.Invoke("createJob", new object[] {
+                        job});
+        }
+        
+        /// <remarks/>
+        public void createJobAsync(Job job) {
+            this.createJobAsync(job, null);
+        }
+        
+        /// <remarks/>
+        public void createJobAsync(Job job, object userState) {
+            if ((this.createJobOperationCompleted == null)) {
+                this.createJobOperationCompleted = new System.Threading.SendOrPostCallback(this.OncreateJobOperationCompleted);
+            }
+            this.InvokeAsync("createJob", new object[] {
+                        job}, this.createJobOperationCompleted, userState);
+        }
+        
+        private void OncreateJobOperationCompleted(object arg) {
+            if ((this.createJobCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.createJobCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("updateJobReturn")]
+        public string updateJob(Job job) {
+            object[] results = this.Invoke("updateJob", new object[] {
+                        job});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void updateJobAsync(Job job) {
+            this.updateJobAsync(job, null);
+        }
+        
+        /// <remarks/>
+        public void updateJobAsync(Job job, object userState) {
+            if ((this.updateJobOperationCompleted == null)) {
+                this.updateJobOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdateJobOperationCompleted);
+            }
+            this.InvokeAsync("updateJob", new object[] {
+                        job}, this.updateJobOperationCompleted, userState);
+        }
+        
+        private void OnupdateJobOperationCompleted(object arg) {
+            if ((this.updateJobCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.updateJobCompleted(this, new updateJobCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("findCustomerJobArrayReturn")]
         public Job[] findCustomerJobArray(int customerId) {
             object[] results = this.Invoke("findCustomerJobArray", new object[] {
@@ -337,6 +337,8 @@ namespace TMS.jobWS {
         
         private string addressField;
         
+        private Competency[] arrayOFCompetencyField;
+        
         private Customer customerField;
         
         private System.Nullable<System.DateTime> endDateField;
@@ -353,6 +355,18 @@ namespace TMS.jobWS {
             }
             set {
                 this.addressField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(IsNullable=true)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("arrayOFCompetency", IsNullable=false)]
+        public Competency[] arrayOFCompetency {
+            get {
+                return this.arrayOFCompetencyField;
+            }
+            set {
+                this.arrayOFCompetencyField = value;
             }
         }
         
@@ -396,6 +410,40 @@ namespace TMS.jobWS {
             }
             set {
                 this.startDateField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1064.2")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://webservice_layer")]
+    public partial class Competency {
+        
+        private string competencyField;
+        
+        private int idField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string competency {
+            get {
+                return this.competencyField;
+            }
+            set {
+                this.competencyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
             }
         }
     }
@@ -499,105 +547,15 @@ namespace TMS.jobWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1064.2")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://webservice_layer")]
-    public partial class Competency {
-        
-        private string competencyField;
-        
-        private int idField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string competency {
-            get {
-                return this.competencyField;
-            }
-            set {
-                this.competencyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
-    public delegate void createJobCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
-    public delegate void updateJobCompletedEventHandler(object sender, updateJobCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class updateJobCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal updateJobCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public string Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
-    public delegate void deleteJobCompletedEventHandler(object sender, deleteJobCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class deleteJobCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal deleteJobCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public string Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     public delegate void addCompetencyCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     public delegate void findJobArrayCompletedEventHandler(object sender, findJobArrayCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class findJobArrayCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -619,11 +577,11 @@ namespace TMS.jobWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     public delegate void findJobCompletedEventHandler(object sender, findJobCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class findJobCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -645,11 +603,67 @@ namespace TMS.jobWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void deleteJobCompletedEventHandler(object sender, deleteJobCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class deleteJobCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal deleteJobCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void createJobCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void updateJobCompletedEventHandler(object sender, updateJobCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class updateJobCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal updateJobCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     public delegate void findCustomerJobArrayCompletedEventHandler(object sender, findCustomerJobArrayCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class findCustomerJobArrayCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
