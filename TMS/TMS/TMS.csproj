@@ -311,7 +311,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Employee\Create.cshtml" />
     <Content Include="Views\Employee\Delete.cshtml" />
-    <Content Include="Views\Employee\Details2.cshtml" />
     <Content Include="Views\Employee\Edit.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Home\CustomerForm.cshtml" />
@@ -330,10 +329,10 @@
     <Content Include="Web References\localhost\Customer.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
-    <Content Include="Web References\localhost2\Reference.map">
+    <None Include="Web References\localhost2\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <Content Include="Web References\localhost2\Test.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
@@ -374,10 +373,10 @@
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
     <None Include="Web References\localhostEC\EmployeeCompetencyWebservice.wsdl" />
-    <Content Include="Web References\localhostEC\Reference.map">
+    <None Include="Web References\localhostEC\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <None Include="Web References\localhostEmployee\EmployeeWebservice.wsdl" />
     <None Include="Web References\localhostEmployee\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>

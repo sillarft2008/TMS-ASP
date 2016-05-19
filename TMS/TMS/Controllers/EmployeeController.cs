@@ -16,9 +16,7 @@ namespace TMS.Controllers
     public class EmployeeController : Controller
     {
 
-        //private readonly CompetencyRepository _competencyRepository = new CompetencyRepository();
         private readonly IEmployeeRepository _iEmployeeRepository;
-       // private readonly EmployeeCompetencyRepository _employeeCompetencyRepository = new EmployeeCompetencyRepository();
         private readonly CompetenciesController CC = new CompetenciesController();
         private readonly EmployeeCompetencyController ECC = new EmployeeCompetencyController();
 
@@ -30,12 +28,13 @@ namespace TMS.Controllers
         }
 
         // GET: People
-        public ActionResult Index(string search = "")
+        public ActionResult Index()
         {
-           // var employees = _iEmployeeRepository.All.ToList();
+            var employees = _iEmployeeRepository.All.ToList();
 
-            if (!string.IsNullOrEmpty(search))
+            if (true)
             {
+
                 var eivm = new EmployeeIndexViewModel
                 {
                     Employees = _iEmployeeRepository.All.ToList(),
@@ -46,13 +45,50 @@ namespace TMS.Controllers
             }
             else
             {
-                var eivm = new EmployeeIndexViewModel
+                Employee person = new Employee();
+                List<Employee_Competency> ecList = new List<Employee_Competency>();
+                List<Competency> compList = new List<Competency>();
+
+                localhostEmployee.EmployeeWebserviceService EWS = new localhostEmployee.EmployeeWebserviceService();
+                localhostEC.EmployeeCompetencyWebserviceService ECWS = new localhostEC.EmployeeCompetencyWebserviceService();
+                localhostCompetency.CompetencyWebserviceService CWS = new localhostCompetency.CompetencyWebserviceService();
+
+                localhostEmployee.Employee[] muffin = EWS.getAllEmployees();
+                localhostEC.EmployeeCompetency[] pancake = ECWS.findAllEmployeeCompetencies(person.Id);
+                localhostCompetency.Competency[] cake = CWS.getAllCompetencies();
+
+                ECWS.Timeout = 2000;
+                CWS.Timeout = 2000;
+
+                Employee_Competency ec;
+                Competency competency;
+
+                foreach (localhostEC.EmployeeCompetency comp in pancake)
                 {
-                    Employees = _iEmployeeRepository.All.ToList(),
-                    Competencies = CC.All.ToList(),
-                    Employees_Competency = ECC.All.ToList()
+                    ec = new Employee_Competency();
+                    ec.setEmployeeCompetency(comp);
+                    ecList.Add(ec);
+
+
+                    foreach (localhostCompetency.Competency compot in cake)
+                    {
+
+                        if (compot.id == ec.competencyId)
+                        {
+                            competency = new Competency();
+                            competency.setCompetency(compot);
+                            compList.Add(competency);
+                        }
+
+                    }
+                }
+                var vm = new EmployeeIndexViewModel
+                {
+                    Employee = person,
+                    Competencies = compList
+
                 };
-                return View(eivm);
+                return View(vm);
             }
         }
 
@@ -82,6 +118,7 @@ namespace TMS.Controllers
                 localhostEC.EmployeeCompetency[] pancake = ECWS.findAllEmployeeCompetencies(person.Id);
                 localhostCompetency.Competency[] cake = CWS.getAllCompetencies();
 
+                ECWS.Timeout = 2000;
                 CWS.Timeout = 2000;
 
                 Employee_Competency ec;
@@ -96,22 +133,21 @@ namespace TMS.Controllers
 
                     foreach (localhostCompetency.Competency compot in cake)
                     {
-                       
-                        if(comp.id == ec.competencyId)
+
+                        if (compot.id == ec.competencyId)
                         {
                             competency = new Competency();
                             competency.setCompetency(compot);
                             compList.Add(competency);
                         }
-                       
+
                     }
                 }
                 var vm = new EmployeeIndexViewModel
                 {
                     Employee = person,
-                    Employees_Competency = ecList,
-                    //Competencies = compList
-                    
+                    Competencies = compList
+
                 };
                 return View(vm);
             }
@@ -216,7 +252,7 @@ namespace TMS.Controllers
             var vm = new EmployeeCompetencyViewModel
             {
                 Employee = employee,
-                Competencies =compList
+                Competencies = compList
             };
             return View(vm);
         }
@@ -246,7 +282,7 @@ namespace TMS.Controllers
                         ECC.Create(employeeCompetency);
                     }
                 }
-                else 
+                else
                 {
                     throw new ArgumentNullException(nameof(compIds),
                         "The competencies can not be NULL, you have to select at least 1.");

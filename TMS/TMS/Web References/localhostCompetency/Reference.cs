@@ -23,21 +23,21 @@ namespace TMS.localhostCompetency {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="CompetencyWebserviceSoapBinding", Namespace="http://webservice_layer")]
     public partial class CompetencyWebserviceService : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback getAllCompetenciesOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback findCompetencyOperationCompleted;
-        
         private System.Threading.SendOrPostCallback updateCompetencyOperationCompleted;
         
         private System.Threading.SendOrPostCallback createCompetencyOperationCompleted;
         
+        private System.Threading.SendOrPostCallback findCompetencyOperationCompleted;
+        
         private System.Threading.SendOrPostCallback deleteCompetencyOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getAllCompetenciesOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -78,77 +78,19 @@ namespace TMS.localhostCompetency {
         }
         
         /// <remarks/>
-        public event getAllCompetenciesCompletedEventHandler getAllCompetenciesCompleted;
-        
-        /// <remarks/>
-        public event findCompetencyCompletedEventHandler findCompetencyCompleted;
-        
-        /// <remarks/>
         public event updateCompetencyCompletedEventHandler updateCompetencyCompleted;
         
         /// <remarks/>
         public event createCompetencyCompletedEventHandler createCompetencyCompleted;
         
         /// <remarks/>
+        public event findCompetencyCompletedEventHandler findCompetencyCompleted;
+        
+        /// <remarks/>
         public event deleteCompetencyCompletedEventHandler deleteCompetencyCompleted;
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("getAllCompetenciesReturn")]
-        public Competency[] getAllCompetencies() {
-            object[] results = this.Invoke("getAllCompetencies", new object[0]);
-            return ((Competency[])(results[0]));
-        }
-        
-        /// <remarks/>
-        public void getAllCompetenciesAsync() {
-            this.getAllCompetenciesAsync(null);
-        }
-        
-        /// <remarks/>
-        public void getAllCompetenciesAsync(object userState) {
-            if ((this.getAllCompetenciesOperationCompleted == null)) {
-                this.getAllCompetenciesOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetAllCompetenciesOperationCompleted);
-            }
-            this.InvokeAsync("getAllCompetencies", new object[0], this.getAllCompetenciesOperationCompleted, userState);
-        }
-        
-        private void OngetAllCompetenciesOperationCompleted(object arg) {
-            if ((this.getAllCompetenciesCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.getAllCompetenciesCompleted(this, new getAllCompetenciesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("findCompetencyReturn")]
-        public Competency findCompetency(int Id) {
-            object[] results = this.Invoke("findCompetency", new object[] {
-                        Id});
-            return ((Competency)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void findCompetencyAsync(int Id) {
-            this.findCompetencyAsync(Id, null);
-        }
-        
-        /// <remarks/>
-        public void findCompetencyAsync(int Id, object userState) {
-            if ((this.findCompetencyOperationCompleted == null)) {
-                this.findCompetencyOperationCompleted = new System.Threading.SendOrPostCallback(this.OnfindCompetencyOperationCompleted);
-            }
-            this.InvokeAsync("findCompetency", new object[] {
-                        Id}, this.findCompetencyOperationCompleted, userState);
-        }
-        
-        private void OnfindCompetencyOperationCompleted(object arg) {
-            if ((this.findCompetencyCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.findCompetencyCompleted(this, new findCompetencyCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
+        public event getAllCompetenciesCompletedEventHandler getAllCompetenciesCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -212,6 +154,36 @@ namespace TMS.localhostCompetency {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("findCompetencyReturn")]
+        public Competency findCompetency(int Id) {
+            object[] results = this.Invoke("findCompetency", new object[] {
+                        Id});
+            return ((Competency)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void findCompetencyAsync(int Id) {
+            this.findCompetencyAsync(Id, null);
+        }
+        
+        /// <remarks/>
+        public void findCompetencyAsync(int Id, object userState) {
+            if ((this.findCompetencyOperationCompleted == null)) {
+                this.findCompetencyOperationCompleted = new System.Threading.SendOrPostCallback(this.OnfindCompetencyOperationCompleted);
+            }
+            this.InvokeAsync("findCompetency", new object[] {
+                        Id}, this.findCompetencyOperationCompleted, userState);
+        }
+        
+        private void OnfindCompetencyOperationCompleted(object arg) {
+            if ((this.findCompetencyCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.findCompetencyCompleted(this, new findCompetencyCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("deleteCompetencyReturn")]
         public string deleteCompetency(Competency competency) {
             object[] results = this.Invoke("deleteCompetency", new object[] {
@@ -237,6 +209,34 @@ namespace TMS.localhostCompetency {
             if ((this.deleteCompetencyCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.deleteCompetencyCompleted(this, new deleteCompetencyCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("getAllCompetenciesReturn")]
+        public Competency[] getAllCompetencies() {
+            object[] results = this.Invoke("getAllCompetencies", new object[0]);
+            return ((Competency[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getAllCompetenciesAsync() {
+            this.getAllCompetenciesAsync(null);
+        }
+        
+        /// <remarks/>
+        public void getAllCompetenciesAsync(object userState) {
+            if ((this.getAllCompetenciesOperationCompleted == null)) {
+                this.getAllCompetenciesOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetAllCompetenciesOperationCompleted);
+            }
+            this.InvokeAsync("getAllCompetencies", new object[0], this.getAllCompetenciesOperationCompleted, userState);
+        }
+        
+        private void OngetAllCompetenciesOperationCompleted(object arg) {
+            if ((this.getAllCompetenciesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getAllCompetenciesCompleted(this, new getAllCompetenciesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -294,63 +294,11 @@ namespace TMS.localhostCompetency {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
-    public delegate void getAllCompetenciesCompletedEventHandler(object sender, getAllCompetenciesCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class getAllCompetenciesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal getAllCompetenciesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public Competency[] Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((Competency[])(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
-    public delegate void findCompetencyCompletedEventHandler(object sender, findCompetencyCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class findCompetencyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal findCompetencyCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public Competency Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((Competency)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     public delegate void updateCompetencyCompletedEventHandler(object sender, updateCompetencyCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class updateCompetencyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -372,11 +320,11 @@ namespace TMS.localhostCompetency {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     public delegate void createCompetencyCompletedEventHandler(object sender, createCompetencyCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class createCompetencyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -398,11 +346,37 @@ namespace TMS.localhostCompetency {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void findCompetencyCompletedEventHandler(object sender, findCompetencyCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class findCompetencyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal findCompetencyCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Competency Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Competency)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     public delegate void deleteCompetencyCompletedEventHandler(object sender, deleteCompetencyCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class deleteCompetencyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -419,6 +393,32 @@ namespace TMS.localhostCompetency {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void getAllCompetenciesCompletedEventHandler(object sender, getAllCompetenciesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getAllCompetenciesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getAllCompetenciesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Competency[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Competency[])(this.results[0]));
             }
         }
     }

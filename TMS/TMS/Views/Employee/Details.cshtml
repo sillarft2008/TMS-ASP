@@ -65,11 +65,11 @@
 
         <dd>
             <table class="table">
-                @foreach (var item in Model.Employees_Competency)
+                @foreach (var item in Model.Competencies)
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Competency.Competencies)
+                            @Html.DisplayFor(modelItem => item.Competencies)
                         </td>
                     </tr>
                 }

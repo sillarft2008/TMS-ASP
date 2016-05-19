@@ -21,7 +21,7 @@ namespace TMS.Repositories
         localhostEmployee.EmployeeWebserviceService EWS = new localhostEmployee.EmployeeWebserviceService();
         localhostEmployee.Employee employee = new localhostEmployee.Employee();
 
-     
+
         IEnumerable<Employee> IEmployeeRepository.All
         {
             get
@@ -40,7 +40,7 @@ namespace TMS.Repositories
                 }
                 IEnumerable<Employee> l = employeeList.ToList();
                 return l;
-                
+
             }
         }
 

@@ -59,7 +59,7 @@
   </wsdl:binding>
   <wsdl:service name="TestWebserviceService">
     <wsdl:port name="TestWebservice" binding="impl:TestWebserviceSoapBinding">
-      <wsdlsoap:address location="http://localhost:13990/TMS/services/TestWebservice" />
+      <wsdlsoap:address location="http://localhost:8080/TMS/services/TestWebservice" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

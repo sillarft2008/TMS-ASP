@@ -29,19 +29,19 @@ namespace TMS.jobWS {
     [System.Web.Services.WebServiceBindingAttribute(Name="JobWebserviceSoapBinding", Namespace="http://webservice_layer")]
     public partial class JobWebserviceService : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback addCompetencyOperationCompleted;
+        private System.Threading.SendOrPostCallback findCustomerJobArrayOperationCompleted;
         
         private System.Threading.SendOrPostCallback findJobArrayOperationCompleted;
         
-        private System.Threading.SendOrPostCallback findJobOperationCompleted;
+        private System.Threading.SendOrPostCallback addCompetencyOperationCompleted;
         
-        private System.Threading.SendOrPostCallback deleteJobOperationCompleted;
+        private System.Threading.SendOrPostCallback findJobOperationCompleted;
         
         private System.Threading.SendOrPostCallback createJobOperationCompleted;
         
-        private System.Threading.SendOrPostCallback updateJobOperationCompleted;
+        private System.Threading.SendOrPostCallback deleteJobOperationCompleted;
         
-        private System.Threading.SendOrPostCallback findCustomerJobArrayOperationCompleted;
+        private System.Threading.SendOrPostCallback updateJobOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -82,53 +82,53 @@ namespace TMS.jobWS {
         }
         
         /// <remarks/>
-        public event addCompetencyCompletedEventHandler addCompetencyCompleted;
+        public event findCustomerJobArrayCompletedEventHandler findCustomerJobArrayCompleted;
         
         /// <remarks/>
         public event findJobArrayCompletedEventHandler findJobArrayCompleted;
         
         /// <remarks/>
-        public event findJobCompletedEventHandler findJobCompleted;
+        public event addCompetencyCompletedEventHandler addCompetencyCompleted;
         
         /// <remarks/>
-        public event deleteJobCompletedEventHandler deleteJobCompleted;
+        public event findJobCompletedEventHandler findJobCompleted;
         
         /// <remarks/>
         public event createJobCompletedEventHandler createJobCompleted;
         
         /// <remarks/>
+        public event deleteJobCompletedEventHandler deleteJobCompleted;
+        
+        /// <remarks/>
         public event updateJobCompletedEventHandler updateJobCompleted;
         
         /// <remarks/>
-        public event findCustomerJobArrayCompletedEventHandler findCustomerJobArrayCompleted;
-        
-        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void addCompetency(Job job, Competency competency) {
-            this.Invoke("addCompetency", new object[] {
-                        job,
-                        competency});
+        [return: System.Xml.Serialization.XmlElementAttribute("findCustomerJobArrayReturn")]
+        public Job[] findCustomerJobArray(int customerId) {
+            object[] results = this.Invoke("findCustomerJobArray", new object[] {
+                        customerId});
+            return ((Job[])(results[0]));
         }
         
         /// <remarks/>
-        public void addCompetencyAsync(Job job, Competency competency) {
-            this.addCompetencyAsync(job, competency, null);
+        public void findCustomerJobArrayAsync(int customerId) {
+            this.findCustomerJobArrayAsync(customerId, null);
         }
         
         /// <remarks/>
-        public void addCompetencyAsync(Job job, Competency competency, object userState) {
-            if ((this.addCompetencyOperationCompleted == null)) {
-                this.addCompetencyOperationCompleted = new System.Threading.SendOrPostCallback(this.OnaddCompetencyOperationCompleted);
+        public void findCustomerJobArrayAsync(int customerId, object userState) {
+            if ((this.findCustomerJobArrayOperationCompleted == null)) {
+                this.findCustomerJobArrayOperationCompleted = new System.Threading.SendOrPostCallback(this.OnfindCustomerJobArrayOperationCompleted);
             }
-            this.InvokeAsync("addCompetency", new object[] {
-                        job,
-                        competency}, this.addCompetencyOperationCompleted, userState);
+            this.InvokeAsync("findCustomerJobArray", new object[] {
+                        customerId}, this.findCustomerJobArrayOperationCompleted, userState);
         }
         
-        private void OnaddCompetencyOperationCompleted(object arg) {
-            if ((this.addCompetencyCompleted != null)) {
+        private void OnfindCustomerJobArrayOperationCompleted(object arg) {
+            if ((this.findCustomerJobArrayCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.addCompetencyCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.findCustomerJobArrayCompleted(this, new findCustomerJobArrayCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -157,6 +157,36 @@ namespace TMS.jobWS {
             if ((this.findJobArrayCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.findJobArrayCompleted(this, new findJobArrayCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void addCompetency(Job job, Competency competency) {
+            this.Invoke("addCompetency", new object[] {
+                        job,
+                        competency});
+        }
+        
+        /// <remarks/>
+        public void addCompetencyAsync(Job job, Competency competency) {
+            this.addCompetencyAsync(job, competency, null);
+        }
+        
+        /// <remarks/>
+        public void addCompetencyAsync(Job job, Competency competency, object userState) {
+            if ((this.addCompetencyOperationCompleted == null)) {
+                this.addCompetencyOperationCompleted = new System.Threading.SendOrPostCallback(this.OnaddCompetencyOperationCompleted);
+            }
+            this.InvokeAsync("addCompetency", new object[] {
+                        job,
+                        competency}, this.addCompetencyOperationCompleted, userState);
+        }
+        
+        private void OnaddCompetencyOperationCompleted(object arg) {
+            if ((this.addCompetencyCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.addCompetencyCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -192,6 +222,34 @@ namespace TMS.jobWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void createJob(Job job) {
+            this.Invoke("createJob", new object[] {
+                        job});
+        }
+        
+        /// <remarks/>
+        public void createJobAsync(Job job) {
+            this.createJobAsync(job, null);
+        }
+        
+        /// <remarks/>
+        public void createJobAsync(Job job, object userState) {
+            if ((this.createJobOperationCompleted == null)) {
+                this.createJobOperationCompleted = new System.Threading.SendOrPostCallback(this.OncreateJobOperationCompleted);
+            }
+            this.InvokeAsync("createJob", new object[] {
+                        job}, this.createJobOperationCompleted, userState);
+        }
+        
+        private void OncreateJobOperationCompleted(object arg) {
+            if ((this.createJobCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.createJobCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("deleteJobReturn")]
         public string deleteJob(Job job) {
             object[] results = this.Invoke("deleteJob", new object[] {
@@ -222,34 +280,6 @@ namespace TMS.jobWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void createJob(Job job) {
-            this.Invoke("createJob", new object[] {
-                        job});
-        }
-        
-        /// <remarks/>
-        public void createJobAsync(Job job) {
-            this.createJobAsync(job, null);
-        }
-        
-        /// <remarks/>
-        public void createJobAsync(Job job, object userState) {
-            if ((this.createJobOperationCompleted == null)) {
-                this.createJobOperationCompleted = new System.Threading.SendOrPostCallback(this.OncreateJobOperationCompleted);
-            }
-            this.InvokeAsync("createJob", new object[] {
-                        job}, this.createJobOperationCompleted, userState);
-        }
-        
-        private void OncreateJobOperationCompleted(object arg) {
-            if ((this.createJobCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.createJobCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("updateJobReturn")]
         public string updateJob(Job job) {
             object[] results = this.Invoke("updateJob", new object[] {
@@ -275,36 +305,6 @@ namespace TMS.jobWS {
             if ((this.updateJobCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.updateJobCompleted(this, new updateJobCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("findCustomerJobArrayReturn")]
-        public Job[] findCustomerJobArray(int customerId) {
-            object[] results = this.Invoke("findCustomerJobArray", new object[] {
-                        customerId});
-            return ((Job[])(results[0]));
-        }
-        
-        /// <remarks/>
-        public void findCustomerJobArrayAsync(int customerId) {
-            this.findCustomerJobArrayAsync(customerId, null);
-        }
-        
-        /// <remarks/>
-        public void findCustomerJobArrayAsync(int customerId, object userState) {
-            if ((this.findCustomerJobArrayOperationCompleted == null)) {
-                this.findCustomerJobArrayOperationCompleted = new System.Threading.SendOrPostCallback(this.OnfindCustomerJobArrayOperationCompleted);
-            }
-            this.InvokeAsync("findCustomerJobArray", new object[] {
-                        customerId}, this.findCustomerJobArrayOperationCompleted, userState);
-        }
-        
-        private void OnfindCustomerJobArrayOperationCompleted(object arg) {
-            if ((this.findCustomerJobArrayCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.findCustomerJobArrayCompleted(this, new findCustomerJobArrayCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -548,7 +548,29 @@ namespace TMS.jobWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void addCompetencyCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    public delegate void findCustomerJobArrayCompletedEventHandler(object sender, findCustomerJobArrayCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class findCustomerJobArrayCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal findCustomerJobArrayCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Job[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Job[])(this.results[0]));
+            }
+        }
+    }
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
@@ -578,6 +600,10 @@ namespace TMS.jobWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void addCompetencyCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     public delegate void findJobCompletedEventHandler(object sender, findJobCompletedEventArgs e);
     
     /// <remarks/>
@@ -601,6 +627,10 @@ namespace TMS.jobWS {
             }
         }
     }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void createJobCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
@@ -630,10 +660,6 @@ namespace TMS.jobWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void createJobCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     public delegate void updateJobCompletedEventHandler(object sender, updateJobCompletedEventArgs e);
     
     /// <remarks/>
@@ -654,32 +680,6 @@ namespace TMS.jobWS {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((string)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void findCustomerJobArrayCompletedEventHandler(object sender, findCustomerJobArrayCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class findCustomerJobArrayCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal findCustomerJobArrayCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public Job[] Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((Job[])(this.results[0]));
             }
         }
     }
