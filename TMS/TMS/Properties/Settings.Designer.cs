@@ -56,7 +56,7 @@ namespace TMS.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:8080/TMS/services/EmployeeWebservice")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:12131/TMS/services/EmployeeWebservice")]
         public string TMS_localhostEmployee_EmployeeWebserviceService {
             get {
                 return ((string)(this["TMS_localhostEmployee_EmployeeWebserviceService"]));
@@ -80,6 +80,16 @@ namespace TMS.Properties {
         public string TMS_localhostEC_EmployeeCompetencyWebserviceService {
             get {
                 return ((string)(this["TMS_localhostEC_EmployeeCompetencyWebserviceService"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:12131/TMS/services/ScheduleWebservice")]
+        public string TMS_localhostSchedule_ScheduleWebserviceService {
+            get {
+                return ((string)(this["TMS_localhostSchedule_ScheduleWebserviceService"]));
             }
         }
     }

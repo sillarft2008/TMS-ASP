@@ -300,7 +300,6 @@ C:\Users\Floreza\workspace\TMS-ASP\TMS\TMS\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\Floreza\workspace\TMS-ASP\TMS\TMS\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\Floreza\workspace\TMS-ASP\TMS\TMS\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Floreza\workspace\TMS-ASP\TMS\TMS\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\Allan B Jensen\TMSproject\ASP\TMS\TMS\obj\Debug\TMS.csprojResolveAssemblyReference.cache
 C:\Users\Andreea\Documents\Repo-Projects\TMS\ASP\TMS-ASP\TMS\TMS\bin\roslyn\csc.exe
 C:\Users\Andreea\Documents\Repo-Projects\TMS\ASP\TMS-ASP\TMS\TMS\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 C:\Users\Andreea\Documents\Repo-Projects\TMS\ASP\TMS-ASP\TMS\TMS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -377,3 +376,4 @@ C:\Users\Andreea\Documents\Repo-Projects\TMS\ASP\TMS-ASP\TMS\TMS\bin\Microsoft.O
 C:\Users\Andreea\Documents\Repo-Projects\TMS\ASP\TMS-ASP\TMS\TMS\obj\Debug\TMS.dll
 C:\Users\Andreea\Documents\Repo-Projects\TMS\ASP\TMS-ASP\TMS\TMS\obj\Debug\TMS.pdb
 C:\Users\Andreea\Documents\Repo-Projects\TMS\ASP\TMS-ASP\TMS\TMS\obj\Debug\TMS.csprojResolveAssemblyReference.cache
+C:\Users\Allan B Jensen\TMSproject\ASP\TMS\TMS\obj\Debug\TMS.csprojResolveAssemblyReference.cache

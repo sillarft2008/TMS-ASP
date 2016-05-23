@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:intf="http://webservice_layer" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:impl="http://webservice_layer" targetNamespace="http://webservice_layer" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://webservice_layer">
+      <xsd:element name="createSchedule">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="schedule" type="impl:Schedule" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="Competency">
+        <xsd:sequence>
+          <xsd:element name="competency" nillable="true" type="xsd:string" />
+          <xsd:element name="id" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Employee">
+        <xsd:sequence>
+          <xsd:element name="address" nillable="true" type="xsd:string" />
+          <xsd:element name="birthdate" nillable="true" type="xsd:string" />
+          <xsd:element name="email" nillable="true" type="xsd:string" />
+          <xsd:element name="firstName" nillable="true" type="xsd:string" />
+          <xsd:element name="id" type="xsd:int" />
+          <xsd:element name="lastName" nillable="true" type="xsd:string" />
+          <xsd:element name="telefone" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Product">
+        <xsd:sequence>
+          <xsd:element name="id" type="xsd:int" />
+          <xsd:element name="product" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Item">
+        <xsd:sequence>
+          <xsd:element name="id" type="xsd:int" />
+          <xsd:element name="product" nillable="true" type="impl:Product" />
+          <xsd:element name="qantity" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfCompetency">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="item" type="impl:Competency" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Customer">
+        <xsd:sequence>
+          <xsd:element name="address" nillable="true" type="xsd:string" />
+          <xsd:element name="companyName" nillable="true" type="xsd:string" />
+          <xsd:element name="cvr" type="xsd:int" />
+          <xsd:element name="firstName" nillable="true" type="xsd:string" />
+          <xsd:element name="id" type="xsd:int" />
+          <xsd:element name="lastName" nillable="true" type="xsd:string" />
+          <xsd:element name="telefone" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Job">
+        <xsd:sequence>
+          <xsd:element name="address" nillable="true" type="xsd:string" />
+          <xsd:element name="arrayOFCompetency" nillable="true" type="impl:ArrayOfCompetency" />
+          <xsd:element name="customer" nillable="true" type="impl:Customer" />
+          <xsd:element name="endDate" nillable="true" type="xsd:dateTime" />
+          <xsd:element name="id" type="xsd:int" />
+          <xsd:element name="startDate" nillable="true" type="xsd:dateTime" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Schedule">
+        <xsd:sequence>
+          <xsd:element name="competency" nillable="true" type="impl:Competency" />
+          <xsd:element name="duration" nillable="true" type="xsd:dateTime" />
+          <xsd:element name="employee" nillable="true" type="impl:Employee" />
+          <xsd:element name="id" type="xsd:int" />
+          <xsd:element name="item" nillable="true" type="impl:Item" />
+          <xsd:element name="job" nillable="true" type="impl:Job" />
+          <xsd:element name="startTimeDate" nillable="true" type="xsd:dateTime" />
+          <xsd:element name="startTimeDateString" nillable="true" type="xsd:string" />
+          <xsd:element name="startTimeString" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="createScheduleResponse">
+        <xsd:complexType />
+      </xsd:element>
+      <xsd:element name="findSchedule">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="scheduleId" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="findScheduleResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="findScheduleReturn" type="impl:Schedule" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deleteSchedule">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="schedule" type="impl:Schedule" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deleteScheduleResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="deleteScheduleReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updateSchedule">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="schedule" type="impl:Schedule" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updateScheduleResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="updateScheduleReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="findScheduleArrayByEmployeeDate">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="employeeId" type="xsd:int" />
+            <xsd:element name="startTimeDate" type="xsd:dateTime" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="findScheduleArrayByEmployeeDateResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" name="findScheduleArrayByEmployeeDateReturn" type="impl:Schedule" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="findScheduleArray">
+        <xsd:complexType />
+      </xsd:element>
+      <xsd:element name="findScheduleArrayResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" name="findScheduleArrayReturn" type="impl:Schedule" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="findScheduleArrayByEmployeeDateRequest">
+    <wsdl:part name="parameters" element="impl:findScheduleArrayByEmployeeDate" />
+  </wsdl:message>
+  <wsdl:message name="deleteScheduleResponse">
+    <wsdl:part name="parameters" element="impl:deleteScheduleResponse" />
+  </wsdl:message>
+  <wsdl:message name="findScheduleResponse">
+    <wsdl:part name="parameters" element="impl:findScheduleResponse" />
+  </wsdl:message>
+  <wsdl:message name="findScheduleArrayByEmployeeDateResponse">
+    <wsdl:part name="parameters" element="impl:findScheduleArrayByEmployeeDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="findScheduleRequest">
+    <wsdl:part name="parameters" element="impl:findSchedule" />
+  </wsdl:message>
+  <wsdl:message name="updateScheduleRequest">
+    <wsdl:part name="parameters" element="impl:updateSchedule" />
+  </wsdl:message>
+  <wsdl:message name="updateScheduleResponse">
+    <wsdl:part name="parameters" element="impl:updateScheduleResponse" />
+  </wsdl:message>
+  <wsdl:message name="createScheduleResponse">
+    <wsdl:part name="parameters" element="impl:createScheduleResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteScheduleRequest">
+    <wsdl:part name="parameters" element="impl:deleteSchedule" />
+  </wsdl:message>
+  <wsdl:message name="findScheduleArrayRequest">
+    <wsdl:part name="parameters" element="impl:findScheduleArray" />
+  </wsdl:message>
+  <wsdl:message name="findScheduleArrayResponse">
+    <wsdl:part name="parameters" element="impl:findScheduleArrayResponse" />
+  </wsdl:message>
+  <wsdl:message name="createScheduleRequest">
+    <wsdl:part name="parameters" element="impl:createSchedule" />
+  </wsdl:message>
+  <wsdl:portType name="ScheduleWebservice">
+    <wsdl:operation name="createSchedule">
+      <wsdl:input name="createScheduleRequest" message="impl:createScheduleRequest" />
+      <wsdl:output name="createScheduleResponse" message="impl:createScheduleResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="findSchedule">
+      <wsdl:input name="findScheduleRequest" message="impl:findScheduleRequest" />
+      <wsdl:output name="findScheduleResponse" message="impl:findScheduleResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteSchedule">
+      <wsdl:input name="deleteScheduleRequest" message="impl:deleteScheduleRequest" />
+      <wsdl:output name="deleteScheduleResponse" message="impl:deleteScheduleResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="updateSchedule">
+      <wsdl:input name="updateScheduleRequest" message="impl:updateScheduleRequest" />
+      <wsdl:output name="updateScheduleResponse" message="impl:updateScheduleResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="findScheduleArrayByEmployeeDate">
+      <wsdl:input name="findScheduleArrayByEmployeeDateRequest" message="impl:findScheduleArrayByEmployeeDateRequest" />
+      <wsdl:output name="findScheduleArrayByEmployeeDateResponse" message="impl:findScheduleArrayByEmployeeDateResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="findScheduleArray">
+      <wsdl:input name="findScheduleArrayRequest" message="impl:findScheduleArrayRequest" />
+      <wsdl:output name="findScheduleArrayResponse" message="impl:findScheduleArrayResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ScheduleWebserviceSoapBinding" type="impl:ScheduleWebservice">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="createSchedule">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="createScheduleRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="createScheduleResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findSchedule">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="findScheduleRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="findScheduleResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteSchedule">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="deleteScheduleRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="deleteScheduleResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateSchedule">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="updateScheduleRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="updateScheduleResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findScheduleArrayByEmployeeDate">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="findScheduleArrayByEmployeeDateRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="findScheduleArrayByEmployeeDateResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findScheduleArray">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="findScheduleArrayRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="findScheduleArrayResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ScheduleWebserviceService">
+    <wsdl:port name="ScheduleWebservice" binding="impl:ScheduleWebserviceSoapBinding">
+      <wsdlsoap:address location="http://localhost:12131/TMS/services/ScheduleWebservice" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

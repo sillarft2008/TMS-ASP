@@ -1,0 +1,47 @@
+﻿@model List<TMS.Models.Schedule>
+
+@{
+    ViewBag.Title = "test";
+}
+
+<h2>test</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" border="1">
+    <tr>
+        @foreach (var headingRow in Model.Take(1))
+        {
+            <th></th>
+            foreach (var headingCell in headingRow.scheduleCellList)
+            {
+                <th>@Html.DisplayFor(model => headingCell.ScheduleName)</th>
+            }
+        }
+    </tr>
+    @foreach (var employeeItem in Model.Skip(1))
+    {
+        <tr>
+            <td bgcolor="@Html.DisplayFor(model => employeeItem.color)">
+                @Html.DisplayFor(model => employeeItem.employee.firstName)
+                @Html.DisplayFor(model => employeeItem.employee.lastName)
+            </td>
+            @if (employeeItem.scheduleCellList != null)
+            {
+                foreach (var cellItem in employeeItem.scheduleCellList)
+                {
+                    if (cellItem.Id != 0)
+                    {
+                        <td align="center" colspan=@Html.DisplayFor(model => cellItem.Collspan) bgcolor=@Html.DisplayFor(model => cellItem.Color)>@Html.ActionLink(cellItem.ScheduleName, "Edit", new { id = cellItem.Id })</td>
+                    }
+                    else {
+                        <td align="center" colspan=@Html.DisplayFor(model => cellItem.Collspan) bgcolor=@Html.DisplayFor(model => cellItem.Color)>@Html.ActionLink(cellItem.ScheduleName, "Edit", new { employeeId = employeeItem.employee.id, jobId = cellItem.schedule.job.id, competencyId = cellItem.schedule.competency.id, startTimeDate = cellItem.schedule.startTimeDate, duration = cellItem.schedule.duration })</td>
+                    }
+                }
+            }
+        </tr>
+    }
+
+
+</table>
