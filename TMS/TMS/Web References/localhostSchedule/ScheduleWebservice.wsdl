@@ -2,7 +2,7 @@
 <wsdl:definitions xmlns:intf="http://webservice_layer" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:impl="http://webservice_layer" targetNamespace="http://webservice_layer" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://webservice_layer">
-      <xsd:element name="createSchedule">
+      <xsd:element name="deleteSchedule">
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="schedule" type="impl:Schedule" />
@@ -78,30 +78,6 @@
           <xsd:element name="startTimeString" nillable="true" type="xsd:string" />
         </xsd:sequence>
       </xsd:complexType>
-      <xsd:element name="createScheduleResponse">
-        <xsd:complexType />
-      </xsd:element>
-      <xsd:element name="findSchedule">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="scheduleId" type="xsd:int" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="findScheduleResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="findScheduleReturn" type="impl:Schedule" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="deleteSchedule">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="schedule" type="impl:Schedule" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
       <xsd:element name="deleteScheduleResponse">
         <xsd:complexType>
           <xsd:sequence>
@@ -122,6 +98,30 @@
             <xsd:element name="updateScheduleReturn" type="xsd:string" />
           </xsd:sequence>
         </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="findSchedule">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="scheduleId" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="findScheduleResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="findScheduleReturn" type="impl:Schedule" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="createSchedule">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="schedule" type="impl:Schedule" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="createScheduleResponse">
+        <xsd:complexType />
       </xsd:element>
       <xsd:element name="findScheduleArrayByEmployeeDate">
         <xsd:complexType>
@@ -171,11 +171,11 @@
   <wsdl:message name="updateScheduleResponse">
     <wsdl:part name="parameters" element="impl:updateScheduleResponse" />
   </wsdl:message>
-  <wsdl:message name="createScheduleResponse">
-    <wsdl:part name="parameters" element="impl:createScheduleResponse" />
-  </wsdl:message>
   <wsdl:message name="deleteScheduleRequest">
     <wsdl:part name="parameters" element="impl:deleteSchedule" />
+  </wsdl:message>
+  <wsdl:message name="createScheduleResponse">
+    <wsdl:part name="parameters" element="impl:createScheduleResponse" />
   </wsdl:message>
   <wsdl:message name="findScheduleArrayRequest">
     <wsdl:part name="parameters" element="impl:findScheduleArray" />
@@ -187,14 +187,6 @@
     <wsdl:part name="parameters" element="impl:createSchedule" />
   </wsdl:message>
   <wsdl:portType name="ScheduleWebservice">
-    <wsdl:operation name="createSchedule">
-      <wsdl:input name="createScheduleRequest" message="impl:createScheduleRequest" />
-      <wsdl:output name="createScheduleResponse" message="impl:createScheduleResponse" />
-    </wsdl:operation>
-    <wsdl:operation name="findSchedule">
-      <wsdl:input name="findScheduleRequest" message="impl:findScheduleRequest" />
-      <wsdl:output name="findScheduleResponse" message="impl:findScheduleResponse" />
-    </wsdl:operation>
     <wsdl:operation name="deleteSchedule">
       <wsdl:input name="deleteScheduleRequest" message="impl:deleteScheduleRequest" />
       <wsdl:output name="deleteScheduleResponse" message="impl:deleteScheduleResponse" />
@@ -202,6 +194,14 @@
     <wsdl:operation name="updateSchedule">
       <wsdl:input name="updateScheduleRequest" message="impl:updateScheduleRequest" />
       <wsdl:output name="updateScheduleResponse" message="impl:updateScheduleResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="findSchedule">
+      <wsdl:input name="findScheduleRequest" message="impl:findScheduleRequest" />
+      <wsdl:output name="findScheduleResponse" message="impl:findScheduleResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="createSchedule">
+      <wsdl:input name="createScheduleRequest" message="impl:createScheduleRequest" />
+      <wsdl:output name="createScheduleResponse" message="impl:createScheduleResponse" />
     </wsdl:operation>
     <wsdl:operation name="findScheduleArrayByEmployeeDate">
       <wsdl:input name="findScheduleArrayByEmployeeDateRequest" message="impl:findScheduleArrayByEmployeeDateRequest" />
@@ -214,24 +214,6 @@
   </wsdl:portType>
   <wsdl:binding name="ScheduleWebserviceSoapBinding" type="impl:ScheduleWebservice">
     <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="createSchedule">
-      <wsdlsoap:operation soapAction="" />
-      <wsdl:input name="createScheduleRequest">
-        <wsdlsoap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output name="createScheduleResponse">
-        <wsdlsoap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="findSchedule">
-      <wsdlsoap:operation soapAction="" />
-      <wsdl:input name="findScheduleRequest">
-        <wsdlsoap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output name="findScheduleResponse">
-        <wsdlsoap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="deleteSchedule">
       <wsdlsoap:operation soapAction="" />
       <wsdl:input name="deleteScheduleRequest">
@@ -247,6 +229,24 @@
         <wsdlsoap:body use="literal" />
       </wsdl:input>
       <wsdl:output name="updateScheduleResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findSchedule">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="findScheduleRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="findScheduleResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createSchedule">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="createScheduleRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="createScheduleResponse">
         <wsdlsoap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>

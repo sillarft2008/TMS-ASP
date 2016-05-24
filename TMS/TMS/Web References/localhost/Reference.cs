@@ -29,8 +29,6 @@ namespace TMS.localhost {
     [System.Web.Services.WebServiceBindingAttribute(Name="CustomerWebserviceSoapBinding", Namespace="http://webservice_layer")]
     public partial class CustomerWebserviceService : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback findCustomerArrayOperationCompleted;
-        
         private System.Threading.SendOrPostCallback findCustomerOperationCompleted;
         
         private System.Threading.SendOrPostCallback updateCustomerOperationCompleted;
@@ -38,6 +36,8 @@ namespace TMS.localhost {
         private System.Threading.SendOrPostCallback deleteCustomerOperationCompleted;
         
         private System.Threading.SendOrPostCallback createCustomerOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback findCustomerArrayOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -78,9 +78,6 @@ namespace TMS.localhost {
         }
         
         /// <remarks/>
-        public event findCustomerArrayCompletedEventHandler findCustomerArrayCompleted;
-        
-        /// <remarks/>
         public event findCustomerCompletedEventHandler findCustomerCompleted;
         
         /// <remarks/>
@@ -93,32 +90,7 @@ namespace TMS.localhost {
         public event createCustomerCompletedEventHandler createCustomerCompleted;
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("findCustomerArrayReturn")]
-        public Customer[] findCustomerArray() {
-            object[] results = this.Invoke("findCustomerArray", new object[0]);
-            return ((Customer[])(results[0]));
-        }
-        
-        /// <remarks/>
-        public void findCustomerArrayAsync() {
-            this.findCustomerArrayAsync(null);
-        }
-        
-        /// <remarks/>
-        public void findCustomerArrayAsync(object userState) {
-            if ((this.findCustomerArrayOperationCompleted == null)) {
-                this.findCustomerArrayOperationCompleted = new System.Threading.SendOrPostCallback(this.OnfindCustomerArrayOperationCompleted);
-            }
-            this.InvokeAsync("findCustomerArray", new object[0], this.findCustomerArrayOperationCompleted, userState);
-        }
-        
-        private void OnfindCustomerArrayOperationCompleted(object arg) {
-            if ((this.findCustomerArrayCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.findCustomerArrayCompleted(this, new findCustomerArrayCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
+        public event findCustomerArrayCompletedEventHandler findCustomerArrayCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -241,6 +213,34 @@ namespace TMS.localhost {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("findCustomerArrayReturn")]
+        public Customer[] findCustomerArray() {
+            object[] results = this.Invoke("findCustomerArray", new object[0]);
+            return ((Customer[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void findCustomerArrayAsync() {
+            this.findCustomerArrayAsync(null);
+        }
+        
+        /// <remarks/>
+        public void findCustomerArrayAsync(object userState) {
+            if ((this.findCustomerArrayOperationCompleted == null)) {
+                this.findCustomerArrayOperationCompleted = new System.Threading.SendOrPostCallback(this.OnfindCustomerArrayOperationCompleted);
+            }
+            this.InvokeAsync("findCustomerArray", new object[0], this.findCustomerArrayOperationCompleted, userState);
+        }
+        
+        private void OnfindCustomerArrayOperationCompleted(object arg) {
+            if ((this.findCustomerArrayCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.findCustomerArrayCompleted(this, new findCustomerArrayCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -359,32 +359,6 @@ namespace TMS.localhost {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void findCustomerArrayCompletedEventHandler(object sender, findCustomerArrayCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class findCustomerArrayCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal findCustomerArrayCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public Customer[] Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((Customer[])(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     public delegate void findCustomerCompletedEventHandler(object sender, findCustomerCompletedEventArgs e);
     
     /// <remarks/>
@@ -483,6 +457,32 @@ namespace TMS.localhost {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void findCustomerArrayCompletedEventHandler(object sender, findCustomerArrayCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class findCustomerArrayCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal findCustomerArrayCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Customer[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Customer[])(this.results[0]));
             }
         }
     }

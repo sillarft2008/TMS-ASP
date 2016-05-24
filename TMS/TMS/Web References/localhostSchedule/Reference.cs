@@ -29,13 +29,13 @@ namespace TMS.localhostSchedule {
     [System.Web.Services.WebServiceBindingAttribute(Name="ScheduleWebserviceSoapBinding", Namespace="http://webservice_layer")]
     public partial class ScheduleWebserviceService : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback createScheduleOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback findScheduleOperationCompleted;
-        
         private System.Threading.SendOrPostCallback deleteScheduleOperationCompleted;
         
         private System.Threading.SendOrPostCallback updateScheduleOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback findScheduleOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback createScheduleOperationCompleted;
         
         private System.Threading.SendOrPostCallback findScheduleArrayByEmployeeDateOperationCompleted;
         
@@ -80,80 +80,22 @@ namespace TMS.localhostSchedule {
         }
         
         /// <remarks/>
-        public event createScheduleCompletedEventHandler createScheduleCompleted;
-        
-        /// <remarks/>
-        public event findScheduleCompletedEventHandler findScheduleCompleted;
-        
-        /// <remarks/>
         public event deleteScheduleCompletedEventHandler deleteScheduleCompleted;
         
         /// <remarks/>
         public event updateScheduleCompletedEventHandler updateScheduleCompleted;
         
         /// <remarks/>
+        public event findScheduleCompletedEventHandler findScheduleCompleted;
+        
+        /// <remarks/>
+        public event createScheduleCompletedEventHandler createScheduleCompleted;
+        
+        /// <remarks/>
         public event findScheduleArrayByEmployeeDateCompletedEventHandler findScheduleArrayByEmployeeDateCompleted;
         
         /// <remarks/>
         public event findScheduleArrayCompletedEventHandler findScheduleArrayCompleted;
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void createSchedule(Schedule schedule) {
-            this.Invoke("createSchedule", new object[] {
-                        schedule});
-        }
-        
-        /// <remarks/>
-        public void createScheduleAsync(Schedule schedule) {
-            this.createScheduleAsync(schedule, null);
-        }
-        
-        /// <remarks/>
-        public void createScheduleAsync(Schedule schedule, object userState) {
-            if ((this.createScheduleOperationCompleted == null)) {
-                this.createScheduleOperationCompleted = new System.Threading.SendOrPostCallback(this.OncreateScheduleOperationCompleted);
-            }
-            this.InvokeAsync("createSchedule", new object[] {
-                        schedule}, this.createScheduleOperationCompleted, userState);
-        }
-        
-        private void OncreateScheduleOperationCompleted(object arg) {
-            if ((this.createScheduleCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.createScheduleCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("findScheduleReturn")]
-        public Schedule findSchedule(int scheduleId) {
-            object[] results = this.Invoke("findSchedule", new object[] {
-                        scheduleId});
-            return ((Schedule)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void findScheduleAsync(int scheduleId) {
-            this.findScheduleAsync(scheduleId, null);
-        }
-        
-        /// <remarks/>
-        public void findScheduleAsync(int scheduleId, object userState) {
-            if ((this.findScheduleOperationCompleted == null)) {
-                this.findScheduleOperationCompleted = new System.Threading.SendOrPostCallback(this.OnfindScheduleOperationCompleted);
-            }
-            this.InvokeAsync("findSchedule", new object[] {
-                        scheduleId}, this.findScheduleOperationCompleted, userState);
-        }
-        
-        private void OnfindScheduleOperationCompleted(object arg) {
-            if ((this.findScheduleCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.findScheduleCompleted(this, new findScheduleCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -212,6 +154,64 @@ namespace TMS.localhostSchedule {
             if ((this.updateScheduleCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.updateScheduleCompleted(this, new updateScheduleCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("findScheduleReturn")]
+        public Schedule findSchedule(int scheduleId) {
+            object[] results = this.Invoke("findSchedule", new object[] {
+                        scheduleId});
+            return ((Schedule)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void findScheduleAsync(int scheduleId) {
+            this.findScheduleAsync(scheduleId, null);
+        }
+        
+        /// <remarks/>
+        public void findScheduleAsync(int scheduleId, object userState) {
+            if ((this.findScheduleOperationCompleted == null)) {
+                this.findScheduleOperationCompleted = new System.Threading.SendOrPostCallback(this.OnfindScheduleOperationCompleted);
+            }
+            this.InvokeAsync("findSchedule", new object[] {
+                        scheduleId}, this.findScheduleOperationCompleted, userState);
+        }
+        
+        private void OnfindScheduleOperationCompleted(object arg) {
+            if ((this.findScheduleCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.findScheduleCompleted(this, new findScheduleCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void createSchedule(Schedule schedule) {
+            this.Invoke("createSchedule", new object[] {
+                        schedule});
+        }
+        
+        /// <remarks/>
+        public void createScheduleAsync(Schedule schedule) {
+            this.createScheduleAsync(schedule, null);
+        }
+        
+        /// <remarks/>
+        public void createScheduleAsync(Schedule schedule, object userState) {
+            if ((this.createScheduleOperationCompleted == null)) {
+                this.createScheduleOperationCompleted = new System.Threading.SendOrPostCallback(this.OncreateScheduleOperationCompleted);
+            }
+            this.InvokeAsync("createSchedule", new object[] {
+                        schedule}, this.createScheduleOperationCompleted, userState);
+        }
+        
+        private void OncreateScheduleOperationCompleted(object arg) {
+            if ((this.createScheduleCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.createScheduleCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -820,36 +820,6 @@ namespace TMS.localhostSchedule {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void createScheduleCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void findScheduleCompletedEventHandler(object sender, findScheduleCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class findScheduleCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal findScheduleCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public Schedule Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((Schedule)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     public delegate void deleteScheduleCompletedEventHandler(object sender, deleteScheduleCompletedEventArgs e);
     
     /// <remarks/>
@@ -899,6 +869,36 @@ namespace TMS.localhostSchedule {
             }
         }
     }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void findScheduleCompletedEventHandler(object sender, findScheduleCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class findScheduleCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal findScheduleCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Schedule Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Schedule)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void createScheduleCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]

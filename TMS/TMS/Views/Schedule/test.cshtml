@@ -31,12 +31,25 @@
             {
                 foreach (var cellItem in employeeItem.scheduleCellList)
                 {
-                    if (cellItem.Id != 0)
+                    if (employeeItem.color == "red")
                     {
-                        <td align="center" colspan=@Html.DisplayFor(model => cellItem.Collspan) bgcolor=@Html.DisplayFor(model => cellItem.Color)>@Html.ActionLink(cellItem.ScheduleName, "Edit", new { id = cellItem.Id })</td>
+                        if (cellItem.Color == "green" || cellItem.Color == "yellow")
+                        {
+                            cellItem.Color = "";
+                        }
+                    }
+                    if (cellItem.Color == "green")
+                    {
+                        if (cellItem.Id != 0)
+                        {
+                            <td align="center" colspan=@Html.DisplayFor(model => cellItem.Collspan) bgcolor=@Html.DisplayFor(model => cellItem.Color)>@Html.ActionLink(cellItem.ScheduleName, "Edit", new { id = cellItem.schedule})</td>
+                        }
+                        else {
+                            <td align="center" colspan=@Html.DisplayFor(model => cellItem.Collspan) bgcolor=@Html.DisplayFor(model => cellItem.Color)>@Html.ActionLink(cellItem.ScheduleName, "Edit", new { employeeId = employeeItem.employee.id, jobId = cellItem.schedule.job.id, competencyId = cellItem.schedule.competency.id, startTimeDate = cellItem.schedule.startTimeDate, duration = cellItem.schedule.duration })</td>
+                        }
                     }
                     else {
-                        <td align="center" colspan=@Html.DisplayFor(model => cellItem.Collspan) bgcolor=@Html.DisplayFor(model => cellItem.Color)>@Html.ActionLink(cellItem.ScheduleName, "Edit", new { employeeId = employeeItem.employee.id, jobId = cellItem.schedule.job.id, competencyId = cellItem.schedule.competency.id, startTimeDate = cellItem.schedule.startTimeDate, duration = cellItem.schedule.duration })</td>
+                        <td align="center" colspan=@Html.DisplayFor(model => cellItem.Collspan) bgcolor=@Html.DisplayFor(model => cellItem.Color)>@Html.DisplayFor(model => cellItem.ScheduleName)</td>
                     }
                 }
             }

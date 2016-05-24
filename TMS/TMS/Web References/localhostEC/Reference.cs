@@ -29,17 +29,17 @@ namespace TMS.localhostEC {
     [System.Web.Services.WebServiceBindingAttribute(Name="EmployeeCompetencyWebserviceSoapBinding", Namespace="http://webservice_layer")]
     public partial class EmployeeCompetencyWebserviceService : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback findEmployeeCompetencyOperationCompleted;
+        private System.Threading.SendOrPostCallback createEmployeeCompetencyOperationCompleted;
         
         private System.Threading.SendOrPostCallback deleteEmployeeCompetencyOperationCompleted;
         
-        private System.Threading.SendOrPostCallback updateEmployeeCompetencyOperationCompleted;
-        
         private System.Threading.SendOrPostCallback getAllEmployeeCompetenciesOperationCompleted;
         
-        private System.Threading.SendOrPostCallback createEmployeeCompetencyOperationCompleted;
+        private System.Threading.SendOrPostCallback updateEmployeeCompetencyOperationCompleted;
         
         private System.Threading.SendOrPostCallback findAllEmployeeCompetenciesOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback findEmployeeCompetencyOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -80,50 +80,50 @@ namespace TMS.localhostEC {
         }
         
         /// <remarks/>
-        public event findEmployeeCompetencyCompletedEventHandler findEmployeeCompetencyCompleted;
+        public event createEmployeeCompetencyCompletedEventHandler createEmployeeCompetencyCompleted;
         
         /// <remarks/>
         public event deleteEmployeeCompetencyCompletedEventHandler deleteEmployeeCompetencyCompleted;
         
         /// <remarks/>
-        public event updateEmployeeCompetencyCompletedEventHandler updateEmployeeCompetencyCompleted;
-        
-        /// <remarks/>
         public event getAllEmployeeCompetenciesCompletedEventHandler getAllEmployeeCompetenciesCompleted;
         
         /// <remarks/>
-        public event createEmployeeCompetencyCompletedEventHandler createEmployeeCompetencyCompleted;
+        public event updateEmployeeCompetencyCompletedEventHandler updateEmployeeCompetencyCompleted;
         
         /// <remarks/>
         public event findAllEmployeeCompetenciesCompletedEventHandler findAllEmployeeCompetenciesCompleted;
         
         /// <remarks/>
+        public event findEmployeeCompetencyCompletedEventHandler findEmployeeCompetencyCompleted;
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("findEmployeeCompetencyReturn")]
-        public EmployeeCompetency findEmployeeCompetency(int Id) {
-            object[] results = this.Invoke("findEmployeeCompetency", new object[] {
-                        Id});
-            return ((EmployeeCompetency)(results[0]));
+        [return: System.Xml.Serialization.XmlElementAttribute("createEmployeeCompetencyReturn")]
+        public string createEmployeeCompetency(EmployeeCompetency ec) {
+            object[] results = this.Invoke("createEmployeeCompetency", new object[] {
+                        ec});
+            return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void findEmployeeCompetencyAsync(int Id) {
-            this.findEmployeeCompetencyAsync(Id, null);
+        public void createEmployeeCompetencyAsync(EmployeeCompetency ec) {
+            this.createEmployeeCompetencyAsync(ec, null);
         }
         
         /// <remarks/>
-        public void findEmployeeCompetencyAsync(int Id, object userState) {
-            if ((this.findEmployeeCompetencyOperationCompleted == null)) {
-                this.findEmployeeCompetencyOperationCompleted = new System.Threading.SendOrPostCallback(this.OnfindEmployeeCompetencyOperationCompleted);
+        public void createEmployeeCompetencyAsync(EmployeeCompetency ec, object userState) {
+            if ((this.createEmployeeCompetencyOperationCompleted == null)) {
+                this.createEmployeeCompetencyOperationCompleted = new System.Threading.SendOrPostCallback(this.OncreateEmployeeCompetencyOperationCompleted);
             }
-            this.InvokeAsync("findEmployeeCompetency", new object[] {
-                        Id}, this.findEmployeeCompetencyOperationCompleted, userState);
+            this.InvokeAsync("createEmployeeCompetency", new object[] {
+                        ec}, this.createEmployeeCompetencyOperationCompleted, userState);
         }
         
-        private void OnfindEmployeeCompetencyOperationCompleted(object arg) {
-            if ((this.findEmployeeCompetencyCompleted != null)) {
+        private void OncreateEmployeeCompetencyOperationCompleted(object arg) {
+            if ((this.createEmployeeCompetencyCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.findEmployeeCompetencyCompleted(this, new findEmployeeCompetencyCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.createEmployeeCompetencyCompleted(this, new createEmployeeCompetencyCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -159,6 +159,34 @@ namespace TMS.localhostEC {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("getAllEmployeeCompetenciesReturn")]
+        public EmployeeCompetency[] getAllEmployeeCompetencies() {
+            object[] results = this.Invoke("getAllEmployeeCompetencies", new object[0]);
+            return ((EmployeeCompetency[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getAllEmployeeCompetenciesAsync() {
+            this.getAllEmployeeCompetenciesAsync(null);
+        }
+        
+        /// <remarks/>
+        public void getAllEmployeeCompetenciesAsync(object userState) {
+            if ((this.getAllEmployeeCompetenciesOperationCompleted == null)) {
+                this.getAllEmployeeCompetenciesOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetAllEmployeeCompetenciesOperationCompleted);
+            }
+            this.InvokeAsync("getAllEmployeeCompetencies", new object[0], this.getAllEmployeeCompetenciesOperationCompleted, userState);
+        }
+        
+        private void OngetAllEmployeeCompetenciesOperationCompleted(object arg) {
+            if ((this.getAllEmployeeCompetenciesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getAllEmployeeCompetenciesCompleted(this, new getAllEmployeeCompetenciesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("updateEmployeeCompetencyReturn")]
         public string updateEmployeeCompetency(EmployeeCompetency ec) {
             object[] results = this.Invoke("updateEmployeeCompetency", new object[] {
@@ -189,64 +217,6 @@ namespace TMS.localhostEC {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("getAllEmployeeCompetenciesReturn")]
-        public EmployeeCompetency[] getAllEmployeeCompetencies() {
-            object[] results = this.Invoke("getAllEmployeeCompetencies", new object[0]);
-            return ((EmployeeCompetency[])(results[0]));
-        }
-        
-        /// <remarks/>
-        public void getAllEmployeeCompetenciesAsync() {
-            this.getAllEmployeeCompetenciesAsync(null);
-        }
-        
-        /// <remarks/>
-        public void getAllEmployeeCompetenciesAsync(object userState) {
-            if ((this.getAllEmployeeCompetenciesOperationCompleted == null)) {
-                this.getAllEmployeeCompetenciesOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetAllEmployeeCompetenciesOperationCompleted);
-            }
-            this.InvokeAsync("getAllEmployeeCompetencies", new object[0], this.getAllEmployeeCompetenciesOperationCompleted, userState);
-        }
-        
-        private void OngetAllEmployeeCompetenciesOperationCompleted(object arg) {
-            if ((this.getAllEmployeeCompetenciesCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.getAllEmployeeCompetenciesCompleted(this, new getAllEmployeeCompetenciesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("createEmployeeCompetencyReturn")]
-        public string createEmployeeCompetency(EmployeeCompetency ec) {
-            object[] results = this.Invoke("createEmployeeCompetency", new object[] {
-                        ec});
-            return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void createEmployeeCompetencyAsync(EmployeeCompetency ec) {
-            this.createEmployeeCompetencyAsync(ec, null);
-        }
-        
-        /// <remarks/>
-        public void createEmployeeCompetencyAsync(EmployeeCompetency ec, object userState) {
-            if ((this.createEmployeeCompetencyOperationCompleted == null)) {
-                this.createEmployeeCompetencyOperationCompleted = new System.Threading.SendOrPostCallback(this.OncreateEmployeeCompetencyOperationCompleted);
-            }
-            this.InvokeAsync("createEmployeeCompetency", new object[] {
-                        ec}, this.createEmployeeCompetencyOperationCompleted, userState);
-        }
-        
-        private void OncreateEmployeeCompetencyOperationCompleted(object arg) {
-            if ((this.createEmployeeCompetencyCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.createEmployeeCompetencyCompleted(this, new createEmployeeCompetencyCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("findAllEmployeeCompetenciesReturn")]
         public EmployeeCompetency[] findAllEmployeeCompetencies(int Id) {
             object[] results = this.Invoke("findAllEmployeeCompetencies", new object[] {
@@ -272,6 +242,36 @@ namespace TMS.localhostEC {
             if ((this.findAllEmployeeCompetenciesCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.findAllEmployeeCompetenciesCompleted(this, new findAllEmployeeCompetenciesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("findEmployeeCompetencyReturn")]
+        public EmployeeCompetency findEmployeeCompetency(int Id) {
+            object[] results = this.Invoke("findEmployeeCompetency", new object[] {
+                        Id});
+            return ((EmployeeCompetency)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void findEmployeeCompetencyAsync(int Id) {
+            this.findEmployeeCompetencyAsync(Id, null);
+        }
+        
+        /// <remarks/>
+        public void findEmployeeCompetencyAsync(int Id, object userState) {
+            if ((this.findEmployeeCompetencyOperationCompleted == null)) {
+                this.findEmployeeCompetencyOperationCompleted = new System.Threading.SendOrPostCallback(this.OnfindEmployeeCompetencyOperationCompleted);
+            }
+            this.InvokeAsync("findEmployeeCompetency", new object[] {
+                        Id}, this.findEmployeeCompetencyOperationCompleted, userState);
+        }
+        
+        private void OnfindEmployeeCompetencyOperationCompleted(object arg) {
+            if ((this.findEmployeeCompetencyCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.findEmployeeCompetencyCompleted(this, new findEmployeeCompetencyCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -341,26 +341,26 @@ namespace TMS.localhostEC {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void findEmployeeCompetencyCompletedEventHandler(object sender, findEmployeeCompetencyCompletedEventArgs e);
+    public delegate void createEmployeeCompetencyCompletedEventHandler(object sender, createEmployeeCompetencyCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class findEmployeeCompetencyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class createEmployeeCompetencyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal findEmployeeCompetencyCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal createEmployeeCompetencyCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
         
         /// <remarks/>
-        public EmployeeCompetency Result {
+        public string Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((EmployeeCompetency)(this.results[0]));
+                return ((string)(this.results[0]));
             }
         }
     }
@@ -378,32 +378,6 @@ namespace TMS.localhostEC {
         private object[] results;
         
         internal deleteEmployeeCompetencyCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public string Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void updateEmployeeCompetencyCompletedEventHandler(object sender, updateEmployeeCompetencyCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class updateEmployeeCompetencyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal updateEmployeeCompetencyCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -445,17 +419,17 @@ namespace TMS.localhostEC {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void createEmployeeCompetencyCompletedEventHandler(object sender, createEmployeeCompetencyCompletedEventArgs e);
+    public delegate void updateEmployeeCompetencyCompletedEventHandler(object sender, updateEmployeeCompetencyCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class createEmployeeCompetencyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class updateEmployeeCompetencyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal createEmployeeCompetencyCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal updateEmployeeCompetencyCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -491,6 +465,32 @@ namespace TMS.localhostEC {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((EmployeeCompetency[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void findEmployeeCompetencyCompletedEventHandler(object sender, findEmployeeCompetencyCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class findEmployeeCompetencyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal findEmployeeCompetencyCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public EmployeeCompetency Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((EmployeeCompetency)(this.results[0]));
             }
         }
     }
