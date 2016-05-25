@@ -186,15 +186,15 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CompetenciesController.cs" />
-    <Compile Include="Controllers\CustomersController.cs" />
-    <Compile Include="Controllers\EmployeeCompetencyController.cs" />
-    <Compile Include="Controllers\EmployeeController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\JobController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\ScheduleController.cs" />
+    <Compile Include="bin\Controllers\AccountController.cs" />
+    <Compile Include="bin\Controllers\CompetenciesController.cs" />
+    <Compile Include="bin\Controllers\CustomersController.cs" />
+    <Compile Include="bin\Controllers\EmployeeCompetencyController.cs" />
+    <Compile Include="bin\Controllers\EmployeeController.cs" />
+    <Compile Include="bin\Controllers\HomeController.cs" />
+    <Compile Include="bin\Controllers\JobController.cs" />
+    <Compile Include="bin\Controllers\ManageController.cs" />
+    <Compile Include="bin\Controllers\ScheduleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -280,7 +280,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Views\Schedule\test.cshtml" />
+    <Content Include="Views\Shared\EmployeeCompetencyViewModel.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -320,7 +320,6 @@
     <Content Include="Views\Employee\Edit.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Home\CustomerForm.cshtml" />
-    <Content Include="Views\Shared\EmployeeCompetencyViewModel.cshtml" />
     <Content Include="Views\Competencies\Create.cshtml" />
     <Content Include="Views\Competencies\Delete.cshtml" />
     <Content Include="Views\Competencies\Details.cshtml" />
@@ -353,7 +352,10 @@
     <Content Include="Views\job\Index.cshtml" />
     <Content Include="Views\job\JobCompetencyList.cshtml" />
     <Content Include="Views\job\List.cshtml" />
-    <Content Include="Views\Schedule\test2.cshtml" />
+    <Content Include="Views\Schedule\Create.cshtml" />
+    <Content Include="Views\Schedule\ScheduleViewModel.cshtml" />
+    <Content Include="Views\Schedule\Detail.cshtml" />
+    <Content Include="Views\Schedule\Select.cshtml" />
     <None Include="Web References\jobWS\JobWebservice.wsdl" />
     <None Include="Web References\jobWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>

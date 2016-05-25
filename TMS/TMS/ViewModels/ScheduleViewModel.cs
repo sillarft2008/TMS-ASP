@@ -7,7 +7,8 @@ namespace TMS.ViewModels
 {
     public class ScheduleViewModel
     {
-        List<TMS.Models.Schedule> scheduleList { get; set; }
-        List<String> headingCells { get; set; }
+        public TMS.localhostSchedule.Schedule schedule { get; set; }
+       
+        public List<TMS.localhostCompetency.Competency> Competencies { get; set; }
     }
 }

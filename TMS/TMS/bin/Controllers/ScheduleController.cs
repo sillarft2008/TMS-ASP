@@ -30,7 +30,7 @@ namespace TMS.Controllers
         //{
         //    return View();
         //}
-        public ActionResult save(int employeeId, int jobId,int competencyId, DateTime startTimeDate, DateTime duration)
+        public ActionResult save(int employeeId, int jobId, int competencyId, DateTime startTimeDate, DateTime duration)
         {
             TMS.localhostSchedule.Schedule schedule = new TMS.localhostSchedule.Schedule();
             schedule.id = 0;
@@ -52,16 +52,16 @@ namespace TMS.Controllers
             TMS.localhostSchedule.ScheduleWebserviceService SWS = new localhostSchedule.ScheduleWebserviceService();
             SWS.createSchedule(schedule);
             SWS.Dispose();
-            return RedirectToAction("test2");
+            return RedirectToAction("Select", new { startDateTime = startTimeDate });
         }
 
-        public ActionResult test()
+        public ActionResult Detail(int jobId, DateTime startTimeDate , DateTime duration , int competencyId)
         {
             //input(for test):
-            int inputCompetencyId = 4;
-            int inputJobId = 1;
-            DateTime startDateTime = new DateTime(2016, 01, 01);
-            DateTime inputDuration = new DateTime(1970, 01, 01, 01, 00, 00);
+            int inputCompetencyId = competencyId;
+            int inputJobId = jobId;
+            DateTime startDateTime = startTimeDate;
+            DateTime inputDuration = duration;
             localhostSchedule.Schedule inputSchedule = new localhostSchedule.Schedule();
             inputSchedule.startTimeDate = startDateTime;
             inputSchedule.duration = inputDuration;
@@ -75,8 +75,8 @@ namespace TMS.Controllers
 
             //constants
             int intervalTimeMinute = 30;
-            DateTime startWorkDay = new DateTime(2016, 01, 01, 08, 00, 00);
-            DateTime endWorkDay = new DateTime(2016, 01, 01, 18, 00, 00);
+            DateTime startWorkDay = new DateTime(startTimeDate.Year, startDateTime.Month, startDateTime.Day, 08, 00, 00);
+            DateTime endWorkDay = new DateTime(startTimeDate.Year, startDateTime.Month, startDateTime.Day, 18, 00, 00);
 
             DateTime existingScheduleStartTime;
             DateTime existingScheduleDuration;
@@ -88,9 +88,10 @@ namespace TMS.Controllers
             List<Models.ScheduleCell> celllist = new List<Models.ScheduleCell>();
             TMS.Models.Schedule scheduleRow;
             scheduleRow = new TMS.Models.Schedule();
-                        
+
             // setup heading
-            for (DateTime time = startWorkDay; time < endWorkDay; time = time.AddMinutes(intervalTimeMinute)) { 
+            for (DateTime time = startWorkDay; time < endWorkDay; time = time.AddMinutes(intervalTimeMinute))
+            {
                 cell = new TMS.Models.ScheduleCell();
                 cell.ScheduleName = time.ToShortTimeString();
                 celllist.Add(cell);
@@ -218,23 +219,23 @@ namespace TMS.Controllers
                         scheduleRow.scheduleCellList = celllist;
                     }
                     else {
-                            for (d = startWorkDay ; d <= endWorkDay; d = d.AddMinutes(intervalTimeMinute))
-                            {
-                                cell = new TMS.Models.ScheduleCell();
-                                localhostSchedule.Schedule schedule = new localhostSchedule.Schedule();
-                                cell.Color = "green";
-                                cell.Collspan = 1;
-                                cell.Id = 1;
-                                //cell.schedule = inputSchedule;
-                                schedule.startTimeDate = d;
-                                schedule.duration = inputDuration;
-                                schedule.employee = scheduleRow.getScheduleEmployee();
-                                schedule.job = inputSchedule.job;
-                                schedule.competency = inputSchedule.competency;
-                                cell.ScheduleName = schedule.startTimeDate.ToString();
-                                cell.schedule = schedule;
-                                celllist.Add(cell);
-                            }
+                        for (d = startWorkDay; d <= endWorkDay; d = d.AddMinutes(intervalTimeMinute))
+                        {
+                            cell = new TMS.Models.ScheduleCell();
+                            localhostSchedule.Schedule schedule = new localhostSchedule.Schedule();
+                            cell.Color = "green";
+                            cell.Collspan = 1;
+                            cell.Id = 1;
+                            //cell.schedule = inputSchedule;
+                            schedule.startTimeDate = d;
+                            schedule.duration = inputDuration;
+                            schedule.employee = scheduleRow.getScheduleEmployee();
+                            schedule.job = inputSchedule.job;
+                            schedule.competency = inputSchedule.competency;
+                            cell.ScheduleName = schedule.startTimeDate.ToString();
+                            cell.schedule = schedule;
+                            celllist.Add(cell);
+                        }
                         scheduleRow.scheduleCellList = celllist;
                     }
                     scheduleList.Add(scheduleRow);
@@ -245,12 +246,12 @@ namespace TMS.Controllers
             return View(scheduleList);
         }
 
-        public ActionResult test2()
+        public ActionResult Select(DateTime startDateTime)
         {
             //input(for test):
             //int inputCompetencyId = 4;
             //int inputJobId = 1;
-            DateTime startDateTime = new DateTime(2016, 01, 01);
+            //DateTime startDateTime = new DateTime(2016, 01, 01);
             //DateTime inputDuration = new DateTime(1970, 01, 01, 01, 00, 00);
             localhostSchedule.Schedule inputSchedule = new localhostSchedule.Schedule();
             inputSchedule.startTimeDate = startDateTime;
@@ -265,8 +266,8 @@ namespace TMS.Controllers
 
             //constants
             int intervalTimeMinute = 30;
-            DateTime startWorkDay = new DateTime(2016, 01, 01, 08, 00, 00);
-            DateTime endWorkDay = new DateTime(2016, 01, 01, 18, 00, 00);
+            DateTime startWorkDay = new DateTime(startDateTime.Year, startDateTime.Month, startDateTime.Day, 08, 00, 00);
+            DateTime endWorkDay = new DateTime(startDateTime.Year, startDateTime.Month, startDateTime.Day, 18, 00, 00);
 
             DateTime existingScheduleStartTime;
             DateTime existingScheduleDuration;
@@ -389,6 +390,33 @@ namespace TMS.Controllers
                 }
             }
             return View(scheduleList);
+        }
+
+   
+        public ActionResult Create(int? jobId)
+        {
+            TMS.ViewModels.ScheduleViewModel SVM = new ViewModels.ScheduleViewModel();
+            TMS.localhostSchedule.Schedule schedule = new TMS.localhostSchedule.Schedule();
+            TMS.localhostSchedule.Job job = new TMS.localhostSchedule.Job(); 
+            job.id = (int)jobId;
+            schedule.job = job;
+            TMS.localhostCompetency.CompetencyWebserviceService CWS = new TMS.localhostCompetency.CompetencyWebserviceService();
+            TMS.localhostCompetency.Competency[] competencies = CWS.getAllCompetencies();
+            SVM.Competencies = competencies.ToList();
+            SVM.schedule = schedule;
+            
+
+            return View(SVM);
+       }
+
+        // POST: Customers/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(TMS.ViewModels.ScheduleViewModel schedule, TMS.ViewModels.ScheduleViewModel data, IEnumerable<int> compIds)
+        {
+            return RedirectToAction("Detail", new { jobId = data.schedule.job.id , startTimeDate = data.schedule.startTimeDate, duration = data.schedule.duration, competencyId = compIds.First()});
         }
 
     }
