@@ -1,7 +1,7 @@
 ﻿@model List<TMS.Models.Schedule>
 
 @{
-    ViewBag.Title = "test";
+    ViewBag.Title = "test2";
 }
 
 <h2>test</h2>
@@ -42,7 +42,7 @@
                     {
                         if (cellItem.Id != 0)
                         {
-                            <td align="center" colspan=@Html.DisplayFor(model => cellItem.Collspan) bgcolor=@Html.DisplayFor(model => cellItem.Color)>@Html.ActionLink(cellItem.ScheduleName, "save", new { employeeId = cellItem.schedule.employee.id , jobId = cellItem.schedule.job.id, competencyId = cellItem.schedule.competency.id, startTimeDate = cellItem.schedule.startTimeDate , duration = cellItem.schedule.duration })</td>
+                            <td align="center" colspan=@Html.DisplayFor(model => cellItem.Collspan) bgcolor=@Html.DisplayFor(model => cellItem.Color)>@Html.DisplayFor(model => cellItem.ScheduleName)</td>
                         }
                         else {
                             //<td align="center" colspan=@Html.DisplayFor(model => cellItem.Collspan) bgcolor=@Html.DisplayFor(model => cellItem.Color)>@Html.ActionLink(cellItem.ScheduleName, "Edit", new TMS.localhostSchedule.Schedule { employee = null, jobId = cellItem.schedule.job.id, competencyId = cellItem.schedule.competency.id, startTimeDate = cellItem.schedule.startTimeDate, duration = cellItem.schedule.duration })</td>

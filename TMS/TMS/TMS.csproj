@@ -280,6 +280,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Schedule\test.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -335,7 +336,6 @@
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
     <Content Include="Views\Schedule\Index.cshtml" />
-    <Content Include="Views\Schedule\test.cshtml" />
     <Content Include="Views\Schedule\Edit.cshtml" />
     <Content Include="Views\EmployeeCompetency\Index.cshtml" />
     <Content Include="Views\EmployeeCompetency\Details.cshtml" />
@@ -353,6 +353,7 @@
     <Content Include="Views\job\Index.cshtml" />
     <Content Include="Views\job\JobCompetencyList.cshtml" />
     <Content Include="Views\job\List.cshtml" />
+    <Content Include="Views\Schedule\test2.cshtml" />
     <None Include="Web References\jobWS\JobWebservice.wsdl" />
     <None Include="Web References\jobWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
