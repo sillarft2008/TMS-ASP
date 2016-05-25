@@ -12,5 +12,8 @@ namespace TMS.Models
         public String ScheduleName { get; set; }
         public int Id { get; set; }
         public localhostSchedule.Schedule schedule { get; set; }
+
     }
+
+    
 }

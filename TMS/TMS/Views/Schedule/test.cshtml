@@ -42,10 +42,10 @@
                     {
                         if (cellItem.Id != 0)
                         {
-                            <td align="center" colspan=@Html.DisplayFor(model => cellItem.Collspan) bgcolor=@Html.DisplayFor(model => cellItem.Color)>@Html.ActionLink(cellItem.ScheduleName, "Edit", new { id = cellItem.schedule})</td>
+                            <td align="center" colspan=@Html.DisplayFor(model => cellItem.Collspan) bgcolor=@Html.DisplayFor(model => cellItem.Color)>@Html.ActionLink(cellItem.ScheduleName, "Edit", new { employeeId = cellItem.schedule.employee.id , jobId = cellItem.schedule.job.id, competencyId = cellItem.schedule.competency.id, startTimeDate = cellItem.schedule.startTimeDate , duration = cellItem.schedule.duration })</td>
                         }
                         else {
-                            <td align="center" colspan=@Html.DisplayFor(model => cellItem.Collspan) bgcolor=@Html.DisplayFor(model => cellItem.Color)>@Html.ActionLink(cellItem.ScheduleName, "Edit", new { employeeId = employeeItem.employee.id, jobId = cellItem.schedule.job.id, competencyId = cellItem.schedule.competency.id, startTimeDate = cellItem.schedule.startTimeDate, duration = cellItem.schedule.duration })</td>
+                            //<td align="center" colspan=@Html.DisplayFor(model => cellItem.Collspan) bgcolor=@Html.DisplayFor(model => cellItem.Color)>@Html.ActionLink(cellItem.ScheduleName, "Edit", new TMS.localhostSchedule.Schedule { employee = null, jobId = cellItem.schedule.job.id, competencyId = cellItem.schedule.competency.id, startTimeDate = cellItem.schedule.startTimeDate, duration = cellItem.schedule.duration })</td>
                         }
                     }
                     else {

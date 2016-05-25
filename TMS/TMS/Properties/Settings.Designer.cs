@@ -36,16 +36,6 @@ namespace TMS.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:8080/TMS/services/TestWebservice")]
-        public string TMS_localhost2_TestWebserviceService {
-            get {
-                return ((string)(this["TMS_localhost2_TestWebserviceService"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
         [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:12131/TMS/services/CompetencyWebservice")]
         public string TMS_localhostCompetency_CompetencyWebserviceService {
             get {

@@ -22,13 +22,26 @@ namespace TMS.Controllers
             //schedule.scheduleArray = scheduleArray;
             return View(schedule);
         }
+        //public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Email,Phone,BirthDate,HomeAddress,Competencies,")] localhostSchedule.Schedule id)
+        //{
+        //    return View();
+        //}
+        //public ActionResult Edit(int? id)
+        //{
+        //    return View();
+        //}
+        public ActionResult Edit(int? employeeId, int? jobId,int? competencyId, DateTime startTimeDate, DateTime duration)
+        {
+            return View();
+        }
+
         public ActionResult test()
         {
             //input(for test):
             int inputCompetencyId = 4;
             int inputJobId = 1;
             DateTime startDateTime = new DateTime(2016, 01, 01);
-            DateTime inputDuration = new DateTime(1970, 01, 01, 02, 00, 00);
+            DateTime inputDuration = new DateTime(1970, 01, 01, 01, 00, 00);
             localhostSchedule.Schedule inputSchedule = new localhostSchedule.Schedule();
             inputSchedule.startTimeDate = startDateTime;
             inputSchedule.duration = inputDuration;
@@ -53,8 +66,8 @@ namespace TMS.Controllers
 
             TMS.Models.ScheduleCell cell;
             List<Models.ScheduleCell> celllist = new List<Models.ScheduleCell>();
-            TMS.Models.Schedule schedule;
-            schedule = new TMS.Models.Schedule();
+            TMS.Models.Schedule scheduleRow;
+            scheduleRow = new TMS.Models.Schedule();
                         
             // setup heading
             for (DateTime time = startWorkDay; time < endWorkDay; time = time.AddMinutes(intervalTimeMinute)) { 
@@ -62,8 +75,8 @@ namespace TMS.Controllers
                 cell.ScheduleName = time.ToShortTimeString();
                 celllist.Add(cell);
             }
-            schedule.scheduleCellList = celllist;
-            scheduleList.Add(schedule);
+            scheduleRow.scheduleCellList = celllist;
+            scheduleList.Add(scheduleRow);
 
             localhostEmployee.EmployeeWebserviceService EWS = new localhostEmployee.EmployeeWebserviceService();
             EWS.Timeout = 2000;
@@ -72,18 +85,19 @@ namespace TMS.Controllers
             {
                 foreach (localhostEmployee.Employee employee in employeeArray)
                 {
-                    schedule = new TMS.Models.Schedule();
-                    schedule.employee = employee;
+                    scheduleRow = new TMS.Models.Schedule();
+                    scheduleRow.employee = employee;
+                    //scheduleRow.employee = employee;
                     localhostEC.EmployeeCompetencyWebserviceService ECWS = new localhostEC.EmployeeCompetencyWebserviceService();
                     localhostEC.EmployeeCompetency[] employeeCompetencyArray = ECWS.findAllEmployeeCompetencies(employee.id);
-                    schedule.color = "red";
+                    scheduleRow.color = "red";
                     if (employeeCompetencyArray != null)
                     {
                         foreach (localhostEC.EmployeeCompetency employeeCompetency in employeeCompetencyArray)
                         {
                             if (employeeCompetency.competencyId == inputSchedule.competency.id)
                             {
-                                schedule.color = "green";
+                                scheduleRow.color = "green";
                             }
                         }
                     }
@@ -103,23 +117,35 @@ namespace TMS.Controllers
                             for (d = d; d <= existingScheduleStartTime.AddHours(-inputDuration.Hour).AddMinutes(-inputDuration.Minute); d = d.AddMinutes(intervalTimeMinute))
                             {
                                 cell = new TMS.Models.ScheduleCell();
+                                localhostSchedule.Schedule schedule = new localhostSchedule.Schedule();
                                 cell.Color = "green";
                                 cell.Collspan = 1;
                                 cell.Id = 1;
-                                cell.schedule = inputSchedule;
-                                cell.schedule.startTimeDate = d;
-                                cell.ScheduleName = cell.schedule.startTimeDate.ToString();
+                                //cell.schedule = inputSchedule;
+                                schedule.startTimeDate = d;
+                                schedule.duration = inputDuration;
+                                schedule.employee = scheduleRow.getScheduleEmployee();
+                                schedule.job = inputSchedule.job;
+                                schedule.competency = inputSchedule.competency;
+                                cell.ScheduleName = schedule.startTimeDate.ToString();
+                                cell.schedule = schedule;
                                 celllist.Add(cell);
                             }
                             for (d = d; d < existingScheduleStartTime; d = d.AddMinutes(intervalTimeMinute))
                             {
                                 cell = new TMS.Models.ScheduleCell();
+                                localhostSchedule.Schedule schedule = new localhostSchedule.Schedule();
                                 cell.Color = "yellow";
                                 cell.Collspan = 1;
                                 cell.Id = 1;
-                                cell.schedule = inputSchedule;
-                                cell.schedule.startTimeDate = d;
-                                cell.ScheduleName = cell.schedule.startTimeDate.ToString();
+                                //cell.schedule = inputSchedule;
+                                schedule.startTimeDate = d;
+                                schedule.duration = inputDuration;
+                                schedule.employee = scheduleRow.getScheduleEmployee();
+                                schedule.job = inputSchedule.job;
+                                schedule.competency = inputSchedule.competency;
+                                cell.ScheduleName = schedule.startTimeDate.ToString();
+                                cell.schedule = schedule;
                                 celllist.Add(cell);
                             }
                             cell = new TMS.Models.ScheduleCell();
@@ -129,33 +155,44 @@ namespace TMS.Controllers
                             cell.Id = schedule2.id;
                             cell.ScheduleName = schedule2.job.address;
                             celllist.Add(cell);
-                            schedule.scheduleCellList = celllist;
+                            scheduleRow.scheduleCellList = celllist;
                             d = d.AddHours(existingScheduleDuration.Hour).AddMinutes(existingScheduleDuration.Minute);
                         }
                         for (d = d; d <= endWorkDay.AddHours(-inputDuration.Hour).AddMinutes(-inputDuration.Minute); d = d.AddMinutes(intervalTimeMinute))
                         {
                             cell = new TMS.Models.ScheduleCell();
+                            localhostSchedule.Schedule schedule = new localhostSchedule.Schedule();
                             cell.Color = "green";
                             cell.Collspan = 1;
                             cell.Id = 1;
-                            cell.schedule = inputSchedule;
-                            cell.schedule = inputSchedule;
-                            cell.schedule.startTimeDate = d;
-                            cell.ScheduleName = cell.schedule.startTimeDate.ToString();
+                            //cell.schedule = inputSchedule;
+                            schedule.startTimeDate = d;
+                            schedule.duration = inputDuration;
+                            schedule.employee = scheduleRow.getScheduleEmployee();
+                            schedule.job = inputSchedule.job;
+                            schedule.competency = inputSchedule.competency;
+                            cell.ScheduleName = schedule.startTimeDate.ToString();
+                            cell.schedule = schedule;
                             celllist.Add(cell);
                         }
                         for (d = d; d < endWorkDay; d = d.AddMinutes(intervalTimeMinute))
                         {
                             cell = new TMS.Models.ScheduleCell();
+                            localhostSchedule.Schedule schedule = new localhostSchedule.Schedule();
                             cell.Color = "yellow";
                             cell.Collspan = 1;
                             cell.Id = 1;
-                            cell.schedule = inputSchedule;
-                            cell.schedule.startTimeDate = d;
-                            cell.ScheduleName = cell.schedule.startTimeDate.ToString();
+                            //cell.schedule = inputSchedule;
+                            schedule.startTimeDate = d;
+                            schedule.duration = inputDuration;
+                            schedule.employee = scheduleRow.getScheduleEmployee();
+                            schedule.job = inputSchedule.job;
+                            schedule.competency = inputSchedule.competency;
+                            cell.ScheduleName = schedule.startTimeDate.ToString();
+                            cell.schedule = schedule;
                             celllist.Add(cell);
                         }
-                        schedule.scheduleCellList = celllist;
+                        scheduleRow.scheduleCellList = celllist;
                     }
                     else {
                         for (DateTime time = startWorkDay; time < endWorkDay; time = time.AddMinutes(intervalTimeMinute))
@@ -165,9 +202,9 @@ namespace TMS.Controllers
                             cell.ScheduleName = time.ToShortTimeString();
                             celllist.Add(cell);
                         }
-                        schedule.scheduleCellList = celllist;
+                        scheduleRow.scheduleCellList = celllist;
                     }
-                    scheduleList.Add(schedule);
+                    scheduleList.Add(scheduleRow);
 
                 }
             }
