@@ -62,11 +62,7 @@ namespace TMS.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<ICustomerRepository>().To<CustomerRepository>();
             kernel.Bind<IEmployeeRepository>().To<EmployeeRepository>();
-            kernel.Bind<ICompetencyRepository>().To<CompetencyRepository>();
-            kernel.Bind<IEmployeeCompetencyRepository>().To<EmployeeCompetencyRepository>();
-
         }
     }
 }

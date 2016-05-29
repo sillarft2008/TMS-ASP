@@ -23,20 +23,6 @@
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
-      <xsd:element name="deleteEmployeeCompetency">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="ec" type="impl:EmployeeCompetency" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="deleteEmployeeCompetencyResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="deleteEmployeeCompetencyReturn" type="xsd:string" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
       <xsd:element name="getAllEmployeeCompetencies">
         <xsd:complexType />
       </xsd:element>
@@ -44,6 +30,20 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element maxOccurs="unbounded" name="getAllEmployeeCompetenciesReturn" type="impl:EmployeeCompetency" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="findAllEmployeeCompetencies">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Id" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="findAllEmployeeCompetenciesResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" name="findAllEmployeeCompetenciesReturn" type="impl:EmployeeCompetency" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
@@ -61,17 +61,17 @@
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
-      <xsd:element name="findAllEmployeeCompetencies">
+      <xsd:element name="deleteEmployeeCompetency">
         <xsd:complexType>
           <xsd:sequence>
-            <xsd:element name="Id" type="xsd:int" />
+            <xsd:element name="ec" type="impl:EmployeeCompetency" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
-      <xsd:element name="findAllEmployeeCompetenciesResponse">
+      <xsd:element name="deleteEmployeeCompetencyResponse">
         <xsd:complexType>
           <xsd:sequence>
-            <xsd:element maxOccurs="unbounded" name="findAllEmployeeCompetenciesReturn" type="impl:EmployeeCompetency" />
+            <xsd:element name="deleteEmployeeCompetencyReturn" type="xsd:string" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
@@ -100,14 +100,14 @@
   <wsdl:message name="getAllEmployeeCompetenciesResponse">
     <wsdl:part name="parameters" element="impl:getAllEmployeeCompetenciesResponse" />
   </wsdl:message>
-  <wsdl:message name="deleteEmployeeCompetencyRequest">
-    <wsdl:part name="parameters" element="impl:deleteEmployeeCompetency" />
+  <wsdl:message name="findAllEmployeeCompetenciesRequest">
+    <wsdl:part name="parameters" element="impl:findAllEmployeeCompetencies" />
   </wsdl:message>
   <wsdl:message name="updateEmployeeCompetencyRequest">
     <wsdl:part name="parameters" element="impl:updateEmployeeCompetency" />
   </wsdl:message>
-  <wsdl:message name="findAllEmployeeCompetenciesRequest">
-    <wsdl:part name="parameters" element="impl:findAllEmployeeCompetencies" />
+  <wsdl:message name="deleteEmployeeCompetencyRequest">
+    <wsdl:part name="parameters" element="impl:deleteEmployeeCompetency" />
   </wsdl:message>
   <wsdl:message name="deleteEmployeeCompetencyResponse">
     <wsdl:part name="parameters" element="impl:deleteEmployeeCompetencyResponse" />
@@ -132,21 +132,21 @@
       <wsdl:input name="createEmployeeCompetencyRequest" message="impl:createEmployeeCompetencyRequest" />
       <wsdl:output name="createEmployeeCompetencyResponse" message="impl:createEmployeeCompetencyResponse" />
     </wsdl:operation>
-    <wsdl:operation name="deleteEmployeeCompetency">
-      <wsdl:input name="deleteEmployeeCompetencyRequest" message="impl:deleteEmployeeCompetencyRequest" />
-      <wsdl:output name="deleteEmployeeCompetencyResponse" message="impl:deleteEmployeeCompetencyResponse" />
-    </wsdl:operation>
     <wsdl:operation name="getAllEmployeeCompetencies">
       <wsdl:input name="getAllEmployeeCompetenciesRequest" message="impl:getAllEmployeeCompetenciesRequest" />
       <wsdl:output name="getAllEmployeeCompetenciesResponse" message="impl:getAllEmployeeCompetenciesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="findAllEmployeeCompetencies">
+      <wsdl:input name="findAllEmployeeCompetenciesRequest" message="impl:findAllEmployeeCompetenciesRequest" />
+      <wsdl:output name="findAllEmployeeCompetenciesResponse" message="impl:findAllEmployeeCompetenciesResponse" />
     </wsdl:operation>
     <wsdl:operation name="updateEmployeeCompetency">
       <wsdl:input name="updateEmployeeCompetencyRequest" message="impl:updateEmployeeCompetencyRequest" />
       <wsdl:output name="updateEmployeeCompetencyResponse" message="impl:updateEmployeeCompetencyResponse" />
     </wsdl:operation>
-    <wsdl:operation name="findAllEmployeeCompetencies">
-      <wsdl:input name="findAllEmployeeCompetenciesRequest" message="impl:findAllEmployeeCompetenciesRequest" />
-      <wsdl:output name="findAllEmployeeCompetenciesResponse" message="impl:findAllEmployeeCompetenciesResponse" />
+    <wsdl:operation name="deleteEmployeeCompetency">
+      <wsdl:input name="deleteEmployeeCompetencyRequest" message="impl:deleteEmployeeCompetencyRequest" />
+      <wsdl:output name="deleteEmployeeCompetencyResponse" message="impl:deleteEmployeeCompetencyResponse" />
     </wsdl:operation>
     <wsdl:operation name="findEmployeeCompetency">
       <wsdl:input name="findEmployeeCompetencyRequest" message="impl:findEmployeeCompetencyRequest" />
@@ -164,21 +164,21 @@
         <wsdlsoap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="deleteEmployeeCompetency">
-      <wsdlsoap:operation soapAction="" />
-      <wsdl:input name="deleteEmployeeCompetencyRequest">
-        <wsdlsoap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output name="deleteEmployeeCompetencyResponse">
-        <wsdlsoap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="getAllEmployeeCompetencies">
       <wsdlsoap:operation soapAction="" />
       <wsdl:input name="getAllEmployeeCompetenciesRequest">
         <wsdlsoap:body use="literal" />
       </wsdl:input>
       <wsdl:output name="getAllEmployeeCompetenciesResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findAllEmployeeCompetencies">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="findAllEmployeeCompetenciesRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="findAllEmployeeCompetenciesResponse">
         <wsdlsoap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
@@ -191,12 +191,12 @@
         <wsdlsoap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="findAllEmployeeCompetencies">
+    <wsdl:operation name="deleteEmployeeCompetency">
       <wsdlsoap:operation soapAction="" />
-      <wsdl:input name="findAllEmployeeCompetenciesRequest">
+      <wsdl:input name="deleteEmployeeCompetencyRequest">
         <wsdlsoap:body use="literal" />
       </wsdl:input>
-      <wsdl:output name="findAllEmployeeCompetenciesResponse">
+      <wsdl:output name="deleteEmployeeCompetencyResponse">
         <wsdlsoap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>

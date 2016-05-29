@@ -27,6 +27,20 @@
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
+      <xsd:element name="updateEmployee">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="employee" type="impl:Employee" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updateEmployeeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="updateEmployeeReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
       <xsd:element name="createEmployee">
         <xsd:complexType>
           <xsd:sequence>
@@ -55,20 +69,6 @@
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
-      <xsd:element name="updateEmployee">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="employee" type="impl:Employee" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="updateEmployeeResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="updateEmployeeReturn" type="xsd:string" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
       <xsd:element name="getAllEmployees">
         <xsd:complexType />
       </xsd:element>
@@ -84,14 +84,14 @@
   <wsdl:message name="createEmployeeResponse">
     <wsdl:part name="parameters" element="impl:createEmployeeResponse" />
   </wsdl:message>
-  <wsdl:message name="findEmployeeRequest">
-    <wsdl:part name="parameters" element="impl:findEmployee" />
-  </wsdl:message>
   <wsdl:message name="updateEmployeeRequest">
     <wsdl:part name="parameters" element="impl:updateEmployee" />
   </wsdl:message>
   <wsdl:message name="updateEmployeeResponse">
     <wsdl:part name="parameters" element="impl:updateEmployeeResponse" />
+  </wsdl:message>
+  <wsdl:message name="findEmployeeRequest">
+    <wsdl:part name="parameters" element="impl:findEmployee" />
   </wsdl:message>
   <wsdl:message name="getAllEmployeesRequest">
     <wsdl:part name="parameters" element="impl:getAllEmployees" />
@@ -116,6 +116,10 @@
       <wsdl:input name="deleteEmployeeRequest" message="impl:deleteEmployeeRequest" />
       <wsdl:output name="deleteEmployeeResponse" message="impl:deleteEmployeeResponse" />
     </wsdl:operation>
+    <wsdl:operation name="updateEmployee">
+      <wsdl:input name="updateEmployeeRequest" message="impl:updateEmployeeRequest" />
+      <wsdl:output name="updateEmployeeResponse" message="impl:updateEmployeeResponse" />
+    </wsdl:operation>
     <wsdl:operation name="createEmployee">
       <wsdl:input name="createEmployeeRequest" message="impl:createEmployeeRequest" />
       <wsdl:output name="createEmployeeResponse" message="impl:createEmployeeResponse" />
@@ -123,10 +127,6 @@
     <wsdl:operation name="findEmployee">
       <wsdl:input name="findEmployeeRequest" message="impl:findEmployeeRequest" />
       <wsdl:output name="findEmployeeResponse" message="impl:findEmployeeResponse" />
-    </wsdl:operation>
-    <wsdl:operation name="updateEmployee">
-      <wsdl:input name="updateEmployeeRequest" message="impl:updateEmployeeRequest" />
-      <wsdl:output name="updateEmployeeResponse" message="impl:updateEmployeeResponse" />
     </wsdl:operation>
     <wsdl:operation name="getAllEmployees">
       <wsdl:input name="getAllEmployeesRequest" message="impl:getAllEmployeesRequest" />
@@ -141,6 +141,15 @@
         <wsdlsoap:body use="literal" />
       </wsdl:input>
       <wsdl:output name="deleteEmployeeResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateEmployee">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="updateEmployeeRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="updateEmployeeResponse">
         <wsdlsoap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
@@ -159,15 +168,6 @@
         <wsdlsoap:body use="literal" />
       </wsdl:input>
       <wsdl:output name="findEmployeeResponse">
-        <wsdlsoap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="updateEmployee">
-      <wsdlsoap:operation soapAction="" />
-      <wsdl:input name="updateEmployeeRequest">
-        <wsdlsoap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output name="updateEmployeeResponse">
         <wsdlsoap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>

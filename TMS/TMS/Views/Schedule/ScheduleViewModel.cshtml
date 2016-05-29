@@ -29,7 +29,7 @@
             @foreach (TMS.localhostCompetency.Competency competency in Model.Competencies)
             {
                 <label>
-                    <input type="checkbox" value="@competency.id" name="compIds" />
+                    <input type="radio" value="@competency.id" name="compIds" />
                     @competency.competency
                 </label>
             }

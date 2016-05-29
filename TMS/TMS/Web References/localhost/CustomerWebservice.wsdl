@@ -2,17 +2,10 @@
 <wsdl:definitions xmlns:intf="http://webservice_layer" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:impl="http://webservice_layer" targetNamespace="http://webservice_layer" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://webservice_layer">
-      <xsd:element name="findCustomer">
+      <xsd:element name="deleteCustomer">
         <xsd:complexType>
           <xsd:sequence>
-            <xsd:element name="customerNo" type="xsd:int" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="findCustomerResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="findCustomerReturn" type="impl:Customer" />
+            <xsd:element name="cust" type="impl:Customer" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
@@ -27,6 +20,13 @@
           <xsd:element name="telefone" nillable="true" type="xsd:string" />
         </xsd:sequence>
       </xsd:complexType>
+      <xsd:element name="deleteCustomerResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="deleteCustomerReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
       <xsd:element name="updateCustomer">
         <xsd:complexType>
           <xsd:sequence>
@@ -41,17 +41,17 @@
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
-      <xsd:element name="deleteCustomer">
+      <xsd:element name="findCustomer">
         <xsd:complexType>
           <xsd:sequence>
-            <xsd:element name="cust" type="impl:Customer" />
+            <xsd:element name="customerNo" type="xsd:int" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
-      <xsd:element name="deleteCustomerResponse">
+      <xsd:element name="findCustomerResponse">
         <xsd:complexType>
           <xsd:sequence>
-            <xsd:element name="deleteCustomerReturn" type="xsd:string" />
+            <xsd:element name="findCustomerReturn" type="impl:Customer" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
@@ -84,14 +84,14 @@
   <wsdl:message name="findCustomerArrayRequest">
     <wsdl:part name="parameters" element="impl:findCustomerArray" />
   </wsdl:message>
+  <wsdl:message name="deleteCustomerRequest">
+    <wsdl:part name="parameters" element="impl:deleteCustomer" />
+  </wsdl:message>
   <wsdl:message name="updateCustomerRequest">
     <wsdl:part name="parameters" element="impl:updateCustomer" />
   </wsdl:message>
   <wsdl:message name="updateCustomerResponse">
     <wsdl:part name="parameters" element="impl:updateCustomerResponse" />
-  </wsdl:message>
-  <wsdl:message name="deleteCustomerRequest">
-    <wsdl:part name="parameters" element="impl:deleteCustomer" />
   </wsdl:message>
   <wsdl:message name="createCustomerRequest">
     <wsdl:part name="parameters" element="impl:createCustomer" />
@@ -112,17 +112,17 @@
     <wsdl:part name="parameters" element="impl:createCustomerResponse" />
   </wsdl:message>
   <wsdl:portType name="CustomerWebservice">
-    <wsdl:operation name="findCustomer">
-      <wsdl:input name="findCustomerRequest" message="impl:findCustomerRequest" />
-      <wsdl:output name="findCustomerResponse" message="impl:findCustomerResponse" />
+    <wsdl:operation name="deleteCustomer">
+      <wsdl:input name="deleteCustomerRequest" message="impl:deleteCustomerRequest" />
+      <wsdl:output name="deleteCustomerResponse" message="impl:deleteCustomerResponse" />
     </wsdl:operation>
     <wsdl:operation name="updateCustomer">
       <wsdl:input name="updateCustomerRequest" message="impl:updateCustomerRequest" />
       <wsdl:output name="updateCustomerResponse" message="impl:updateCustomerResponse" />
     </wsdl:operation>
-    <wsdl:operation name="deleteCustomer">
-      <wsdl:input name="deleteCustomerRequest" message="impl:deleteCustomerRequest" />
-      <wsdl:output name="deleteCustomerResponse" message="impl:deleteCustomerResponse" />
+    <wsdl:operation name="findCustomer">
+      <wsdl:input name="findCustomerRequest" message="impl:findCustomerRequest" />
+      <wsdl:output name="findCustomerResponse" message="impl:findCustomerResponse" />
     </wsdl:operation>
     <wsdl:operation name="createCustomer">
       <wsdl:input name="createCustomerRequest" message="impl:createCustomerRequest" />
@@ -135,12 +135,12 @@
   </wsdl:portType>
   <wsdl:binding name="CustomerWebserviceSoapBinding" type="impl:CustomerWebservice">
     <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="findCustomer">
+    <wsdl:operation name="deleteCustomer">
       <wsdlsoap:operation soapAction="" />
-      <wsdl:input name="findCustomerRequest">
+      <wsdl:input name="deleteCustomerRequest">
         <wsdlsoap:body use="literal" />
       </wsdl:input>
-      <wsdl:output name="findCustomerResponse">
+      <wsdl:output name="deleteCustomerResponse">
         <wsdlsoap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
@@ -153,12 +153,12 @@
         <wsdlsoap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="deleteCustomer">
+    <wsdl:operation name="findCustomer">
       <wsdlsoap:operation soapAction="" />
-      <wsdl:input name="deleteCustomerRequest">
+      <wsdl:input name="findCustomerRequest">
         <wsdlsoap:body use="literal" />
       </wsdl:input>
-      <wsdl:output name="deleteCustomerResponse">
+      <wsdl:output name="findCustomerResponse">
         <wsdlsoap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>

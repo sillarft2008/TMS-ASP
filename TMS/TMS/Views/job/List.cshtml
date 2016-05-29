@@ -94,22 +94,10 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.endDate)
                 </td>
-                <td>
-                    <table class="table">
-                            @foreach (var item2 in item.arrayOFCompetency)
-                            {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item2.competency)
-                                    </td>
-                                </tr>
-                            }
-                     </table>
-                </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
                 @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                @Html.ActionLink("Delete", "Delete", new { id = item.id }) |
                 @Html.ActionLink("Create Schedule", "../Schedule/Create", new { jobId = item.id })
             </td>
         </tr>
