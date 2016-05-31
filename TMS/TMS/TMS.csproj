@@ -49,6 +49,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.8\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
@@ -186,6 +190,9 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Repositories\MySQLDatabase.cs" />
+    <Compile Include="Repositories\UserRolesTable.cs" />
+    <Compile Include="Repositories\UserTable.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CompetenciesController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
@@ -195,6 +202,7 @@
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
+    <Compile Include="Controllers\UserStore.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -203,6 +211,7 @@
     <Compile Include="Models\Employee_Competency.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\IdentityUser.cs" />
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Employee.cs" />
@@ -216,6 +225,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Repositories\EmployeeRepository.cs" />
+    <Compile Include="Repositories\WebService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\EmployeeCompetencyViewModel.cs" />
     <Compile Include="ViewModels\EmployeeIndexViewModel.cs" />
@@ -241,6 +251,11 @@
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
     <Compile Include="Web References\localhostSchedule\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\localhostUser\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
@@ -388,6 +403,17 @@
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
     <None Include="Web References\localhostSchedule\ScheduleWebservice.wsdl" />
+    <None Include="Web References\localhostUser\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Web References\localhostUser\User.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\localhostUser\Role.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <None Include="Web References\localhostUser\UserWebservice.wsdl" />
     <None Include="Web References\localhost\CustomerWebservice.wsdl" />
     <None Include="Web References\localhost\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
@@ -398,7 +424,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="bin\" />
     <Folder Include="Migrations\" />
-    <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -480,6 +505,17 @@
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>TMS_localhostSchedule_ScheduleWebserviceService</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://localhost:8080/TMS/wsdl/UserWebservice.wsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\localhostUser\</RelPath>
+      <UpdateFromURL>http://localhost:8080/TMS/wsdl/UserWebservice.wsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>TMS_localhostUser_UserWebserviceService</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
   <PropertyGroup>

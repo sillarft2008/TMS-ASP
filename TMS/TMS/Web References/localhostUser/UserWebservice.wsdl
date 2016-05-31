@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:intf="http://webservice_layer" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:impl="http://webservice_layer" targetNamespace="http://webservice_layer" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://webservice_layer">
+      <xsd:element name="addRole">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="ur" type="impl:UserRole" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="UserRole">
+        <xsd:sequence>
+          <xsd:element name="id" type="xsd:int" />
+          <xsd:element name="roleId" type="xsd:int" />
+          <xsd:element name="userId" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="addRoleResponse">
+        <xsd:complexType />
+      </xsd:element>
+      <xsd:element name="createUser">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="user" type="impl:User" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="User">
+        <xsd:sequence>
+          <xsd:element name="id" nillable="true" type="xsd:string" />
+          <xsd:element name="password" nillable="true" type="xsd:string" />
+          <xsd:element name="securityStamp" nillable="true" type="xsd:string" />
+          <xsd:element name="username" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="createUserResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="createUserReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="findRoleByUserId">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="userId" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="findRoleByUserIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" name="findRoleByUserIdReturn" type="impl:Role" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="Role">
+        <xsd:sequence>
+          <xsd:element name="id" nillable="true" type="xsd:string" />
+          <xsd:element name="role_name" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="deleteUser">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deleteUserResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="deleteUserReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updateUser">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="user" type="impl:User" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updateUserResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="updateUserReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="selectUserByName">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="name" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="selectUserByNameResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="selectUserByNameReturn" type="impl:User" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="selectUserById">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="selectUserByIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="selectUserByIdReturn" type="impl:User" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="addRoleRequest">
+    <wsdl:part name="parameters" element="impl:addRole" />
+  </wsdl:message>
+  <wsdl:message name="addRoleResponse">
+    <wsdl:part name="parameters" element="impl:addRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="selectUserByNameRequest">
+    <wsdl:part name="parameters" element="impl:selectUserByName" />
+  </wsdl:message>
+  <wsdl:message name="selectUserByIdRequest">
+    <wsdl:part name="parameters" element="impl:selectUserById" />
+  </wsdl:message>
+  <wsdl:message name="createUserRequest">
+    <wsdl:part name="parameters" element="impl:createUser" />
+  </wsdl:message>
+  <wsdl:message name="selectUserByNameResponse">
+    <wsdl:part name="parameters" element="impl:selectUserByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="createUserResponse">
+    <wsdl:part name="parameters" element="impl:createUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="updateUserRequest">
+    <wsdl:part name="parameters" element="impl:updateUser" />
+  </wsdl:message>
+  <wsdl:message name="deleteUserResponse">
+    <wsdl:part name="parameters" element="impl:deleteUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="findRoleByUserIdRequest">
+    <wsdl:part name="parameters" element="impl:findRoleByUserId" />
+  </wsdl:message>
+  <wsdl:message name="updateUserResponse">
+    <wsdl:part name="parameters" element="impl:updateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="findRoleByUserIdResponse">
+    <wsdl:part name="parameters" element="impl:findRoleByUserIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="selectUserByIdResponse">
+    <wsdl:part name="parameters" element="impl:selectUserByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteUserRequest">
+    <wsdl:part name="parameters" element="impl:deleteUser" />
+  </wsdl:message>
+  <wsdl:portType name="UserWebservice">
+    <wsdl:operation name="addRole">
+      <wsdl:input name="addRoleRequest" message="impl:addRoleRequest" />
+      <wsdl:output name="addRoleResponse" message="impl:addRoleResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="createUser">
+      <wsdl:input name="createUserRequest" message="impl:createUserRequest" />
+      <wsdl:output name="createUserResponse" message="impl:createUserResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="findRoleByUserId">
+      <wsdl:input name="findRoleByUserIdRequest" message="impl:findRoleByUserIdRequest" />
+      <wsdl:output name="findRoleByUserIdResponse" message="impl:findRoleByUserIdResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteUser">
+      <wsdl:input name="deleteUserRequest" message="impl:deleteUserRequest" />
+      <wsdl:output name="deleteUserResponse" message="impl:deleteUserResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="updateUser">
+      <wsdl:input name="updateUserRequest" message="impl:updateUserRequest" />
+      <wsdl:output name="updateUserResponse" message="impl:updateUserResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="selectUserByName">
+      <wsdl:input name="selectUserByNameRequest" message="impl:selectUserByNameRequest" />
+      <wsdl:output name="selectUserByNameResponse" message="impl:selectUserByNameResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="selectUserById">
+      <wsdl:input name="selectUserByIdRequest" message="impl:selectUserByIdRequest" />
+      <wsdl:output name="selectUserByIdResponse" message="impl:selectUserByIdResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UserWebserviceSoapBinding" type="impl:UserWebservice">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="addRole">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="addRoleRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="addRoleResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createUser">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="createUserRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="createUserResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findRoleByUserId">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="findRoleByUserIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="findRoleByUserIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteUser">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="deleteUserRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="deleteUserResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateUser">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="updateUserRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="updateUserResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="selectUserByName">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="selectUserByNameRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="selectUserByNameResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="selectUserById">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="selectUserByIdRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="selectUserByIdResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UserWebserviceService">
+    <wsdl:port name="UserWebservice" binding="impl:UserWebserviceSoapBinding">
+      <wsdlsoap:address location="http://localhost:12131/TMS/services/UserWebservice" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

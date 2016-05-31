@@ -82,5 +82,15 @@ namespace TMS.Properties {
                 return ((string)(this["TMS_localhostSchedule_ScheduleWebserviceService"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:12131/TMS/services/UserWebservice")]
+        public string TMS_localhostUser_UserWebserviceService {
+            get {
+                return ((string)(this["TMS_localhostUser_UserWebserviceService"]));
+            }
+        }
     }
 }

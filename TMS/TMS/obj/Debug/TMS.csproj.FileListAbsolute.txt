@@ -74,3 +74,4 @@ C:\Users\Allan B Jensen\TMSproject\ASP\TMS\TMS\bin\Microsoft.Owin.Security.Twitt
 C:\Users\Allan B Jensen\TMSproject\ASP\TMS\TMS\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Allan B Jensen\TMSproject\ASP\TMS\TMS\obj\Debug\TMS.dll
 C:\Users\Allan B Jensen\TMSproject\ASP\TMS\TMS\obj\Debug\TMS.pdb
+C:\Users\Allan B Jensen\TMSproject\ASP\TMS\TMS\bin\MySql.Data.dll
