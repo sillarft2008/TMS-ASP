@@ -304,7 +304,52 @@ namespace TMS.Controllers
             {
                 return HttpNotFound();
             }
-            return View(person);
+            else
+            {
+
+                List<Employee_Competency> ecList = new List<Employee_Competency>();
+                List<Competency> compList = new List<Competency>();
+
+
+                localhostEC.EmployeeCompetencyWebserviceService ECWS = new localhostEC.EmployeeCompetencyWebserviceService();
+                localhostCompetency.CompetencyWebserviceService CWS = new localhostCompetency.CompetencyWebserviceService();
+
+                localhostEC.EmployeeCompetency[] pancake = ECWS.findAllEmployeeCompetencies(person.Id);
+                localhostCompetency.Competency[] cake = CWS.getAllCompetencies();
+
+                ECWS.Timeout = 2000;
+                CWS.Timeout = 2000;
+
+                Employee_Competency ec;
+                Competency competency;
+
+                foreach (localhostEC.EmployeeCompetency comp in pancake)
+                {
+                    ec = new Employee_Competency();
+                    ec.setEmployeeCompetency(comp);
+                    ecList.Add(ec);
+
+
+                    foreach (localhostCompetency.Competency compot in cake)
+                    {
+
+                        if (compot.id == ec.competencyId)
+                        {
+                            competency = new Competency();
+                            competency.setCompetency(compot);
+                            compList.Add(competency);
+                        }
+
+                    }
+                }
+                var vm = new EmployeeIndexViewModel
+                {
+                    Employee = person,
+                    Competencies = compList
+
+                };
+                return View(vm);
+            }
         }
 
         // POST: People/Delete/5
@@ -312,7 +357,12 @@ namespace TMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            _iEmployeeRepository.Delete(id);
+            //Employee employee = new Employee();
+            localhostEmployee.EmployeeWebserviceService EWS = new localhostEmployee.EmployeeWebserviceService();
+            EWS.Timeout = 2000;
+            localhostEmployee.Employee delete = EWS.findEmployee((int)id);
+            EWS.deleteEmployee(delete);
+           // _iEmployeeRepository.Delete(id);
             return RedirectToAction("Index");
         }
 

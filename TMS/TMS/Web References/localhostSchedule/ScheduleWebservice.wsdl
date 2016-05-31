@@ -89,20 +89,6 @@
       <xsd:element name="createScheduleResponse">
         <xsd:complexType />
       </xsd:element>
-      <xsd:element name="updateSchedule">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="schedule" type="impl:Schedule" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="updateScheduleResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="updateScheduleReturn" type="xsd:string" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
       <xsd:element name="deleteSchedule">
         <xsd:complexType>
           <xsd:sequence>
@@ -114,6 +100,20 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="deleteScheduleReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updateSchedule">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="schedule" type="impl:Schedule" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updateScheduleResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="updateScheduleReturn" type="xsd:string" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
@@ -189,13 +189,13 @@
       <wsdl:input name="createScheduleRequest" message="impl:createScheduleRequest" />
       <wsdl:output name="createScheduleResponse" message="impl:createScheduleResponse" />
     </wsdl:operation>
-    <wsdl:operation name="updateSchedule">
-      <wsdl:input name="updateScheduleRequest" message="impl:updateScheduleRequest" />
-      <wsdl:output name="updateScheduleResponse" message="impl:updateScheduleResponse" />
-    </wsdl:operation>
     <wsdl:operation name="deleteSchedule">
       <wsdl:input name="deleteScheduleRequest" message="impl:deleteScheduleRequest" />
       <wsdl:output name="deleteScheduleResponse" message="impl:deleteScheduleResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="updateSchedule">
+      <wsdl:input name="updateScheduleRequest" message="impl:updateScheduleRequest" />
+      <wsdl:output name="updateScheduleResponse" message="impl:updateScheduleResponse" />
     </wsdl:operation>
     <wsdl:operation name="findScheduleArrayByEmployeeDate">
       <wsdl:input name="findScheduleArrayByEmployeeDateRequest" message="impl:findScheduleArrayByEmployeeDateRequest" />
@@ -226,21 +226,21 @@
         <wsdlsoap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="updateSchedule">
-      <wsdlsoap:operation soapAction="" />
-      <wsdl:input name="updateScheduleRequest">
-        <wsdlsoap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output name="updateScheduleResponse">
-        <wsdlsoap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="deleteSchedule">
       <wsdlsoap:operation soapAction="" />
       <wsdl:input name="deleteScheduleRequest">
         <wsdlsoap:body use="literal" />
       </wsdl:input>
       <wsdl:output name="deleteScheduleResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateSchedule">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="updateScheduleRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="updateScheduleResponse">
         <wsdlsoap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
@@ -265,7 +265,7 @@
   </wsdl:binding>
   <wsdl:service name="ScheduleWebserviceService">
     <wsdl:port name="ScheduleWebservice" binding="impl:ScheduleWebserviceSoapBinding">
-      <wsdlsoap:address location="http://localhost:12131/TMS/services/ScheduleWebservice" />
+      <wsdlsoap:address location="http://localhost:8080/TMS/services/ScheduleWebservice" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

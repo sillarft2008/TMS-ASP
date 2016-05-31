@@ -33,9 +33,9 @@ namespace TMS.localhostSchedule {
         
         private System.Threading.SendOrPostCallback createScheduleOperationCompleted;
         
-        private System.Threading.SendOrPostCallback updateScheduleOperationCompleted;
-        
         private System.Threading.SendOrPostCallback deleteScheduleOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback updateScheduleOperationCompleted;
         
         private System.Threading.SendOrPostCallback findScheduleArrayByEmployeeDateOperationCompleted;
         
@@ -86,10 +86,10 @@ namespace TMS.localhostSchedule {
         public event createScheduleCompletedEventHandler createScheduleCompleted;
         
         /// <remarks/>
-        public event updateScheduleCompletedEventHandler updateScheduleCompleted;
+        public event deleteScheduleCompletedEventHandler deleteScheduleCompleted;
         
         /// <remarks/>
-        public event deleteScheduleCompletedEventHandler deleteScheduleCompleted;
+        public event updateScheduleCompletedEventHandler updateScheduleCompleted;
         
         /// <remarks/>
         public event findScheduleArrayByEmployeeDateCompletedEventHandler findScheduleArrayByEmployeeDateCompleted;
@@ -157,36 +157,6 @@ namespace TMS.localhostSchedule {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("updateScheduleReturn")]
-        public string updateSchedule(Schedule schedule) {
-            object[] results = this.Invoke("updateSchedule", new object[] {
-                        schedule});
-            return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void updateScheduleAsync(Schedule schedule) {
-            this.updateScheduleAsync(schedule, null);
-        }
-        
-        /// <remarks/>
-        public void updateScheduleAsync(Schedule schedule, object userState) {
-            if ((this.updateScheduleOperationCompleted == null)) {
-                this.updateScheduleOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdateScheduleOperationCompleted);
-            }
-            this.InvokeAsync("updateSchedule", new object[] {
-                        schedule}, this.updateScheduleOperationCompleted, userState);
-        }
-        
-        private void OnupdateScheduleOperationCompleted(object arg) {
-            if ((this.updateScheduleCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.updateScheduleCompleted(this, new updateScheduleCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute("deleteScheduleReturn")]
         public string deleteSchedule(Schedule schedule) {
             object[] results = this.Invoke("deleteSchedule", new object[] {
@@ -212,6 +182,36 @@ namespace TMS.localhostSchedule {
             if ((this.deleteScheduleCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.deleteScheduleCompleted(this, new deleteScheduleCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("updateScheduleReturn")]
+        public string updateSchedule(Schedule schedule) {
+            object[] results = this.Invoke("updateSchedule", new object[] {
+                        schedule});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void updateScheduleAsync(Schedule schedule) {
+            this.updateScheduleAsync(schedule, null);
+        }
+        
+        /// <remarks/>
+        public void updateScheduleAsync(Schedule schedule, object userState) {
+            if ((this.updateScheduleOperationCompleted == null)) {
+                this.updateScheduleOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdateScheduleOperationCompleted);
+            }
+            this.InvokeAsync("updateSchedule", new object[] {
+                        schedule}, this.updateScheduleOperationCompleted, userState);
+        }
+        
+        private void OnupdateScheduleOperationCompleted(object arg) {
+            if ((this.updateScheduleCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.updateScheduleCompleted(this, new updateScheduleCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -836,17 +836,17 @@ namespace TMS.localhostSchedule {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void updateScheduleCompletedEventHandler(object sender, updateScheduleCompletedEventArgs e);
+    public delegate void deleteScheduleCompletedEventHandler(object sender, deleteScheduleCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class updateScheduleCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class deleteScheduleCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal updateScheduleCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal deleteScheduleCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -862,17 +862,17 @@ namespace TMS.localhostSchedule {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
-    public delegate void deleteScheduleCompletedEventHandler(object sender, deleteScheduleCompletedEventArgs e);
+    public delegate void updateScheduleCompletedEventHandler(object sender, updateScheduleCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class deleteScheduleCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class updateScheduleCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal deleteScheduleCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal updateScheduleCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

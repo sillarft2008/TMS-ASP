@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:intf="http://webservice_layer" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:impl="http://webservice_layer" targetNamespace="http://webservice_layer" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://webservice_layer">
+      <xsd:element name="createUser">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="user" type="impl:User" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="User">
+        <xsd:sequence>
+          <xsd:element name="id" type="xsd:int" />
+          <xsd:element name="password" nillable="true" type="xsd:string" />
+          <xsd:element name="username" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="createUserResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="createUserReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="addRole">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="ur" type="impl:UserRole" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="UserRole">
+        <xsd:sequence>
+          <xsd:element name="id" type="xsd:int" />
+          <xsd:element name="roleId" type="xsd:int" />
+          <xsd:element name="userId" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="addRoleResponse">
+        <xsd:complexType />
+      </xsd:element>
+      <xsd:element name="selectUser">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="name" type="xsd:string" />
+            <xsd:element name="pass" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="selectUserResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="selectUserReturn" type="impl:User" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="addRoleRequest">
+    <wsdl:part name="parameters" element="impl:addRole" />
+  </wsdl:message>
+  <wsdl:message name="addRoleResponse">
+    <wsdl:part name="parameters" element="impl:addRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="selectUserRequest">
+    <wsdl:part name="parameters" element="impl:selectUser" />
+  </wsdl:message>
+  <wsdl:message name="selectUserResponse">
+    <wsdl:part name="parameters" element="impl:selectUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="createUserRequest">
+    <wsdl:part name="parameters" element="impl:createUser" />
+  </wsdl:message>
+  <wsdl:message name="createUserResponse">
+    <wsdl:part name="parameters" element="impl:createUserResponse" />
+  </wsdl:message>
+  <wsdl:portType name="UserWebservice">
+    <wsdl:operation name="createUser">
+      <wsdl:input name="createUserRequest" message="impl:createUserRequest" />
+      <wsdl:output name="createUserResponse" message="impl:createUserResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="addRole">
+      <wsdl:input name="addRoleRequest" message="impl:addRoleRequest" />
+      <wsdl:output name="addRoleResponse" message="impl:addRoleResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="selectUser">
+      <wsdl:input name="selectUserRequest" message="impl:selectUserRequest" />
+      <wsdl:output name="selectUserResponse" message="impl:selectUserResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UserWebserviceSoapBinding" type="impl:UserWebservice">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="createUser">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="createUserRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="createUserResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addRole">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="addRoleRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="addRoleResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="selectUser">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="selectUserRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="selectUserResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UserWebserviceService">
+    <wsdl:port name="UserWebservice" binding="impl:UserWebserviceSoapBinding">
+      <wsdlsoap:address location="http://localhost:8080/TMS/services/UserWebservice" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

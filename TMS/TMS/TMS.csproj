@@ -240,7 +240,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <Compile Include="Web References\localhostRole\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
     <Compile Include="Web References\localhostSchedule\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\localhostUser\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
@@ -312,7 +322,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Employee\Create.cshtml" />
-    <Content Include="Views\Employee\Delete.cshtml" />
     <Content Include="Views\Employee\Edit.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Home\CustomerForm.cshtml" />
@@ -326,7 +335,6 @@
     <Content Include="Views\Customers\Details.cshtml" />
     <Content Include="Views\Customers\Edit.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
-    <Content Include="Views\Customers\cust.cshtml" />
     <Content Include="Web References\localhost\Customer.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
@@ -351,6 +359,7 @@
     <Content Include="Views\Schedule\ScheduleViewModel.cshtml" />
     <Content Include="Views\Schedule\Detail.cshtml" />
     <Content Include="Views\Schedule\Select.cshtml" />
+    <Content Include="Views\Employee\Delete.cshtml" />
     <None Include="Web References\jobWS\JobWebservice.wsdl" />
     <None Include="Web References\jobWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
@@ -380,6 +389,14 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Web References\localhostRole\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Web References\localhostRole\Role.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <None Include="Web References\localhostRole\RoleWebservice.wsdl" />
     <None Include="Web References\localhostSchedule\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -388,6 +405,14 @@
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
     <None Include="Web References\localhostSchedule\ScheduleWebservice.wsdl" />
+    <None Include="Web References\localhostUser\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Web References\localhostUser\User.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <None Include="Web References\localhostUser\UserWebservice.wsdl" />
     <None Include="Web References\localhost\CustomerWebservice.wsdl" />
     <None Include="Web References\localhost\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
@@ -470,6 +495,17 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>TMS_jobWS_JobWebserviceService</CachedSettingsPropName>
     </WebReferenceUrl>
+    <WebReferenceUrl Include="http://localhost:8080/TMS/wsdl/RoleWebservice.wsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\localhostRole\</RelPath>
+      <UpdateFromURL>http://localhost:8080/TMS/wsdl/RoleWebservice.wsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>TMS_localhostRole_RoleWebserviceService</CachedSettingsPropName>
+    </WebReferenceUrl>
     <WebReferenceUrl Include="http://localhost:8080/TMS/wsdl/ScheduleWebservice.wsdl">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\localhostSchedule\</RelPath>
@@ -480,6 +516,17 @@
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>TMS_localhostSchedule_ScheduleWebserviceService</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://localhost:8080/TMS/wsdl/UserWebservice.wsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\localhostUser\</RelPath>
+      <UpdateFromURL>http://localhost:8080/TMS/wsdl/UserWebservice.wsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>TMS_localhostUser_UserWebserviceService</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
   <PropertyGroup>
