@@ -40,7 +40,17 @@ namespace TMS.localhostCompetency {
         private System.Threading.SendOrPostCallback updateCompetencyOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
-        
+
+        protected override System.Net.WebRequest GetWebRequest(Uri uri)
+        {
+            System.Net.WebRequest request = base.GetWebRequest(uri) as System.Net.HttpWebRequest;
+            if (request is System.Net.HttpWebRequest)
+            {
+                ((System.Net.HttpWebRequest)request).ProtocolVersion = System.Net.HttpVersion.Version10;
+            }
+            return request;
+        }
+
         /// <remarks/>
         public CompetencyWebserviceService() {
             this.Url = global::TMS.Properties.Settings.Default.TMS_localhostCompetency_CompetencyWebserviceService;

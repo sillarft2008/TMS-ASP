@@ -42,7 +42,17 @@ namespace TMS.localhostEC {
         private System.Threading.SendOrPostCallback createEmployeeCompetencyOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
-        
+
+        protected override System.Net.WebRequest GetWebRequest(Uri uri)
+        {
+            System.Net.WebRequest request = base.GetWebRequest(uri) as System.Net.HttpWebRequest;
+            if (request is System.Net.HttpWebRequest)
+            {
+                ((System.Net.HttpWebRequest)request).ProtocolVersion = System.Net.HttpVersion.Version10;
+            }
+            return request;
+        }
+
         /// <remarks/>
         public EmployeeCompetencyWebserviceService() {
             this.Url = global::TMS.Properties.Settings.Default.TMS_localhostEC_EmployeeCompetencyWebserviceService;

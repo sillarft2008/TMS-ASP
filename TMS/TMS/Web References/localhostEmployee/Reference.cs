@@ -40,7 +40,17 @@ namespace TMS.localhostEmployee {
         private System.Threading.SendOrPostCallback deleteEmployeeOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
-        
+
+        protected override System.Net.WebRequest GetWebRequest(Uri uri)
+        {
+            System.Net.WebRequest request = base.GetWebRequest(uri) as System.Net.HttpWebRequest;
+            if (request is System.Net.HttpWebRequest)
+            {
+                ((System.Net.HttpWebRequest)request).ProtocolVersion = System.Net.HttpVersion.Version10;
+            }
+            return request;
+        }
+
         /// <remarks/>
         public EmployeeWebserviceService() {
             this.Url = global::TMS.Properties.Settings.Default.TMS_localhostEmployee_EmployeeWebserviceService;
