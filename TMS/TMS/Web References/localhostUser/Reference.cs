@@ -29,11 +29,19 @@ namespace TMS.localhostUser {
     [System.Web.Services.WebServiceBindingAttribute(Name="UserWebserviceSoapBinding", Namespace="http://webservice_layer")]
     public partial class UserWebserviceService : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
+        private System.Threading.SendOrPostCallback deleteUserRolesOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback createUserRoleOperationCompleted;
+        
         private System.Threading.SendOrPostCallback addRoleOperationCompleted;
         
         private System.Threading.SendOrPostCallback createUserOperationCompleted;
         
         private System.Threading.SendOrPostCallback findRoleByUserIdOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getAllRolesOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback findUserArrayOperationCompleted;
         
         private System.Threading.SendOrPostCallback deleteUserOperationCompleted;
         
@@ -92,6 +100,12 @@ namespace TMS.localhostUser {
         }
         
         /// <remarks/>
+        public event deleteUserRolesCompletedEventHandler deleteUserRolesCompleted;
+        
+        /// <remarks/>
+        public event createUserRoleCompletedEventHandler createUserRoleCompleted;
+        
+        /// <remarks/>
         public event addRoleCompletedEventHandler addRoleCompleted;
         
         /// <remarks/>
@@ -99,6 +113,12 @@ namespace TMS.localhostUser {
         
         /// <remarks/>
         public event findRoleByUserIdCompletedEventHandler findRoleByUserIdCompleted;
+        
+        /// <remarks/>
+        public event getAllRolesCompletedEventHandler getAllRolesCompleted;
+        
+        /// <remarks/>
+        public event findUserArrayCompletedEventHandler findUserArrayCompleted;
         
         /// <remarks/>
         public event deleteUserCompletedEventHandler deleteUserCompleted;
@@ -111,6 +131,66 @@ namespace TMS.localhostUser {
         
         /// <remarks/>
         public event selectUserByIdCompletedEventHandler selectUserByIdCompleted;
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("deleteUserRolesReturn")]
+        public string deleteUserRoles(string userId) {
+            object[] results = this.Invoke("deleteUserRoles", new object[] {
+                        userId});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void deleteUserRolesAsync(string userId) {
+            this.deleteUserRolesAsync(userId, null);
+        }
+        
+        /// <remarks/>
+        public void deleteUserRolesAsync(string userId, object userState) {
+            if ((this.deleteUserRolesOperationCompleted == null)) {
+                this.deleteUserRolesOperationCompleted = new System.Threading.SendOrPostCallback(this.OndeleteUserRolesOperationCompleted);
+            }
+            this.InvokeAsync("deleteUserRoles", new object[] {
+                        userId}, this.deleteUserRolesOperationCompleted, userState);
+        }
+        
+        private void OndeleteUserRolesOperationCompleted(object arg) {
+            if ((this.deleteUserRolesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.deleteUserRolesCompleted(this, new deleteUserRolesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("createUserRoleReturn")]
+        public string createUserRole(UserRole ur) {
+            object[] results = this.Invoke("createUserRole", new object[] {
+                        ur});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void createUserRoleAsync(UserRole ur) {
+            this.createUserRoleAsync(ur, null);
+        }
+        
+        /// <remarks/>
+        public void createUserRoleAsync(UserRole ur, object userState) {
+            if ((this.createUserRoleOperationCompleted == null)) {
+                this.createUserRoleOperationCompleted = new System.Threading.SendOrPostCallback(this.OncreateUserRoleOperationCompleted);
+            }
+            this.InvokeAsync("createUserRole", new object[] {
+                        ur}, this.createUserRoleOperationCompleted, userState);
+        }
+        
+        private void OncreateUserRoleOperationCompleted(object arg) {
+            if ((this.createUserRoleCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.createUserRoleCompleted(this, new createUserRoleCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -197,6 +277,62 @@ namespace TMS.localhostUser {
             if ((this.findRoleByUserIdCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.findRoleByUserIdCompleted(this, new findRoleByUserIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("getAllRolesReturn")]
+        public Role[] getAllRoles() {
+            object[] results = this.Invoke("getAllRoles", new object[0]);
+            return ((Role[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getAllRolesAsync() {
+            this.getAllRolesAsync(null);
+        }
+        
+        /// <remarks/>
+        public void getAllRolesAsync(object userState) {
+            if ((this.getAllRolesOperationCompleted == null)) {
+                this.getAllRolesOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetAllRolesOperationCompleted);
+            }
+            this.InvokeAsync("getAllRoles", new object[0], this.getAllRolesOperationCompleted, userState);
+        }
+        
+        private void OngetAllRolesOperationCompleted(object arg) {
+            if ((this.getAllRolesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getAllRolesCompleted(this, new getAllRolesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice_layer", ResponseNamespace="http://webservice_layer", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("findUserArrayReturn")]
+        public User[] findUserArray() {
+            object[] results = this.Invoke("findUserArray", new object[0]);
+            return ((User[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void findUserArrayAsync() {
+            this.findUserArrayAsync(null);
+        }
+        
+        /// <remarks/>
+        public void findUserArrayAsync(object userState) {
+            if ((this.findUserArrayOperationCompleted == null)) {
+                this.findUserArrayOperationCompleted = new System.Threading.SendOrPostCallback(this.OnfindUserArrayOperationCompleted);
+            }
+            this.InvokeAsync("findUserArray", new object[0], this.findUserArrayOperationCompleted, userState);
+        }
+        
+        private void OnfindUserArrayOperationCompleted(object arg) {
+            if ((this.findUserArrayCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.findUserArrayCompleted(this, new findUserArrayCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -347,24 +483,13 @@ namespace TMS.localhostUser {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://webservice_layer")]
     public partial class UserRole {
         
-        private int idField;
+        private string roleIdField;
         
-        private int roleIdField;
-        
-        private int userIdField;
+        private string userIdField;
         
         /// <remarks/>
-        public int id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int roleId {
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string roleId {
             get {
                 return this.roleIdField;
             }
@@ -374,7 +499,8 @@ namespace TMS.localhostUser {
         }
         
         /// <remarks/>
-        public int userId {
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string userId {
             get {
                 return this.userIdField;
             }
@@ -482,6 +608,58 @@ namespace TMS.localhostUser {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void deleteUserRolesCompletedEventHandler(object sender, deleteUserRolesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class deleteUserRolesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal deleteUserRolesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void createUserRoleCompletedEventHandler(object sender, createUserRoleCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class createUserRoleCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal createUserRoleCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
     public delegate void addRoleCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
@@ -532,6 +710,58 @@ namespace TMS.localhostUser {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((Role[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void getAllRolesCompletedEventHandler(object sender, getAllRolesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getAllRolesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getAllRolesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Role[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Role[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    public delegate void findUserArrayCompletedEventHandler(object sender, findUserArrayCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1038.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class findUserArrayCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal findUserArrayCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public User[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((User[])(this.results[0]));
             }
         }
     }

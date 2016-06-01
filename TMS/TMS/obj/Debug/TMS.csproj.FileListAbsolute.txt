@@ -75,3 +75,9 @@ C:\Users\Allan B Jensen\TMSproject\ASP\TMS\TMS\bin\Microsoft.Owin.Security.Micro
 C:\Users\Allan B Jensen\TMSproject\ASP\TMS\TMS\obj\Debug\TMS.dll
 C:\Users\Allan B Jensen\TMSproject\ASP\TMS\TMS\obj\Debug\TMS.pdb
 C:\Users\Allan B Jensen\TMSproject\ASP\TMS\TMS\bin\MySql.Data.dll
+C:\Users\Allan B Jensen\TMSproject\ASP\TMS\TMS\bin\System.Net.Http.Formatting.dll
+C:\Users\Allan B Jensen\TMSproject\ASP\TMS\TMS\bin\System.Web.Http.dll
+C:\Users\Allan B Jensen\TMSproject\ASP\TMS\TMS\bin\System.Web.Http.WebHost.dll
+C:\Users\Allan B Jensen\TMSproject\ASP\TMS\TMS\bin\System.Net.Http.Formatting.xml
+C:\Users\Allan B Jensen\TMSproject\ASP\TMS\TMS\bin\System.Web.Http.xml
+C:\Users\Allan B Jensen\TMSproject\ASP\TMS\TMS\bin\System.Web.Http.WebHost.xml

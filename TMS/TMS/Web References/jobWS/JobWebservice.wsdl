@@ -36,6 +36,20 @@
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
+      <xsd:element name="deleteJob">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="job" type="impl:Job" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deleteJobResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="deleteJobReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
       <xsd:element name="createJob">
         <xsd:complexType>
           <xsd:sequence>
@@ -67,20 +81,6 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element maxOccurs="unbounded" name="findJobArrayReturn" type="impl:Job" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="deleteJob">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="job" type="impl:Job" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="deleteJobResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="deleteJobReturn" type="xsd:string" />
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
@@ -141,6 +141,10 @@
       <wsdl:input name="updateJobRequest" message="impl:updateJobRequest" />
       <wsdl:output name="updateJobResponse" message="impl:updateJobResponse" />
     </wsdl:operation>
+    <wsdl:operation name="deleteJob">
+      <wsdl:input name="deleteJobRequest" message="impl:deleteJobRequest" />
+      <wsdl:output name="deleteJobResponse" message="impl:deleteJobResponse" />
+    </wsdl:operation>
     <wsdl:operation name="createJob">
       <wsdl:input name="createJobRequest" message="impl:createJobRequest" />
       <wsdl:output name="createJobResponse" message="impl:createJobResponse" />
@@ -152,10 +156,6 @@
     <wsdl:operation name="findJobArray">
       <wsdl:input name="findJobArrayRequest" message="impl:findJobArrayRequest" />
       <wsdl:output name="findJobArrayResponse" message="impl:findJobArrayResponse" />
-    </wsdl:operation>
-    <wsdl:operation name="deleteJob">
-      <wsdl:input name="deleteJobRequest" message="impl:deleteJobRequest" />
-      <wsdl:output name="deleteJobResponse" message="impl:deleteJobResponse" />
     </wsdl:operation>
     <wsdl:operation name="findCustomerJobArray">
       <wsdl:input name="findCustomerJobArrayRequest" message="impl:findCustomerJobArrayRequest" />
@@ -170,6 +170,15 @@
         <wsdlsoap:body use="literal" />
       </wsdl:input>
       <wsdl:output name="updateJobResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteJob">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="deleteJobRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="deleteJobResponse">
         <wsdlsoap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
@@ -200,15 +209,6 @@
         <wsdlsoap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="deleteJob">
-      <wsdlsoap:operation soapAction="" />
-      <wsdl:input name="deleteJobRequest">
-        <wsdlsoap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output name="deleteJobResponse">
-        <wsdlsoap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="findCustomerJobArray">
       <wsdlsoap:operation soapAction="" />
       <wsdl:input name="findCustomerJobArrayRequest">
@@ -221,7 +221,7 @@
   </wsdl:binding>
   <wsdl:service name="JobWebserviceService">
     <wsdl:port name="JobWebservice" binding="impl:JobWebserviceSoapBinding">
-      <wsdlsoap:address location="http://localhost:8080/TMS/services/JobWebservice" />
+      <wsdlsoap:address location="http://localhost:12131/TMS/services/JobWebservice" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
