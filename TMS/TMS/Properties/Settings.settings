@@ -26,5 +26,8 @@
     <Setting Name="TMS_localhostRole_RoleWebserviceService" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://localhost:8080/TMS/services/RoleWebservice</Value>
     </Setting>
+    <Setting Name="TMS_localhostUser_UserWebserviceService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:12131/TMS/services/UserWebservice</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

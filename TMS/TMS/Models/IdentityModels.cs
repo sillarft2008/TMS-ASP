@@ -2,7 +2,8 @@
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
+using TMS.Repositories;
+//using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace TMS.Models
 {
@@ -18,12 +19,12 @@ namespace TMS.Models
         }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : WebService
     {
        
 
         public ApplicationDbContext()
-            : base("localhost", throwIfV1Schema: false)
+            : base()
         {
         }
 

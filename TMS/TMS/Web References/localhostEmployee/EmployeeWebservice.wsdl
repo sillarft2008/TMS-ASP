@@ -2,7 +2,7 @@
 <wsdl:definitions xmlns:intf="http://webservice_layer" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:impl="http://webservice_layer" targetNamespace="http://webservice_layer" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://webservice_layer">
-      <xsd:element name="createEmployee">
+      <xsd:element name="updateEmployee">
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="employee" type="impl:Employee" />
@@ -20,20 +20,6 @@
           <xsd:element name="telefone" nillable="true" type="xsd:string" />
         </xsd:sequence>
       </xsd:complexType>
-      <xsd:element name="createEmployeeResponse">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="createEmployeeReturn" type="xsd:string" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="updateEmployee">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="employee" type="impl:Employee" />
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
       <xsd:element name="updateEmployeeResponse">
         <xsd:complexType>
           <xsd:sequence>
@@ -79,6 +65,20 @@
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
+      <xsd:element name="createEmployee">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="employee" type="impl:Employee" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="createEmployeeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="createEmployeeReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="createEmployeeResponse">
@@ -112,10 +112,6 @@
     <wsdl:part name="parameters" element="impl:deleteEmployee" />
   </wsdl:message>
   <wsdl:portType name="EmployeeWebservice">
-    <wsdl:operation name="createEmployee">
-      <wsdl:input name="createEmployeeRequest" message="impl:createEmployeeRequest" />
-      <wsdl:output name="createEmployeeResponse" message="impl:createEmployeeResponse" />
-    </wsdl:operation>
     <wsdl:operation name="updateEmployee">
       <wsdl:input name="updateEmployeeRequest" message="impl:updateEmployeeRequest" />
       <wsdl:output name="updateEmployeeResponse" message="impl:updateEmployeeResponse" />
@@ -132,18 +128,13 @@
       <wsdl:input name="deleteEmployeeRequest" message="impl:deleteEmployeeRequest" />
       <wsdl:output name="deleteEmployeeResponse" message="impl:deleteEmployeeResponse" />
     </wsdl:operation>
+    <wsdl:operation name="createEmployee">
+      <wsdl:input name="createEmployeeRequest" message="impl:createEmployeeRequest" />
+      <wsdl:output name="createEmployeeResponse" message="impl:createEmployeeResponse" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="EmployeeWebserviceSoapBinding" type="impl:EmployeeWebservice">
     <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="createEmployee">
-      <wsdlsoap:operation soapAction="" />
-      <wsdl:input name="createEmployeeRequest">
-        <wsdlsoap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output name="createEmployeeResponse">
-        <wsdlsoap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="updateEmployee">
       <wsdlsoap:operation soapAction="" />
       <wsdl:input name="updateEmployeeRequest">
@@ -180,10 +171,19 @@
         <wsdlsoap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="createEmployee">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="createEmployeeRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="createEmployeeResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="EmployeeWebserviceService">
     <wsdl:port name="EmployeeWebservice" binding="impl:EmployeeWebserviceSoapBinding">
-      <wsdlsoap:address location="http://localhost:8080/TMS/services/EmployeeWebservice" />
+      <wsdlsoap:address location="http://localhost:12131/TMS/services/EmployeeWebservice" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

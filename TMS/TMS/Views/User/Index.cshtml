@@ -1,0 +1,48 @@
+﻿@model IEnumerable<TMS.ViewModels.UserViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "../Account/Register", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.user.username)
+        </th>
+        <th></th>
+        <th>Roles</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.user.username)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.user.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.user.id })
+        </td>
+        <td>
+            <table class="table">
+                @if (item.UserRoles != null)
+                {
+                    foreach (var item2 in item.UserRoles)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item2.role_name)
+                        </td>
+                    </tr>
+                    }
+                }
+            </table>
+        </td>
+    </tr>
+}
+
+</table>

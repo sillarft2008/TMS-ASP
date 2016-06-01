@@ -12,9 +12,10 @@ namespace TMS.Controllers
 {
     public class CustomersController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        //private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Customers
+        [Authorize]
         public ActionResult Index()
         {
             //return View(db.Customers.ToList());
@@ -158,7 +159,7 @@ namespace TMS.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                //db.Dispose();
             }
             base.Dispose(disposing);
         }

@@ -10,7 +10,7 @@ namespace TMS.Controllers
     public class HomeController : Controller
     {
 
-        ApplicationDbContext context = new ApplicationDbContext();
+        //ApplicationDbContext context = new ApplicationDbContext();
 
         public ActionResult Index()
         {
