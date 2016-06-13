@@ -13,7 +13,7 @@ namespace TMS.Controllers
     public class UserController : Controller
     {
 
-       // [Authorize]
+        [Authorize(Roles ="admin") ]
         public ActionResult Index()
         {
             List<ViewModels.UserViewModel> userList = new List<ViewModels.UserViewModel>();
@@ -75,14 +75,16 @@ namespace TMS.Controllers
             localhostUser.UserWebserviceService UWS = new localhostUser.UserWebserviceService();
             UWS.deleteUserRoles(data.user.id);
             localhostUser.UserRole userRole;
-            foreach (String roleId in roleIds)
-            {
-                userRole = new localhostUser.UserRole();
-                userRole.roleId = roleId;
-                userRole.userId = data.user.id;
-                UWS.createUserRole(userRole);
-            }
-
+            if (roleIds != null)//added
+            {//added
+                foreach (String roleId in roleIds)
+                {
+                    userRole = new localhostUser.UserRole();
+                    userRole.roleId = roleId;
+                    userRole.userId = data.user.id;
+                    UWS.createUserRole(userRole);
+                }
+            }//added
             //return RedirectToAction("Detail", new { jobId = data.schedule.job.id, startTimeDate = data.schedule.startTimeDate, duration = data.schedule.duration, competencyId = compIds.First() });
             return RedirectToAction("Index");
         }

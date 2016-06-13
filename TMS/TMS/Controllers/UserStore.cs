@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using TMS.Models;
 using TMS.Repositories;
+using System.Security.Claims;  //added
+
 
 namespace TMS.Controllers
 {
@@ -16,7 +18,9 @@ namespace TMS.Controllers
     /// 
     /// Class that implements the key ASP.NET Identity user store iterfaces
     /// </summary>
-    public class UserStore<TUser> : IUserLoginStore<TUser>, 
+    public class UserStore<TUser> : IUserLoginStore<TUser>,
+        IUserClaimStore<TUser>,//added
+        IUserRoleStore<TUser>,//added
         IUserPasswordStore<TUser>,
         IUserSecurityStampStore<TUser>,
         IQueryableUserStore<TUser>,
@@ -30,9 +34,8 @@ namespace TMS.Controllers
         private UserTable<TUser> userTable;
         //private RoleTable roleTable;
         private UserRolesTable userRolesTable;
-        //private UserClaimsTable userClaimsTable;
+        //private UserClaimsTable userClaimsTable; 
         //private UserLoginsTable userLoginsTable;
-        public MySQLDatabase Database { get; private set; }
         public localhostUser.UserWebserviceService UWS { get; private set; }
 
         public IQueryable<TUser> Users
@@ -63,7 +66,7 @@ namespace TMS.Controllers
             userTable = new UserTable<TUser>(UWS);
             //roleTable = new RoleTable(database);
             userRolesTable = new UserRolesTable(UWS);
-            //userClaimsTable = new UserClaimsTable(database);
+            //userClaimsTable = new UserClaimsTable(database); 
             //userLoginsTable = new UserLoginsTable(database);
         }
 
@@ -160,8 +163,8 @@ namespace TMS.Controllers
         /// <param name="user">User to have claim added</param>
         /// <param name="claim">Claim to be added</param>
         /// <returns></returns>
-        //public Task AddClaimAsync(TUser user, Claim claim)
-        //{
+        public Task AddClaimAsync(TUser user, Claim claim)
+        {
         //    if (user == null)
         //    {
         //        throw new ArgumentNullException("user");
@@ -174,20 +177,20 @@ namespace TMS.Controllers
 
         //    userClaimsTable.Insert(claim, user.Id);
 
-        //    return Task.FromResult<object>(null);
-        //}
+            return Task.FromResult<object>(null);
+        }
 
         /// <summary>
         /// Returns all claims for a given user
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        //public Task<IList<Claim>> GetClaimsAsync(TUser user)
-        //{
-        //    ClaimsIdentity identity = userClaimsTable.FindByUserId(user.Id);
-
-        //    return Task.FromResult<IList<Claim>>(identity.Claims.ToList());
-        //}
+        public Task<IList<Claim>> GetClaimsAsync(TUser user)
+        {
+            //ClaimsIdentity identity = userClaimsTable.FindByUserId(user.Id);
+            ClaimsIdentity identity = new ClaimsIdentity(); //added
+            return Task.FromResult<IList<Claim>>(identity.Claims.ToList());
+        }
 
         /// <summary>
         /// Removes a claim froma user
@@ -195,8 +198,8 @@ namespace TMS.Controllers
         /// <param name="user">User to have claim removed</param>
         /// <param name="claim">Claim to be removed</param>
         /// <returns></returns>
-        //public Task RemoveClaimAsync(TUser user, Claim claim)
-        //{
+        public Task RemoveClaimAsync(TUser user, Claim claim)
+        {
         //    if (user == null)
         //    {
         //        throw new ArgumentNullException("user");
@@ -209,8 +212,8 @@ namespace TMS.Controllers
 
         //    userClaimsTable.Delete(user, claim);
 
-        //    return Task.FromResult<object>(null);
-        //}
+            return Task.FromResult<object>(null);
+        }
 
         /// <summary>
         /// Inserts a Login in the UserLoginsTable for a given User
@@ -311,8 +314,8 @@ namespace TMS.Controllers
         /// <param name="user">User to have role added</param>
         /// <param name="roleName">Name of the role to be added to user</param>
         /// <returns></returns>
-        //public Task AddToRoleAsync(TUser user, string roleName)
-        //{
+        public Task AddToRoleAsync(TUser user, string roleName)
+        {
         //    if (user == null)
         //    {
         //        throw new ArgumentNullException("user");
@@ -329,8 +332,8 @@ namespace TMS.Controllers
         //        userRolesTable.Insert(user, roleId);
         //    }
 
-        //    return Task.FromResult<object>(null);
-        //}
+            return Task.FromResult<object>(null);
+        }
 
         /// <summary>
         /// Returns the roles for a given TUser
