@@ -32,7 +32,7 @@ namespace TMS.Controllers
             jobWS.JobWebserviceService JWS = new jobWS.JobWebserviceService();
             JWS.Timeout = 2000;
             jobWS.Job[] jobArray = JWS.findCustomerJobArray((int)id);
-            jobWS.Job a = jobArray[0];
+            //jobWS.Job a = jobArray[0];
             //jobWS.Competency[] b = a.competencyArray;
             Job job = new Job();
             job.customer = customer;
@@ -113,7 +113,7 @@ namespace TMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Address,StartDate,EndDate,customer")] jobWS.Job job)
+        public ActionResult Edit([Bind(Include = "Id,customer,Address,StartDate,EndDate")] jobWS.Job job)
         {
             if (ModelState.IsValid)
             {
